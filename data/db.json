@@ -1,0 +1,1198 @@
+{
+  "meta": {
+    "version": 1,
+    "created_at": "2026-01-15T15:44:38Z"
+  },
+  "users": [
+    {
+      "id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "email": "admin@demo.com",
+      "password_hash": "$pbkdf2-sha256$290000$WAthzHmPMcb431tLqbV2Dg$wUTS8H9KcGju7xVXxABxK.eG5Zcfg/CCzY1/nr74Y/o",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "created_at": "2026-01-15T15:44:38Z",
+      "updated_at": "2026-01-15T15:47:02Z",
+      "reset_token": "490b14354e",
+      "reset_token_expires_at": "2026-01-15T16:17:02Z"
+    },
+    {
+      "id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "email": "emprendedor@demo.com",
+      "password_hash": "$pbkdf2-sha256$290000$uvdeC0GI8d77v5dS6v3/3w$1gmfaFPFffdC5UMsfAH56N.ID6/qMq8iGvRQ4IvF1DA",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "created_at": "2026-01-15T15:44:38Z",
+      "updated_at": "2026-01-17T04:03:07Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "max_published_products": 5,
+      "can_view_stats": false
+    },
+    {
+      "id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "email": "neduvan@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$TOmdk9KakzLGuFfKmfNeiw$3EGnB7F0x19LxeTwzSWS1pg/9bxowhIQnLCk9YWolwg",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "created_at": "2026-01-15T21:54:28Z",
+      "updated_at": "2026-01-17T03:42:46Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "max_published_products": -1,
+      "can_view_stats": true
+    }
+  ],
+  "profiles": [
+    {
+      "id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "business_name": "Café Aurora",
+      "short_desc": "Café artesanal y postres hechos en casa.",
+      "long_desc": "Somos un emprendimiento local de café y repostería. Hacemos envíos en la ciudad y ofrecemos catering para eventos pequeños.",
+      "categories": [
+        "Comida",
+        "Bebidas"
+      ],
+      "city": "Bogotá",
+      "availability": "Lun-Sáb 8am–6pm",
+      "links": {
+        "instagram": "https://www.instagram.com/clubamigosonline/",
+        "facebook": "https://www.facebook.com/clubamigosonline/",
+        "tiktok": "https://www.instagram.com/clubamigosonline/",
+        "whatsapp": "https://wa.me/573001112233",
+        "website": "https://www.instagram.com/clubamigosonline/",
+        "external_catalog": "https://www.instagram.com/clubamigosonline/"
+      },
+      "logo_url": "https://www.marketeroslatam.com/wp-content/uploads/2021/06/marketplace-para-emprendedores-800x400.jpg",
+      "gallery_urls": [
+        "https://tse1.mm.bing.net/th/id/OIP.jUdOlE-MiZUZMTfiJq1VDgHaIP?rs=1&pid=ImgDetMain&o=7&rm=3"
+      ],
+      "is_approved": true,
+      "created_at": "2026-01-15T15:44:38Z",
+      "updated_at": "2026-01-16T14:04:38Z"
+    },
+    {
+      "id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "business_name": "VillaCompu",
+      "short_desc": "En VillaCompu, estamos comprometidos con proporcionar el mejor servicio de SEO para ayudar a nuestros clientes a mejorar su presencia en línea y aumentar su tráfico y ventas.",
+      "long_desc": "Con un equipo altamente capacitado y experimentado, utilizamos técnicas probadas y efectivas para mejorar el ranking de su sitio web en los motores de búsqueda. Trabajamos en estrecha colaboración con nuestros clientes para entender sus objetivos y necesidades, y desarrollamos estrategias personalizadas para ayudarles a alcanzarlos.\n\nAdemás de brindar servicios de SEO, también ofrecemos servicios adicionales, como diseño web, marketing digital y análisis de datos, para ayudar a nuestros clientes a maximizar su presencia en línea.\n\n¡Nos encantaría trabajar contigo para ayudarte a mejorar tu presencia en línea y alcanzar tus objetivos comerciales! Póngase en contacto con nosotros hoy para obtener más información sobre cómo podemos ayudarlo.",
+      "categories": [
+        "Tecnología",
+        "Salud"
+      ],
+      "city": "La estrella",
+      "availability": "Lun-Dom 8am-8pm",
+      "links": {
+        "instagram": "https://www.instagram.com/villacompustore/",
+        "facebook": "https://www.facebook.com/VillaCompuStore",
+        "tiktok": "https://www.linkedin.com/company/the-villacompu-store",
+        "whatsapp": "https://api.whatsapp.com/send/?phone=573027384919&text=Hola+%2AVilla+Compu%2A.+Necesito+m%C3%A1s+informaci%C3%B3n+para+solicitar+un+servicio&type=phone_number&app_absent=0",
+        "website": "https://villacompu.com/",
+        "external_catalog": "",
+        "phone": "3027384919"
+      },
+      "logo_url": "https://villacompu.com/wp-content/uploads/2023/01/Logo-VillaCompu.png.webp",
+      "gallery_urls": [
+        "https://villacompu.com/wp-content/uploads/2023/01/duvan-villa-avatar-2.jpg.webp",
+        "https://villacompu.com/wp-content/uploads/2018/09/info-2.png.webp"
+      ],
+      "is_approved": true,
+      "created_at": "2026-01-15T21:54:28Z",
+      "updated_at": "2026-01-16T05:05:46Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "94a72ad3-53b3-4d16-a7cd-20403be746d6",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "name": "Caja de brownies x6",
+      "description": "Brownies húmedos con chocolate premium. Ideal para regalo.",
+      "price_type": "FIXED",
+      "price_value": 32000,
+      "category": "Comida",
+      "subcategory": "Postres",
+      "tags": [
+        "brownie",
+        "regalo",
+        "chocolate"
+      ],
+      "image_urls": [],
+      "status": "PUBLISHED",
+      "stock": null,
+      "created_at": "2026-01-15T15:44:38Z",
+      "updated_at": "2026-01-16T04:45:04Z"
+    },
+    {
+      "id": "90aba15a-f5b6-4e8b-8314-94d77117cab6",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "name": "Café molido 250g",
+      "description": "Café de origen, tueste medio, notas a cacao y caramelo.",
+      "price_type": "FROM",
+      "price_value": 28000,
+      "category": "Bebidas",
+      "subcategory": "Café",
+      "tags": [
+        "café",
+        "origen",
+        "tostado"
+      ],
+      "image_urls": [],
+      "status": "PUBLISHED",
+      "stock": null,
+      "created_at": "2026-01-15T15:44:38Z",
+      "updated_at": "2026-01-16T04:45:01Z"
+    },
+    {
+      "id": "2e0fbacf-08e3-47ef-a16c-b9dd064145e9",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "name": "Catering para eventos",
+      "description": "Servicio a convenir según cantidad de personas y menú.",
+      "price_type": "AGREED",
+      "price_value": null,
+      "category": "Servicios",
+      "subcategory": "Eventos",
+      "tags": [
+        "catering",
+        "eventos"
+      ],
+      "image_urls": [],
+      "status": "PUBLISHED",
+      "stock": null,
+      "created_at": "2026-01-15T15:44:38Z",
+      "updated_at": "2026-01-16T04:44:54Z"
+    },
+    {
+      "id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "name": "Mantenimiento Preventivo",
+      "description": "Ahora puedes realizar mantenimiento preventivo a tu equipo de cómputo, elimina archivos basura, temporales, cookies, liberación de espacio, desfragmentación y más",
+      "category": "Tecnología",
+      "tags": [
+        "Hecho a mano",
+        "Promoción"
+      ],
+      "price_type": "FIXED",
+      "price_value": 80000.0,
+      "photo_urls": [
+        "https://tigroup.cl/wp-content/uploads/2024/01/computer-troubleshooting-concept-illustration_114360-7616-1.webp"
+      ],
+      "status": "PUBLISHED",
+      "created_at": "2026-01-15T22:40:15Z",
+      "updated_at": "2026-01-16T14:05:02Z"
+    },
+    {
+      "id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "name": "Mantenimiento Correctivo",
+      "description": "Ahora puedes realizar mantenimiento correctivo a tu equipo de cómputo, eliminación de archivos basura, temporales, cookies, liberación de espacio, desfragmentación, actualización del sistema operativo, instalación de programas.",
+      "category": "Tecnología",
+      "tags": [
+        "Promoción"
+      ],
+      "price_type": "FIXED",
+      "price_value": 100000.0,
+      "photo_urls": [
+        "https://villacompu.com/wp-content/uploads/2018/09/info-2.png.webp"
+      ],
+      "status": "PUBLISHED",
+      "created_at": "2026-01-15T22:42:58Z",
+      "updated_at": "2026-01-16T14:05:10Z",
+      "tag_suggestion": ""
+    },
+    {
+      "id": "aa51cfcd-e450-47ae-8aa3-d7b03385fb27",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "created_at": "2026-01-17T02:44:24Z",
+      "name": "Galleta",
+      "description": "Galleta",
+      "category": "Comida",
+      "tags": [
+        "Gourmet / Artesanal"
+      ],
+      "tag_suggestion": "",
+      "price_type": "FROM",
+      "price_value": 9000,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T02:44:24Z"
+    },
+    {
+      "id": "c211314c-51a4-4269-915e-5d71ed548816",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "created_at": "2026-01-17T02:44:48Z",
+      "name": "Postres",
+      "description": "Postres artesanales",
+      "category": "Comida",
+      "tags": [
+        "Gourmet / Artesanal"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [],
+      "status": "PAUSED",
+      "updated_at": "2026-01-17T03:00:59Z"
+    },
+    {
+      "id": "6cf0e9ce-421e-44ee-a0e3-857d7ea454a7",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "created_at": "2026-01-17T02:45:17Z",
+      "name": "Producto nuevo",
+      "description": "Descripción",
+      "category": "Comida",
+      "tags": [
+        "Domicilios"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:01:01Z"
+    },
+    {
+      "id": "b76ca7f2-055a-4b57-aac7-75468ec74d71",
+      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "created_at": "2026-01-17T02:55:41Z",
+      "name": "Prueba 2",
+      "description": "Descriçpción",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "DRAFT",
+      "updated_at": "2026-01-17T02:55:41Z"
+    },
+    {
+      "id": "51fc8db2-19cd-48af-8990-497441a6085d",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:07:51Z",
+      "name": "Nombre",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:08:23Z"
+    },
+    {
+      "id": "6b3aabd5-59a7-451f-8d82-81d92623d5de",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:07:58Z",
+      "name": "NOmbre 2",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:08:21Z"
+    },
+    {
+      "id": "7a4446a2-720b-4312-b823-1d71de983db5",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:08:36Z",
+      "name": "NOmbre 3",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:08:36Z"
+    },
+    {
+      "id": "811eb9bf-425f-4600-9403-d02611c6c866",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:08:47Z",
+      "name": "Producto 6",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:08:47Z"
+    },
+    {
+      "id": "16ed1a41-3296-404c-b260-5a6d58b7c46a",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:08:54Z",
+      "name": "7",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:08:54Z"
+    },
+    {
+      "id": "286cf44f-7b08-4df2-a94e-16b3457255b5",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:09:03Z",
+      "name": "8",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FROM",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:09:03Z"
+    },
+    {
+      "id": "233a41c0-7b25-477f-ae4b-397d7c66c489",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:09:14Z",
+      "name": "P. 9",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:09:14Z"
+    },
+    {
+      "id": "d5609f01-c744-4e4d-933f-039e62bd5774",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:09:23Z",
+      "name": "10",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:43:08Z"
+    },
+    {
+      "id": "8f6ae124-afec-416d-a3af-36582b3304cd",
+      "owner_user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "created_at": "2026-01-17T03:09:32Z",
+      "name": "Producto 11",
+      "description": "",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-17T03:09:39Z"
+    }
+  ],
+  "favorites": [
+    {
+      "id": "c59ba949-6986-4271-8a3e-0ac139886bfb",
+      "owner_type": "USER",
+      "owner_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "product_id": "94a72ad3-53b3-4d16-a7cd-20403be746d6",
+      "created_at": "2026-01-15T21:46:37Z"
+    },
+    {
+      "id": "53f3dda4-c6a8-4949-9ee1-a207d2a1ddb3",
+      "owner_type": "USER",
+      "owner_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "created_at": "2026-01-16T14:58:17Z"
+    },
+    {
+      "id": "f6311222-92c5-4ab8-bc77-4696c049451b",
+      "owner_type": "USER",
+      "owner_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "created_at": "2026-01-16T19:10:09Z"
+    }
+  ],
+  "events": [
+    {
+      "ts": "2026-01-16T14:30:22Z",
+      "event": "product_view",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "82aeaede-f4f5-42af-919d-3ee54a37a28b",
+      "product_id": "90aba15a-f5b6-4e8b-8314-94d77117cab6",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec"
+    },
+    {
+      "ts": "2026-01-16T14:30:30Z",
+      "event": "product_view",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "82aeaede-f4f5-42af-919d-3ee54a37a28b",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e"
+    },
+    {
+      "ts": "2026-01-16T14:30:43Z",
+      "event": "product_view",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "82aeaede-f4f5-42af-919d-3ee54a37a28b",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e"
+    },
+    {
+      "ts": "2026-01-16T14:30:44Z",
+      "event": "product_view",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "82aeaede-f4f5-42af-919d-3ee54a37a28b",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e"
+    },
+    {
+      "ts": "2026-01-16T16:50:06Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "f88d9548-5dd4-47a2-a001-6159dccf754e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T16:50:15Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "f88d9548-5dd4-47a2-a001-6159dccf754e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "cafe",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            28000,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 3
+      }
+    },
+    {
+      "ts": "2026-01-16T18:30:45Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "327b002d-1bf7-4453-b9cc-d6ef9ef75791",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T18:30:45Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9fb6e26d-d034-440b-838a-085dbcb6c2f8",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T18:30:46Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b8e7c5d7-7e88-4d47-a303-a4e0201f93f6",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T18:30:46Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "51ed8fcb-92e2-40cd-8324-f10386d75de8",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T19:09:44Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "b8e7c5d7-7e88-4d47-a303-a4e0201f93f6",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T19:09:48Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "b8e7c5d7-7e88-4d47-a303-a4e0201f93f6",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T19:10:45Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "b8e7c5d7-7e88-4d47-a303-a4e0201f93f6",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-16T19:11:36Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "b8e7c5d7-7e88-4d47-a303-a4e0201f93f6",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "Computador",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            28000,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-16T19:11:45Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "b8e7c5d7-7e88-4d47-a303-a4e0201f93f6",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "mantenimiento",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            28000,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 2
+      }
+    },
+    {
+      "ts": "2026-01-17T02:20:54Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1672e6a9-07be-46b8-8744-8286a7134537",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:01:46Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "1672e6a9-07be-46b8-8744-8286a7134537",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            9000,
+            100000
+          ],
+          "sort_by": "Más recientes"
+        },
+        "results_n": 7
+      }
+    },
+    {
+      "ts": "2026-01-17T03:01:49Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "1672e6a9-07be-46b8-8744-8286a7134537",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            9000,
+            100000
+          ],
+          "sort_by": "Precio ↑"
+        },
+        "results_n": 7
+      }
+    },
+    {
+      "ts": "2026-01-17T03:01:54Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "1672e6a9-07be-46b8-8744-8286a7134537",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            9000,
+            100000
+          ],
+          "sort_by": "Precio ↓"
+        },
+        "results_n": 7
+      }
+    },
+    {
+      "ts": "2026-01-17T03:09:57Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "1672e6a9-07be-46b8-8744-8286a7134537",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Más recientes"
+        },
+        "results_n": 15
+      }
+    },
+    {
+      "ts": "2026-01-17T03:10:01Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "1672e6a9-07be-46b8-8744-8286a7134537",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Precio ↑"
+        },
+        "results_n": 15
+      }
+    },
+    {
+      "ts": "2026-01-17T03:19:47Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "be33800a-824a-4615-965a-a4d140f41f4e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:21:57Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "81dc6a13-8a0e-47b9-8f2b-563714cd3935",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:24:04Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "04cc55d3-b3ab-4ac9-9893-06b84adebe1e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:24:29Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "e9ca5806-af23-4962-a487-ada6d4fba0fb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:24:30Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "203b0135-0bea-489a-a9fe-7cf27323ed68",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:37:06Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "213db168-e205-4a9d-a0be-829e6687cf77",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:37:07Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6a12ce45-59dc-40d8-9c14-512ee574b3dc",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:40:32Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:40:32Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d8c37e37-a5ea-4e10-91cc-be5772995c59",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:40:32Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b3f303d5-b303-4017-9110-11506af22d13",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:40:32Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1e597822-08e3-4629-8890-005e2a832a26",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:45:31Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:45:54Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "2e0fbacf-08e3-47ef-a16c-b9dd064145e9",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:46:00Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "90aba15a-f5b6-4e8b-8314-94d77117cab6",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T03:46:24Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "producto",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 3
+      }
+    },
+    {
+      "ts": "2026-01-17T03:46:48Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "producto",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            32639,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 1
+      }
+    },
+    {
+      "ts": "2026-01-17T03:46:50Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "producto",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            32639,
+            61458
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 1
+      }
+    },
+    {
+      "ts": "2026-01-17T03:46:54Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "producto",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Gourmet / Artesanal",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-17T03:46:57Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "producto",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Domicilios",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 1
+      }
+    },
+    {
+      "ts": "2026-01-17T03:47:01Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "producto",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "café",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-17T03:47:04Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "producto",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "regalo",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-17T03:47:08Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Gourmet / Artesanal",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 1
+      }
+    },
+    {
+      "ts": "2026-01-17T03:47:09Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Domicilios",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 1
+      }
+    },
+    {
+      "ts": "2026-01-17T03:55:04Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "c3432cd6-d16d-4078-b7fb-c5278e4600dd",
+      "product_id": "233a41c0-7b25-477f-ae4b-397d7c66c489",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:47Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ef552389-ffe0-4333-8b7a-57b0af0ab0a2",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:48Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4ee92882-71d5-4384-804b-d6515abf05a2",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:48Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f52dc321-907b-4a57-bb27-ff0dfc9addb0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:50Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a4e0a652-2437-444d-8730-f70be1e9cd34",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:52Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1e0a283b-1e3b-4bfd-8310-2b2c19b4b99c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:53Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f45ee696-10fd-4c1e-b43b-1f62d8329419",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:54Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8182b56d-60db-4c18-8a29-f529cd072c1e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-17T04:16:57Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4dcfd16b-7dc5-4f39-83e0-382b9c5e349d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    }
+  ],
+  "featured": {
+    "products": [],
+    "profiles": [
+      "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "98514919-8833-4de4-ae04-67acfccbf02e"
+    ]
+  }
+}
