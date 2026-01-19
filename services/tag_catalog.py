@@ -36,7 +36,6 @@ TAG_CATALOG: dict[str, list[str]] = {
         "Eventos / Decoración",
         "Asesorías / Consultoría",
         "Transporte",
-        "Servicios para mascotas",
     ],
     "Tecnología": [
         "Soporte técnico",
@@ -97,6 +96,20 @@ TAG_CATALOG: dict[str, list[str]] = {
         "Arte digital",
         "Regalos",
         "Decoración artística",
+    ],
+
+    # ✅ NUEVA CATEGORÍA
+    "Mascotas": [
+        "Alimentos / Snacks",
+        "Accesorios (collares, correas)",
+        "Juguetes",
+        "Camas / Transportadoras",
+        "Higiene / Aseo",
+        "Ropa",
+        "Veterinaria",
+        "Peluquería / Grooming",
+        "Paseo / Guardería",
+        "Adiestramiento",
     ],
 }
 

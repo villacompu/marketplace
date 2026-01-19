@@ -13,23 +13,27 @@ def render(db):
     )
     st.write("")
 
-    # ✅ 1) Si venimos de un registro exitoso, limpiamos ANTES de instanciar widgets
+    # ✅ Si venimos de un registro exitoso, limpiamos ANTES de instanciar widgets
     if st.session_state.pop("_reg_clear", False):
         st.session_state.pop("reg_email", None)
         st.session_state.pop("reg_pass", None)
+        st.session_state.pop("reg_pass2", None)
         st.session_state.pop("reg_business", None)
         st.session_state.pop("reg_city", None)
         st.session_state.pop("reg_categories", None)
 
-    # ✅ 2) Defaults (solo si no existen)
+    # ✅ Defaults
     st.session_state.setdefault("reg_email", "")
     st.session_state.setdefault("reg_pass", "")
+    st.session_state.setdefault("reg_pass2", "")
     st.session_state.setdefault("reg_business", "")
     st.session_state.setdefault("reg_city", "")
     st.session_state.setdefault("reg_categories", [])
 
     email = st.text_input("Email", placeholder="tu@email.com", key="reg_email")
     password = st.text_input("Contraseña", type="password", placeholder="Mínimo 8 caracteres", key="reg_pass")
+    password2 = st.text_input("Confirmar contraseña", type="password", placeholder="Repite la contraseña", key="reg_pass2")
+
     business_name = st.text_input("Nombre del emprendimiento", placeholder="Ej: Panadería Luna", key="reg_business")
     city = st.text_input("Ciudad (opcional)", placeholder="Ej: Medellín", key="reg_city")
     categories = st.multiselect(
@@ -49,6 +53,10 @@ def render(db):
             st.error("La contraseña debe tener al menos 8 caracteres.")
             st.stop()
 
+        if (password or "") != (password2 or ""):
+            st.error("Las contraseñas no coinciden.")
+            st.stop()
+
         if not (business_name or "").strip():
             st.error("El nombre del emprendimiento es obligatorio.")
             st.stop()
@@ -65,7 +73,7 @@ def render(db):
             "role": "EMPRENDEDOR",
             "status": "PENDING",
             "max_published_products": 5,
-            "can_view_stats": False,  # ✅ opcional (por consistencia)
+            "can_view_stats": False,
             "created_at": now_iso(),
             "updated_at": now_iso(),
             "reset_token": None,
@@ -103,7 +111,7 @@ def render(db):
 
         st.success("Cuenta creada. Ahora inicia sesión (tu perfil quedará pendiente de aprobación).")
 
-        # ✅ 3) No limpiamos aquí (rompe Streamlit). Marcamos flag y redirigimos.
+        # ✅ Marcamos flag y redirigimos (sin tocar keys en este run)
         st.session_state["_reg_clear"] = True
         st.session_state["route"] = "login"
         st.rerun()
