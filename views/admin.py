@@ -384,6 +384,10 @@ def render(db):
         st.info("No hay productos con esos filtros.")
     else:
         options = fdfp["product_id"].tolist()
+        # ✅ Si quedó una selección pendiente (por ejemplo después de borrar),
+        # la aplicamos ANTES de instanciar el selectbox.
+        if "admin_next_selected_product_id" in st.session_state:
+            st.session_state["admin_selected_product_id"] = st.session_state.pop("admin_next_selected_product_id")
         st.session_state.setdefault("admin_selected_product_id", options[0] if options else None)
         if st.session_state.get("admin_selected_product_id") not in options:
             st.session_state["admin_selected_product_id"] = options[0]
@@ -480,7 +484,7 @@ def render(db):
                             save_db(db)
                             st.session_state[confirm_key] = False
                             remaining = [x.get("id") for x in db.get("products", []) if x.get("id")]
-                            st.session_state["admin_selected_product_id"] = remaining[0] if remaining else None
+                            st.session_state["admin_next_selected_product_id"] = remaining[0] if remaining else None
                             st.rerun()
                     with cB:
                         if st.button("↩️ Cancelar", key=f"admin_prod_del_no_{selected_pid}", use_container_width=True):
