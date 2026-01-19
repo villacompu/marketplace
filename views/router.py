@@ -1,10 +1,12 @@
 from __future__ import annotations
 import streamlit as st
 
-def goto(route: str, **params) -> None:
+def goto(route: str, **params):
     st.session_state["route"] = route
+    st.query_params.clear()
+    st.query_params["page"] = route
     for k, v in params.items():
-        st.session_state[k] = v
+        st.query_params[k] = str(v)
     st.rerun()
 
 def current_route(default: str = "home") -> str:

@@ -5,7 +5,7 @@ import streamlit as st
 
 from auth.session import get_user, logout
 from db.repo_json import load_db, seed_if_empty
-from views.router import current_route
+from views.router import current_route, goto
 from views import home, login, register, admin
 from views import public_profile, favorites_page, my_profile
 from views import product_detail, my_products
@@ -25,12 +25,20 @@ def _inject_css():
 def _topbar(db: dict):
     u = get_user()
 
+    qp = st.query_params
+    if "page" in qp:
+        st.session_state["route"] = qp.get("page")
+        # ejemplo: si viene pid
+        if "selected_product_id" in qp:
+            st.session_state["selected_product_id"] = qp.get("selected_product_id")
+        if "selected_profile_id" in qp:
+            st.session_state["selected_profile_id"] = qp.get("selected_profile_id")
+
     # ✅ Refrescar usuario desde DB para que permisos/limites se reflejen en el menú
     if u:
         u_db = next((x for x in (db.get("users", []) or []) if x.get("id") == u.get("id")), None)
         if u_db:
             u = u_db
-            
 
     # ✅ Topbar como layout nativo (1 fila estable)
     with st.container():
@@ -71,11 +79,9 @@ def _topbar(db: dict):
                         # EMPRENDEDOR
                         # -------------------------
                         if u.get("role") == "EMPRENDEDOR":
-                            # Debug opcional (puedes borrarlo cuando ya funcione)
-                            #st.caption(f"can_view_stats = {u.get('can_view_stats')}")
-
                             if st.button("🏪 Mi perfil", use_container_width=True, key="btn_my_profile"):
-                                st.session_state["route"] = "my_profile"
+                                goto("my_profile")
+                                #st.session_state["route"] = "my_profile"
                                 st.rerun()
 
                             if st.button("📦 Mis productos", use_container_width=True, key="btn_my_products"):
@@ -118,6 +124,24 @@ def _topbar(db: dict):
                             st.rerun()
 
 
+def _sync_route_from_query_params():
+    
+    qp = st.query_params  # Streamlit >= 1.30
+
+    page = qp.get("page")
+    if page:
+        st.session_state["route"] = page
+
+    spid = qp.get("selected_product_id")
+    if spid:
+        st.session_state["selected_product_id"] = spid
+
+    spr = qp.get("selected_profile_id")
+    if spr:
+        st.session_state["selected_profile_id"] = spr
+
+
+
 
 def main():
     st.set_page_config(page_title=APP_NAME, page_icon="🛍️", layout="wide")
@@ -125,6 +149,10 @@ def main():
 
     db = seed_if_empty(load_db())
 
+    # ✅ 1) Primero sincronizamos la ruta desde la URL
+    _sync_route_from_query_params()
+
+    # ✅ 2) Luego pintamos topbar (ya con ruta/selecciones listas)
     _topbar(db)
 
     route = current_route("home")

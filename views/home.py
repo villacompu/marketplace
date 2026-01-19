@@ -225,7 +225,7 @@ def render(db):
                     unsafe_allow_html=True
                 )
 
-                st.markdown('<div class="card-actions"><div class="actions-3">', unsafe_allow_html=True)
+                st.markdown('<div class="actions-3">', unsafe_allow_html=True)
                 b1, b2, b3 = st.columns([1.6, 0.5, 0.5], gap="small")
 
                 with b1:

@@ -46,10 +46,10 @@
       "email": "fasamtolireposteria@gmail.com",
       "password_hash": "$pbkdf2-sha256$290000$e8/5f28NwRhjLKX0fo8x5g$pds86vDtA2bF1jqDsEQJ3l/XRQ4e16NFKxOCvIa5m/4",
       "role": "EMPRENDEDOR",
-      "status": "PENDING",
+      "status": "ACTIVE",
       "max_published_products": 5,
       "created_at": "2026-01-19T02:11:43Z",
-      "updated_at": "2026-01-19T02:11:43Z",
+      "updated_at": "2026-01-19T02:44:55Z",
       "reset_token": null,
       "reset_token_expires_at": null
     },
@@ -58,11 +58,11 @@
       "email": "cooketaquegalleta@gmail.com",
       "password_hash": "$pbkdf2-sha256$290000$G4MwxpgzZmztvZcSAgDgHA$4GXxbU/2NAkTEc9Nw7TMJ8ngcC3/bOg57z6LqyL9iWI",
       "role": "EMPRENDEDOR",
-      "status": "PENDING",
+      "status": "ACTIVE",
       "max_published_products": 5,
       "can_view_stats": false,
       "created_at": "2026-01-19T02:20:47Z",
-      "updated_at": "2026-01-19T02:20:47Z",
+      "updated_at": "2026-01-19T02:45:00Z",
       "reset_token": null,
       "reset_token_expires_at": null
     }
@@ -148,10 +148,10 @@
       },
       "logo_url": "",
       "gallery_urls": [],
-      "is_approved": false,
+      "is_approved": true,
       "is_featured": false,
       "created_at": "2026-01-19T02:11:43Z",
-      "updated_at": "2026-01-19T02:11:43Z"
+      "updated_at": "2026-01-19T02:44:55Z"
     },
     {
       "id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
@@ -175,9 +175,9 @@
       },
       "logo_url": "",
       "gallery_urls": [],
-      "is_approved": false,
+      "is_approved": true,
       "created_at": "2026-01-19T02:20:47Z",
-      "updated_at": "2026-01-19T02:20:47Z"
+      "updated_at": "2026-01-19T02:45:00Z"
     }
   ],
   "products": [
@@ -282,58 +282,6 @@
       "created_at": "2026-01-15T22:42:58Z",
       "updated_at": "2026-01-16T14:05:10Z",
       "tag_suggestion": ""
-    },
-    {
-      "id": "c211314c-51a4-4269-915e-5d71ed548816",
-      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
-      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
-      "created_at": "2026-01-17T02:44:48Z",
-      "name": "Postres",
-      "description": "Postres artesanales",
-      "category": "Comida",
-      "tags": [
-        "Gourmet / Artesanal"
-      ],
-      "tag_suggestion": "",
-      "price_type": "AGREE",
-      "price_value": null,
-      "photo_urls": [],
-      "status": "PAUSED",
-      "updated_at": "2026-01-17T03:00:59Z"
-    },
-    {
-      "id": "6cf0e9ce-421e-44ee-a0e3-857d7ea454a7",
-      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
-      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
-      "created_at": "2026-01-17T02:45:17Z",
-      "name": "Producto nuevo",
-      "description": "Descripción",
-      "category": "Comida",
-      "tags": [
-        "Domicilios"
-      ],
-      "tag_suggestion": "",
-      "price_type": "AGREE",
-      "price_value": null,
-      "photo_urls": [],
-      "status": "PUBLISHED",
-      "updated_at": "2026-01-17T03:01:01Z"
-    },
-    {
-      "id": "b76ca7f2-055a-4b57-aac7-75468ec74d71",
-      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
-      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
-      "created_at": "2026-01-17T02:55:41Z",
-      "name": "Prueba 2",
-      "description": "Descriçpción",
-      "category": "Comida",
-      "tags": [],
-      "tag_suggestion": "",
-      "price_type": "FIXED",
-      "price_value": 0,
-      "photo_urls": [],
-      "status": "DRAFT",
-      "updated_at": "2026-01-17T02:55:41Z"
     }
   ],
   "favorites": [
@@ -1201,6 +1149,176 @@
       "anon_id": "ff471ebd-f2ea-4c38-b706-eec24b2bd4fb",
       "product_id": "",
       "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T02:40:17Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3b978bca-aee9-45c6-81b1-0104ea37744e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T02:54:07Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "896e5ee2-b9f9-40c5-bd17-f9137db4a004",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T02:58:38Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ffdac124-cdce-4eee-b62d-09ef42ea579c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T02:59:14Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ec2b3d28-df43-4140-bd62-7e3b10058167",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T02:59:25Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8f0ef9ea-b6f7-4023-8d55-e2b3e4c63037",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:00:45Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "78d91a61-19f1-4795-921e-4215840cb9a1",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:01:36Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "abe0d79f-be22-44a3-a20b-8530c2d44e14",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:01:44Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "abe0d79f-be22-44a3-a20b-8530c2d44e14",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:12:21Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f4fa2717-6089-460f-a647-d3dabc459282",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:12:27Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "f4fa2717-6089-460f-a647-d3dabc459282",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:17:25Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "e2c869da-7a09-4dff-87dc-3e7042c0fc53",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:17:28Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "e2c869da-7a09-4dff-87dc-3e7042c0fc53",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:17:44Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b220beb6-edc2-4b95-8676-e8e31776492e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:23:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "900ed0f9-a0b2-44f0-8027-0e707e4ffc3d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:23:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ff5b04ae-7827-4fa0-b466-6431ee33a735",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:23:19Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "950e78d5-55d3-48d6-b6eb-9dac882c7eae",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T03:26:35Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "ff5b04ae-7827-4fa0-b466-6431ee33a735",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
       "meta": {}
     }
   ],
