@@ -13,7 +13,15 @@ def render(db):
     )
     st.write("")
 
-    # ✅ Keys estables para poder limpiar luego
+    # ✅ 1) Si venimos de un registro exitoso, limpiamos ANTES de instanciar widgets
+    if st.session_state.pop("_reg_clear", False):
+        st.session_state.pop("reg_email", None)
+        st.session_state.pop("reg_pass", None)
+        st.session_state.pop("reg_business", None)
+        st.session_state.pop("reg_city", None)
+        st.session_state.pop("reg_categories", None)
+
+    # ✅ 2) Defaults (solo si no existen)
     st.session_state.setdefault("reg_email", "")
     st.session_state.setdefault("reg_pass", "")
     st.session_state.setdefault("reg_business", "")
@@ -33,6 +41,10 @@ def render(db):
     if st.button("Crear cuenta", use_container_width=True):
         e = (email or "").strip().lower()
 
+        if not e:
+            st.error("El email es obligatorio.")
+            st.stop()
+
         if len(password or "") < 8:
             st.error("La contraseña debe tener al menos 8 caracteres.")
             st.stop()
@@ -41,7 +53,7 @@ def render(db):
             st.error("El nombre del emprendimiento es obligatorio.")
             st.stop()
 
-        if any(u.get("email") == e for u in db.get("users", [])):
+        if any((u.get("email") or "").strip().lower() == e for u in db.get("users", [])):
             st.error("Ese email ya está registrado.")
             st.stop()
 
@@ -52,7 +64,8 @@ def render(db):
             "password_hash": hash_password(password),
             "role": "EMPRENDEDOR",
             "status": "PENDING",
-            "max_published_products": 5,  # ✅ NUEVO: límite inicial
+            "max_published_products": 5,
+            "can_view_stats": False,  # ✅ opcional (por consistencia)
             "created_at": now_iso(),
             "updated_at": now_iso(),
             "reset_token": None,
@@ -81,24 +94,16 @@ def render(db):
             "logo_url": "",
             "gallery_urls": [],
             "is_approved": False,
-            "is_featured": False,          # ✅ NUEVO: destacados
             "created_at": now_iso(),
             "updated_at": now_iso(),
         })
-        
-        # ✅ recomendado:
+
         db.setdefault("events", [])
         save_db(db)
 
-        # ✅ Limpiar campos del formulario
-        st.session_state["reg_email"] = ""
-        st.session_state["reg_pass"] = ""
-        st.session_state["reg_business"] = ""
-        st.session_state["reg_city"] = ""
-        st.session_state["reg_categories"] = []
-
         st.success("Cuenta creada. Ahora inicia sesión (tu perfil quedará pendiente de aprobación).")
 
-        # ✅ Redirigir a Login
+        # ✅ 3) No limpiamos aquí (rompe Streamlit). Marcamos flag y redirigimos.
+        st.session_state["_reg_clear"] = True
         st.session_state["route"] = "login"
         st.rerun()

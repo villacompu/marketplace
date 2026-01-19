@@ -40,6 +40,31 @@
       "reset_token_expires_at": null,
       "max_published_products": -1,
       "can_view_stats": true
+    },
+    {
+      "id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
+      "email": "fasamtolireposteria@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$e8/5f28NwRhjLKX0fo8x5g$pds86vDtA2bF1jqDsEQJ3l/XRQ4e16NFKxOCvIa5m/4",
+      "role": "EMPRENDEDOR",
+      "status": "PENDING",
+      "max_published_products": 5,
+      "created_at": "2026-01-19T02:11:43Z",
+      "updated_at": "2026-01-19T02:11:43Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
+    },
+    {
+      "id": "72cf887f-0d0b-48ab-b9ef-619a76a44b3e",
+      "email": "cooketaquegalleta@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$G4MwxpgzZmztvZcSAgDgHA$4GXxbU/2NAkTEc9Nw7TMJ8ngcC3/bOg57z6LqyL9iWI",
+      "role": "EMPRENDEDOR",
+      "status": "PENDING",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-19T02:20:47Z",
+      "updated_at": "2026-01-19T02:20:47Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
     }
   ],
   "profiles": [
@@ -100,6 +125,59 @@
       "is_approved": true,
       "created_at": "2026-01-15T21:54:28Z",
       "updated_at": "2026-01-16T05:05:46Z"
+    },
+    {
+      "id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "owner_user_id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
+      "business_name": "Fasamtoli",
+      "short_desc": "Descripción corta (edítame).",
+      "long_desc": "Descripción larga (edítame).",
+      "categories": [
+        "Comida"
+      ],
+      "city": "La estrella",
+      "availability": "",
+      "links": {
+        "instagram": "",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "",
+        "website": "",
+        "external_catalog": "",
+        "phone": ""
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": false,
+      "is_featured": false,
+      "created_at": "2026-01-19T02:11:43Z",
+      "updated_at": "2026-01-19T02:11:43Z"
+    },
+    {
+      "id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "owner_user_id": "72cf887f-0d0b-48ab-b9ef-619a76a44b3e",
+      "business_name": "Cooketa que galleta",
+      "short_desc": "Descripción corta (edítame).",
+      "long_desc": "Descripción larga (edítame).",
+      "categories": [
+        "Comida"
+      ],
+      "city": "La estrella",
+      "availability": "",
+      "links": {
+        "instagram": "",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "",
+        "website": "",
+        "external_catalog": "",
+        "phone": ""
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": false,
+      "created_at": "2026-01-19T02:20:47Z",
+      "updated_at": "2026-01-19T02:20:47Z"
     }
   ],
   "products": [

@@ -72,7 +72,7 @@ def _topbar(db: dict):
                         # -------------------------
                         if u.get("role") == "EMPRENDEDOR":
                             # Debug opcional (puedes borrarlo cuando ya funcione)
-                            st.caption(f"can_view_stats = {u.get('can_view_stats')}")
+                            #st.caption(f"can_view_stats = {u.get('can_view_stats')}")
 
                             if st.button("🏪 Mi perfil", use_container_width=True, key="btn_my_profile"):
                                 st.session_state["route"] = "my_profile"
