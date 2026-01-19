@@ -284,24 +284,6 @@
       "tag_suggestion": ""
     },
     {
-      "id": "aa51cfcd-e450-47ae-8aa3-d7b03385fb27",
-      "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
-      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
-      "created_at": "2026-01-17T02:44:24Z",
-      "name": "Galleta",
-      "description": "Galleta",
-      "category": "Comida",
-      "tags": [
-        "Gourmet / Artesanal"
-      ],
-      "tag_suggestion": "",
-      "price_type": "FROM",
-      "price_value": 9000,
-      "photo_urls": [],
-      "status": "PUBLISHED",
-      "updated_at": "2026-01-17T02:44:24Z"
-    },
-    {
       "id": "c211314c-51a4-4269-915e-5d71ed548816",
       "owner_user_id": "d0aa01e4-487b-43ae-a28a-dbb480ec6d98",
       "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
