@@ -3,6 +3,7 @@ from __future__ import annotations
 import streamlit as st
 import pandas as pd
 import unicodedata
+import json
 
 from auth.guards import require_role
 from db.repo_json import user_profile, save_db, now_iso
@@ -491,6 +492,18 @@ def render(db):
                             st.session_state[confirm_key] = False
                             st.rerun()
 
+    # ... dentro de render(db), para ADMIN:
+    st.divider()
+    st.markdown("### 🗄️ Backup de datos")
+
+    st.download_button(
+        "⬇️ Descargar base de datos (db.json)",
+        data=json.dumps(db, ensure_ascii=False, indent=2),
+        file_name="db_export.json",
+        mime="application/json",
+        use_container_width=True
+    )
+
     # =========================================================
     # 🏷️ Sugerencias de tags (tabla + seleccionar + acciones)
     # =========================================================
@@ -585,3 +598,8 @@ def render(db):
                 prod["updated_at"] = now_iso()
                 save_db(db)
             st.rerun()
+
+
+
+    
+
