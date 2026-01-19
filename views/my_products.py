@@ -419,10 +419,29 @@ def render(db):
 
 
         with c:
-            if st.button("🗑️ Eliminar", key=f"mp_del_{p['id']}", use_container_width=True):
-                db["products"] = [x for x in db.get("products", []) if x.get("id") != p["id"]]
-                save_db(db)
-                st.rerun()
+            confirm_key = f"mp_del_confirm_{p['id']}"
+            st.session_state.setdefault(confirm_key, False)
+
+            if not st.session_state[confirm_key]:
+                if st.button("🗑️ Eliminar", key=f"mp_del_{p['id']}", use_container_width=True):
+                    st.session_state[confirm_key] = True
+                    st.rerun()
+            else:
+                st.warning("¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.")
+                cA, cB = st.columns(2, gap="small")
+
+                with cA:
+                    if st.button("✅ Sí, eliminar", key=f"mp_del_yes_{p['id']}", use_container_width=True):
+                        db["products"] = [x for x in db.get("products", []) if x.get("id") != p["id"]]
+                        save_db(db)
+                        st.session_state[confirm_key] = False
+                        st.rerun()
+
+                with cB:
+                    if st.button("↩️ Cancelar", key=f"mp_del_no_{p['id']}", use_container_width=True):
+                        st.session_state[confirm_key] = False
+                        st.rerun()
+
 
         st.markdown("</div>", unsafe_allow_html=True)  # mp-actions
         st.markdown("</div>", unsafe_allow_html=True)  # mp-card
