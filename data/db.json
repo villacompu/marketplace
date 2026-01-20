@@ -1320,6 +1320,36 @@
       "product_id": "",
       "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
       "meta": {}
+    },
+    {
+      "ts": "2026-01-19T04:02:40Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1741729d-a5dc-40d9-b719-12598cc112ee",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T04:02:49Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "1741729d-a5dc-40d9-b719-12598cc112ee",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-19T04:02:52Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "1741729d-a5dc-40d9-b719-12598cc112ee",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
     }
   ],
   "featured": {
