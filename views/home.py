@@ -226,8 +226,10 @@ def render(db):
                     unsafe_allow_html=True
                 )
 
-                st.markdown('<div class="actions-3">', unsafe_allow_html=True)
-                b1,  b3 = st.columns([1.6, 0.5], gap="small")
+
+                st.markdown('<div class="card-actions">', unsafe_allow_html=True)
+                 
+                b1,  b3 = st.columns([0.9, 0.1])
 
                 with b1:
                     st.markdown('<div class="btn-view">', unsafe_allow_html=True)
@@ -248,8 +250,8 @@ def render(db):
                         toggle_favorite(db, p["id"])
                         st.rerun()
                     st.markdown('</div>', unsafe_allow_html=True)
-
-                st.markdown("</div></div>", unsafe_allow_html=True)
+                
+                st.markdown('</div>', unsafe_allow_html=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
     # -----------------------------
