@@ -5,7 +5,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from services.validators import safe_text
-from views.router import goto
 from auth.session import get_user
 from services.analytics import log_view_profile
 from db.repo_json import save_db

@@ -5,7 +5,6 @@ import streamlit as st
 from auth.session import get_user
 from db.repo_json import save_db, new_id, now_iso
 from services.validators import safe_text
-from views.router import goto
 from services.tag_catalog import tags_for_category
 from services.limits import can_publish_more, count_published_products, get_publish_limit
 
@@ -104,7 +103,8 @@ def render(db):
             st.rerun()
     with c2:
         if st.button("🏪 Volver a mi perfil", use_container_width=True):
-            goto("my_profile")
+            st.session_state["route"] = "my_profile"
+            st.rerun()
 
     st.write("")
 

@@ -3,8 +3,6 @@ import streamlit as st
 
 def goto(route: str, **params):
     st.session_state["route"] = route
-    st.query_params.clear()
-    st.query_params["page"] = route
     for k, v in params.items():
         st.query_params[k] = str(v)
     st.rerun()

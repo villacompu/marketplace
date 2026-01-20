@@ -8,7 +8,6 @@ from auth.guards import require_role
 from auth.session import get_user
 from db.repo_json import user_profile, new_id, now_iso, save_db
 from services.validators import safe_text
-from views.router import goto
 
 # ✅ Incluimos Bebidas y filtramos defaults para evitar errores
 CATEGORIES = [

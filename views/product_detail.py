@@ -98,7 +98,8 @@ def render(db):
     if not (is_owner or is_admin) and not _is_public_allowed(db, p):
         st.error("Esta publicación no está disponible (pendiente de aprobación o no publicada).")
         if st.button("Volver al catálogo"):
-            goto("home")
+            st.session_state["route"] = "home"
+            st.rerun()
         return
 
     # ✅ Tracking deduplicado (evita duplicados por rerun)

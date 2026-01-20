@@ -1350,6 +1350,66 @@
       "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
       "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
       "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:06:12Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "480faf5b-c619-457f-8d13-0b172ce6c50a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:08:41Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "480faf5b-c619-457f-8d13-0b172ce6c50a",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:17:32Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "df616489-bf42-473d-98cd-c18208c73400",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:17:33Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b1da9fee-2635-44b8-b202-6792cf9f0229",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:17:36Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "b1da9fee-2635-44b8-b202-6792cf9f0229",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:17:43Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "b1da9fee-2635-44b8-b202-6792cf9f0229",
+      "product_id": "",
+      "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
+      "meta": {}
     }
   ],
   "featured": {

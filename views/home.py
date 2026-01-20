@@ -75,7 +75,8 @@ def render(db):
     with top_right:
         if fav_count > 0:
             if st.button(f"❤️ Favoritos ({fav_count})", use_container_width=True):
-                goto("favorites")
+                st.session_state["route"] = "favorites"
+                st.rerun()
 
     # -----------------------------
     # Sidebar filtros

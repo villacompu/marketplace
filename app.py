@@ -5,7 +5,7 @@ import streamlit as st
 
 from auth.session import get_user, logout
 from db.repo_json import load_db, seed_if_empty
-from views.router import current_route, goto
+from views.router import current_route
 from views import home, login, register, admin
 from views import public_profile, favorites_page, my_profile
 from views import product_detail, my_products
@@ -80,8 +80,7 @@ def _topbar(db: dict):
                         # -------------------------
                         if u.get("role") == "EMPRENDEDOR":
                             if st.button("🏪 Mi perfil", use_container_width=True, key="btn_my_profile"):
-                                goto("my_profile")
-                                #st.session_state["route"] = "my_profile"
+                                st.session_state["route"] = "my_profile"
                                 st.rerun()
 
                             if st.button("📦 Mis productos", use_container_width=True, key="btn_my_products"):

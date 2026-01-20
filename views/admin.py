@@ -11,7 +11,6 @@ from services.featured import (
     get_featured_products,
     set_featured_products,
 )
-from views.router import goto  # asegúrate de tenerlo importado
 
 
 
@@ -65,7 +64,8 @@ def render(db):
     st.write("")
 
     if st.button("📊 Ver analíticas", use_container_width=True):
-        goto("admin_stats")
+        st.session_state["route"] = "admin_stats"
+        st.rerun()
 
     total_emps = sum(1 for u in db.get("users", []) if u.get("role") == "EMPRENDEDOR")
     approved_profiles = sum(1 for p in db.get("profiles", []) if p.get("is_approved"))
