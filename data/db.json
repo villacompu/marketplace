@@ -1410,6 +1410,36 @@
       "product_id": "",
       "profile_id": "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
       "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:21:14Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c2548a7c-67e1-475b-8273-fe9f07a75256",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:21:16Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "c2548a7c-67e1-475b-8273-fe9f07a75256",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-20T03:21:44Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "c2548a7c-67e1-475b-8273-fe9f07a75256",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
     }
   ],
   "featured": {

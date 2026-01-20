@@ -227,7 +227,7 @@ def render(db):
                 )
 
                 st.markdown('<div class="actions-3">', unsafe_allow_html=True)
-                b1, b2, b3 = st.columns([1.6, 0.5, 0.5], gap="small")
+                b1,  b3 = st.columns([1.6, 0.5], gap="small")
 
                 with b1:
                     st.markdown('<div class="btn-view">', unsafe_allow_html=True)
@@ -235,11 +235,11 @@ def render(db):
                         goto("product_detail", selected_product_id=p["id"])
                     st.markdown('</div>', unsafe_allow_html=True)
 
-                with b2:
-                    st.markdown('<div class="btn-ico">', unsafe_allow_html=True)
-                    if st.button("👤", key=f"biz_{p['id']}", use_container_width=True, help="Ver emprendimiento"):
-                        goto("public_profile", selected_profile_id=prof["id"])
-                    st.markdown('</div>', unsafe_allow_html=True)
+                #with b2:
+                #    st.markdown('<div class="btn-ico">', unsafe_allow_html=True)
+                #    if st.button("👤", key=f"biz_{p['id']}", use_container_width=True, help="Ver emprendimiento"):
+                #        goto("public_profile", selected_profile_id=prof["id"])
+                 #   st.markdown('</div>', unsafe_allow_html=True)
 
                 with b3:
                     st.markdown('<div class="btn-fav">', unsafe_allow_html=True)
