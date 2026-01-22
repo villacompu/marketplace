@@ -68,15 +68,15 @@ def render(db):
     q = st.session_state.get("global_q", "")
 
     # ✅ Botón visible solo si hay al menos 1 favorito
-    fav_ids = list_favorites(db)
-    fav_count = len(fav_ids)
+    #fav_ids = list_favorites(db)
+    #fav_count = len(fav_ids)
 
-    top_left, top_right = st.columns([3, 1])
-    with top_right:
-        if fav_count > 0:
-            if st.button(f"❤️ Favoritos ({fav_count})", use_container_width=True):
-                st.session_state["route"] = "favorites"
-                st.rerun()
+    #top_left, top_right = st.columns([3, 1])
+    #with top_right:
+    #    if fav_count > 0:
+    #        if st.button(f"❤️ Favoritos ({fav_count})", use_container_width=True):
+    #            st.session_state["route"] = "favorites"
+    #            st.rerun()
 
     # -----------------------------
     # Sidebar filtros
@@ -229,13 +229,13 @@ def render(db):
 
                 st.markdown('<div class="card-actions">', unsafe_allow_html=True)
                  
-                b1,  b3 = st.columns([0.9, 0.1])
+                #b1,  b3 = st.columns([0.9, 0.1])
 
-                with b1:
-                    st.markdown('<div class="btn-view">', unsafe_allow_html=True)
-                    if st.button("👁️ Ver", key=f"view_{p['id']}", use_container_width=True):
-                        goto("product_detail", selected_product_id=p["id"])
-                    st.markdown('</div>', unsafe_allow_html=True)
+                #with b1:
+                st.markdown('<div class="btn-view">', unsafe_allow_html=True)
+                if st.button("👁️ Ver", key=f"view_{p['id']}", use_container_width=True):
+                    goto("product_detail", selected_product_id=p["id"])
+                st.markdown('</div>', unsafe_allow_html=True)
 
                 #with b2:
                 #    st.markdown('<div class="btn-ico">', unsafe_allow_html=True)
@@ -243,13 +243,13 @@ def render(db):
                 #        goto("public_profile", selected_profile_id=prof["id"])
                  #   st.markdown('</div>', unsafe_allow_html=True)
 
-                with b3:
-                    st.markdown('<div class="btn-fav">', unsafe_allow_html=True)
-                    fav = is_favorite(db, p["id"])
-                    if st.button("❤️" if fav else "♡", key=f"fav_{p['id']}", use_container_width=True, help="Guardar en favoritos"):
-                        toggle_favorite(db, p["id"])
-                        st.rerun()
-                    st.markdown('</div>', unsafe_allow_html=True)
+                #with b3:
+                #    st.markdown('<div class="btn-fav">', unsafe_allow_html=True)
+                #    fav = is_favorite(db, p["id"])
+                #    if st.button("❤️" if fav else "♡", key=f"fav_{p['id']}", use_container_width=True, help="Guardar en favoritos"):
+                #        toggle_favorite(db, p["id"])
+                #        st.rerun()
+                #    st.markdown('</div>', unsafe_allow_html=True)
                 
                 st.markdown('</div>', unsafe_allow_html=True)
                 st.markdown('</div>', unsafe_allow_html=True)
@@ -326,7 +326,7 @@ def render(db):
                         )
 
                         st.markdown('<div class="card-actions"><div class="actions-3">', unsafe_allow_html=True)
-                        b1, b2, b3 = st.columns([1.6, 0.5, 0.5], gap="small")
+                        b1, b2 = st.columns([1.6, 0.5], gap="small")
 
                         with b1:
                             st.markdown('<div class="btn-view">', unsafe_allow_html=True)
@@ -340,13 +340,13 @@ def render(db):
                                 goto("public_profile", selected_profile_id=prof.get("id"))
                             st.markdown('</div>', unsafe_allow_html=True)
 
-                        with b3:
-                            st.markdown('<div class="btn-fav">', unsafe_allow_html=True)
-                            fav = is_favorite(db, p["id"])
-                            if st.button("❤️" if fav else "♡", key=f"feat_fav_{p['id']}", use_container_width=True):
-                                toggle_favorite(db, p["id"])
-                                st.rerun()
-                            st.markdown('</div>', unsafe_allow_html=True)
+                        #with b3:
+                        #    st.markdown('<div class="btn-fav">', unsafe_allow_html=True)
+                        #    fav = is_favorite(db, p["id"])
+                        #    if st.button("❤️" if fav else "♡", key=f"feat_fav_{p['id']}", use_container_width=True):
+                        #        toggle_favorite(db, p["id"])
+                        #        st.rerun()
+                        #    st.markdown('</div>', unsafe_allow_html=True)
 
                         st.markdown("</div></div>", unsafe_allow_html=True)
                         st.markdown('</div>', unsafe_allow_html=True)
