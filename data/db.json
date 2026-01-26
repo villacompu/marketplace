@@ -233,10 +233,11 @@
         "instagram": "",
         "facebook": "",
         "tiktok": "",
-        "whatsapp": "https://api.whatsapp.com/send?phone=573123038911&text=Hola%20empaquetaduras%20y%20sellos%20me%20interesaria%20comunicarme%20con%20ustedes&source=&data=",
+        "whatsapp": "",
         "website": "https://empaquetadurasysellos.com/",
         "external_catalog": "https://share.google/fcxpwiMPhWmVRO7Tx",
-        "phone": "3123038911"
+        "phone": "3123038911",
+        "whatsapp_phone": ""
       },
       "logo_url": "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/LOGOPNG.png.webp",
       "gallery_urls": [
@@ -246,7 +247,7 @@
       ],
       "is_approved": true,
       "created_at": "2026-01-25T19:35:11Z",
-      "updated_at": "2026-01-25T19:52:12Z"
+      "updated_at": "2026-01-26T16:53:16Z"
     },
     {
       "id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
@@ -4446,6 +4447,106 @@
       "anon_id": "f9ca6c30-e50b-4f2e-92f2-f2c1959a69a9",
       "product_id": "",
       "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T15:20:02Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b9f1d124-26da-4647-8110-6df6adfd7592",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:36:57Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:36:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "7f81f304-7338-41fb-bcbc-554495472c91",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:37:39Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "417fe71b-3c02-4853-bb1d-3f5febcd92e9",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:38:11Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "bd34f9e0-17e6-4867-9b50-4005bcff390f",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:38:16Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:38:31Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "1999891c-e5f5-4db5-9329-903c0a140b9b",
+      "profile_id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:38:55Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "42de1ad0-eca2-471e-abb6-fd9cb33721ce",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:39:52Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "",
+      "profile_id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T16:40:30Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
+      "product_id": "8f8945d2-a796-4f55-a207-18cd63d95d29",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
       "meta": {}
     }
   ],

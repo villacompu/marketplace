@@ -8,6 +8,7 @@ from auth.guards import require_role
 from auth.session import get_user
 from db.repo_json import user_profile, new_id, now_iso, save_db
 from services.validators import safe_text
+from urllib.parse import quote_plus
 
 # ✅ Incluimos Bebidas y filtramos defaults para evitar errores
 CATEGORIES = [
@@ -19,11 +20,27 @@ LINK_FIELDS = [
     ("instagram", "Instagram"),
     ("facebook", "Facebook"),
     ("tiktok", "TikTok"),
-    ("whatsapp", "WhatsApp (link wa.me o https://...)"),
+    ("whatsapp", "WhatsApp (solo número)"),
     ("website", "Página web"),
     ("external_catalog", "Catálogo externo"),
     ("phone", "Celular"),
 ]
+
+DEFAULT_WHATSAPP_TEXT = "Hola, vi tu emprendimiento en el Marketplace y quiero una asesoría."
+
+def _digits_only_phone(v: str) -> str:
+    return re.sub(r"\D", "", (v or ""))
+
+def build_whatsapp_url(phone_raw: str, text: str = DEFAULT_WHATSAPP_TEXT) -> str:
+    digits = _digits_only_phone(phone_raw)
+
+    # Si escriben 10 dígitos (Colombia sin indicativo), anteponer 57
+    if len(digits) == 10:
+        digits = "57" + digits
+
+    msg = quote_plus(text or "")
+    return f"https://api.whatsapp.com/send?phone={digits}&text={msg}"
+
 
 def _clean_phone(raw: str) -> str:
     """
@@ -229,7 +246,13 @@ def render(db):
             new_links = {}
 
             for k, label in LINK_FIELDS:
-                if k == "phone":
+                if k == "whatsapp":
+                    new_links[k] = st.text_input(
+                        "WhatsApp (solo número)",
+                        value=current_links.get("whatsapp_phone", ""),
+                        placeholder="+57 3001234567 (opcional)",
+                    )
+                elif k == "phone":
                     new_links[k] = st.text_input(
                         label,
                         value=current_links.get(k, ""),
@@ -244,22 +267,36 @@ def render(db):
 
             submitted = st.form_submit_button("💾 Guardar enlaces", use_container_width=True)
 
+
         if submitted:
             errors = []
-            cleaned = {}
+            cleaned = dict(current_links)  # para conservar otros campos existentes
 
+            # ---- WhatsApp como número ----
+            wa_in = (new_links.get("whatsapp") or "").strip()
+            wa_phone = _clean_phone(wa_in)
+
+            if wa_phone and not _is_phone_like(wa_phone):
+                errors.append("whatsapp: número inválido (usa 7–15 dígitos).")
+
+            # Guardamos número aparte (útil si luego quieres mostrarlo en UI)
+            cleaned["whatsapp_phone"] = wa_phone
+
+            # Generar link solo si hay número; si no, dejar vacío
+            cleaned["whatsapp"] = build_whatsapp_url(wa_phone) if wa_phone else ""
+
+            # ---- Celular (phone) ----
+            phone_in = (new_links.get("phone") or "").strip()
+            phone = _clean_phone(phone_in)
+            if phone and not _is_phone_like(phone):
+                errors.append("phone: número inválido (usa 7–15 dígitos).")
+            cleaned["phone"] = phone
+
+            # ---- Otros links (URL) ----
             for k, _label in LINK_FIELDS:
-                v = (new_links.get(k) or "").strip()
-
-                # ✅ Celular: NO URL, solo limpiamos y validamos formato básico
-                if k == "phone":
-                    phone = _clean_phone(v)
-                    if phone and not _is_phone_like(phone):
-                        errors.append("phone: número inválido (usa 7–15 dígitos).")
-                    cleaned[k] = phone
+                if k in ("whatsapp", "phone"):
                     continue
-
-                # ✅ Resto: validar URL
+                v = (new_links.get(k) or "").strip()
                 if v and not _is_url(v):
                     errors.append(f"{k}: URL inválida.")
                 cleaned[k] = safe_text(v, 300)
@@ -274,6 +311,8 @@ def render(db):
             save_db(db)
             st.success("Enlaces guardados.")
             st.rerun()
+
+
 
     if st.button("📦 Mis productos", key="profile_my_products", use_container_width=True):
         st.session_state["route"] = "my_products"
