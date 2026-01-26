@@ -91,6 +91,19 @@
       "updated_at": "2026-01-26T02:17:23Z",
       "reset_token": null,
       "reset_token_expires_at": null
+    },
+    {
+      "id": "adbab3ed-cd09-4b61-b2c3-c334b66cf905",
+      "email": "abasicaucho@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$Xst5rzVGaA2hFMKY03oPQQ$LdI02yHmOJ53t12APiRcxDsIbNa0h8RSMU33IXFGaG0",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-26T12:57:51Z",
+      "updated_at": "2026-01-26T13:11:46Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
     }
   ],
   "profiles": [
@@ -262,6 +275,36 @@
       "is_approved": true,
       "created_at": "2026-01-26T01:52:50Z",
       "updated_at": "2026-01-26T02:17:23Z"
+    },
+    {
+      "id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "owner_user_id": "adbab3ed-cd09-4b61-b2c3-c334b66cf905",
+      "business_name": "Tapetes Publicitarios ABASICAUCHO",
+      "short_desc": "En ABASICAUCHO, somos especialistas en la creación de tapetes exclusivos, con una trayectoria de más de 30 años en el mercado.",
+      "long_desc": "Nuestra misión es ofrecer soluciones que no solo sean funcionales sino que también contribuyan al branding y la identidad visual de su empresa. La calidad, la innovación y la personalización son los pilares sobre los que construimos nuestra reputación, comprometiéndonos a entregar productos que superen sus expectativas.",
+      "categories": [
+        "Hogar",
+        "Servicios"
+      ],
+      "city": "Itagüí",
+      "availability": "Lun-Vier 8:00 - 6:00 pm / Sab 8:00 a 12:00 pm",
+      "links": {
+        "instagram": "https://www.instagram.com/abasicaucho_tapetes",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "",
+        "website": "https://tapetespublicitariosabasicaucho.com/",
+        "external_catalog": "https://www.youtube.com/@johndejesus7461/shorts",
+        "phone": "3193846246"
+      },
+      "logo_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=240,h=63,fit=crop/YD0vlnnOqPf5LBqQ/logo-YKbN3wyGR7cbRRwR.jpg",
+      "gallery_urls": [
+        "https://assets.zyrosite.com/YD0vlnnOqPf5LBqQ/tapetes-para-ascensores_agosto-2022_1-1024x498-1-mp87WznQq8Cpv64W.jpg",
+        "https://assets.zyrosite.com/YD0vlnnOqPf5LBqQ/publicitario-24-A85rekXyj8FW5go2.jpg"
+      ],
+      "is_approved": true,
+      "created_at": "2026-01-26T12:57:51Z",
+      "updated_at": "2026-01-26T13:11:46Z"
     }
   ],
   "products": [
@@ -281,10 +324,10 @@
         "chocolate"
       ],
       "image_urls": [],
-      "status": "PUBLISHED",
+      "status": "PAUSED",
       "stock": null,
       "created_at": "2026-01-15T15:44:38Z",
-      "updated_at": "2026-01-16T04:45:04Z"
+      "updated_at": "2026-01-26T02:27:22Z"
     },
     {
       "id": "90aba15a-f5b6-4e8b-8314-94d77117cab6",
@@ -302,10 +345,10 @@
         "tostado"
       ],
       "image_urls": [],
-      "status": "PUBLISHED",
+      "status": "PAUSED",
       "stock": null,
       "created_at": "2026-01-15T15:44:38Z",
-      "updated_at": "2026-01-16T04:45:01Z"
+      "updated_at": "2026-01-26T02:27:15Z"
     },
     {
       "id": "2e0fbacf-08e3-47ef-a16c-b9dd064145e9",
@@ -322,10 +365,10 @@
         "eventos"
       ],
       "image_urls": [],
-      "status": "PUBLISHED",
+      "status": "PAUSED",
       "stock": null,
       "created_at": "2026-01-15T15:44:38Z",
-      "updated_at": "2026-01-16T04:44:54Z"
+      "updated_at": "2026-01-26T02:27:07Z"
     },
     {
       "id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
@@ -486,6 +529,93 @@
       ],
       "status": "PUBLISHED",
       "updated_at": "2026-01-26T02:24:02Z"
+    },
+    {
+      "id": "cfabd57e-1cb5-4fbe-97b8-69924f20845a",
+      "owner_user_id": "adbab3ed-cd09-4b61-b2c3-c334b66cf905",
+      "profile_id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "created_at": "2026-01-26T13:06:41Z",
+      "name": "Tapetes para Ascensores",
+      "description": "Los tapetes publicitarios no solo son una excelente manera de destacar su marca, sino que también proporcionan una capa adicional de limpieza y seguridad en sus espacios. Aquí hay algunos consejos para cuidar y mantener sus tapetes publicitarios:\n\nLimpieza Regular: Aspire regularmente los tapetes para eliminar la suciedad y los residuos.\nManchas y Derrames: Trate las manchas y derrames de inmediato con un limpiador suave y un paño húmedo.\nEvite el Exceso de Agua: Evite saturar los tapetes con agua durante la limpieza, ya que esto puede dañar la base y los colores.\nRotación: Para un desgaste uniforme, rote los tapetes regularmente para distribuir el tráfico.\nMantenimiento Profesional: Considere programar limpiezas profesionales periódicas para mantener la apariencia y la durabilidad de sus tapetes.",
+      "category": "Hogar",
+      "tags": [
+        "Decoración"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://assets.zyrosite.com/YD0vlnnOqPf5LBqQ/asensor-11-mP4NOell9Kfeee3P.jpg",
+        "https://assets.zyrosite.com/YD0vlnnOqPf5LBqQ/colores-2-m2WrNLMaQZirrp93.jpeg"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T13:06:41Z"
+    },
+    {
+      "id": "1999891c-e5f5-4db5-9329-903c0a140b9b",
+      "owner_user_id": "adbab3ed-cd09-4b61-b2c3-c334b66cf905",
+      "profile_id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "created_at": "2026-01-26T13:09:40Z",
+      "name": "Tapetes Publicitarios Atrapa Mugre",
+      "description": "Nuestros tapetes atrapa mugre están diseñados para mantener sus espacios limpios y libres de suciedad. Aquí hay algunas sugerencias para cuidar y mantener la efectividad de sus tapetes atrapa mugre:\n\nSacudir Regularmente: Sacuda los tapetes con regularidad para eliminar la suciedad y los residuos atrapados entre las fibras.\nAspiración: Utilice una aspiradora para una limpieza más profunda y eliminar la suciedad incrustada.\nLavado Ocasional: Dependiendo del nivel de suciedad, lave los tapetes con agua y jabón suave y enjuáguelos completamente.\nSecado Correcto: Asegúrese de que los tapetes atrapan mugre se sequen completamente antes de volver a colocarlos en uso.",
+      "category": "Hogar",
+      "tags": [
+        "Decoración",
+        "Muebles"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=329,h=329,fit=crop/YD0vlnnOqPf5LBqQ/whatsapp-image-2023-04-20-at-17.42.19-2-AR0VLnVyjjs3BZb4.jpeg",
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=329,h=329,fit=crop/YD0vlnnOqPf5LBqQ/whatsapp-image-2023-04-20-at-17.42.01-1-2-m5KrMeMjDQS2x5Jp.jpeg",
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=329,h=329,fit=crop/YD0vlnnOqPf5LBqQ/miconv.com__publicitario-65-1-A85rekXyR8sLKw1O.jpg"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T13:09:40Z"
+    },
+    {
+      "id": "17bc08ac-e29e-45d6-bc8b-95f1ead23c0d",
+      "owner_user_id": "adbab3ed-cd09-4b61-b2c3-c334b66cf905",
+      "profile_id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "created_at": "2026-01-26T13:10:58Z",
+      "name": "Tapetes y Pisos Antifatiga",
+      "description": "Nuestros tapetes y pisos antifatiga son ideales para entornos donde se pasa mucho tiempo de pie, como gimnasios y áreas de trabajo. Para mantener la comodidad y la durabilidad de sus pisos antifatiga, considere lo siguiente:\n\nLimpieza Regular: Barrer o aspirar los pisos regularmente para eliminar la suciedad y los residuos.\nLavado Ocasional: Dependiendo del uso, lave los pisos con agua y un detergente suave y enjuáguelos bien.\nEvite el Exceso de Humedad: Evite el contacto prolongado con líquidos para evitar daños en la superficie y posibles resbalones.\nInspección Regular: Revise regularmente los pisos antifatiga en busca de signos de desgaste o daños y repárelos según sea necesario.",
+      "category": "Hogar",
+      "tags": [
+        "Decoración",
+        "Muebles"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=501,h=501,fit=crop/YD0vlnnOqPf5LBqQ/pisos-antifatiga-6-AGBv27Ql13HpWyQm.jpg",
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=501,h=501,fit=crop/YD0vlnnOqPf5LBqQ/pisos-antifatiga-8-AR0VLne51Dh4n1X1.jpg",
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=501,h=501,fit=crop/YD0vlnnOqPf5LBqQ/pisos-antifatiga-AVLN7GZZ4ecEnjEJ.png"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T13:10:58Z"
+    },
+    {
+      "id": "12881124-f5ba-49b0-ad5d-f8fedfc107cd",
+      "owner_user_id": "47cbbcb0-7484-4a82-90dd-c1c8868f7499",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "created_at": "2026-01-26T13:18:56Z",
+      "name": "Solicita tu revisión",
+      "description": "Agenda tu Cita Hoy: ¿Listo para experimentar la diferencia que Óptica Optimax puede hacer en tu vida visual ¡Agenda tu cita hoy mismo y déjanos cuidar de tu visión!\n\nEn Óptica Optimax, tu visión es nuestra pasión. ¡Contáctanos ahora para obtener más información!",
+      "category": "Salud",
+      "tags": [
+        "Cuidado personal"
+      ],
+      "tag_suggestion": "",
+      "price_type": "FIXED",
+      "price_value": 0,
+      "photo_urls": [
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/AGBvo9QBBluVboZM/examen-visual-completo-centro-optico-nazaries-AR0V4ZzQOOIy6wwl.jpg"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T13:18:56Z"
     }
   ],
   "favorites": [
@@ -2926,6 +3056,1396 @@
       "anon_id": "6f0ad17e-9af4-466f-a07e-b2146828f731",
       "product_id": "42063560-2569-464c-b333-e6448f06a784",
       "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:26:33Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2ce78fc9-ed2d-4f62-9ff8-0a1a1f1cda5f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "089c5831-84f1-4a5a-b356-5174ad7a4e9b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:34:05Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4d5158e7-deb8-4ab0-b422-530999bf922a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:34:32Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "4d5158e7-deb8-4ab0-b422-530999bf922a",
+      "product_id": "42063560-2569-464c-b333-e6448f06a784",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "46c4e2e0-77df-4a83-a242-e1b2f6888d69",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b14236bc-e320-4b1a-a42b-3522f67fdf3d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c342bd71-d48c-440f-9beb-10b58d479bd6",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "235219e4-e5cd-4684-9630-95a1461fc62b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "642b03e6-5fbe-49ca-968d-b28b59f927dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "0dd891f8-0778-41d7-a239-17247f96f1fc",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "831612f9-7900-41a0-8916-34901971c4a8",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "131543e9-23e3-47a4-a760-cdb16721e8ef",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "94a2b60d-1563-476e-b572-6667aaee3628",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "31f5a1cb-db00-404a-8b29-e4dfb7308582",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:25:53Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "64843b1e-3d71-4102-8b1d-a2703f866400",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:25:55Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "868603a0-c181-41a5-af40-e0173b4f326f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "398aad01-bb05-45f8-9faf-bd71ec6be66e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6ba8d5d2-cdba-4786-9a44-a6ffc2e1a705",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d3b9eb36-6d22-4df7-8a3f-be3ee1931318",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5e09e6e9-f5dd-47b5-bd61-918ac43eb7eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d5f373e5-d69c-44eb-ace7-2c414cb4155b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6f527a44-d1b0-4972-8a17-48d5c4346480",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T03:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d16191a6-0f7c-4708-92fd-90f27e494aff",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "acac1bbe-57fc-42f2-9add-908655895245",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "88474e65-19e5-4e75-af3f-94a8224e620d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "225d93bc-fca1-4445-be63-a3df2f090362",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "da11f1cd-0843-47a5-9d60-484d22fb4569",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "36fcb173-44fc-44f1-a504-1acccf499f73",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1b2578fe-eed4-4240-a95d-a30afe42e8d7",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "43ba7fa1-10b9-462a-a572-ac616e19727e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "824558f0-7aed-447f-9262-cf21a2e3c930",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9412ad48-9321-4514-b63f-824254106b7f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8de97f22-c2d1-4756-9d24-642d8121b245",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "0002660d-211c-4869-a159-dd516e2f6f7e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T04:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "52c05d7a-f525-4f9d-9918-7926f2757ac4",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2b27e2f1-3bc9-4bca-a0d9-72d953c33294",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ced9845f-a6f2-47cc-8ebd-d2c3060dab1d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3debd083-93d9-416e-b9ab-9f74c716447b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d5147c1b-fbfe-4b8a-a53d-012a3a7fd0d0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "cb886373-7cf7-44c3-9212-374f0a7348a2",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "507f5d0d-cbe9-4eb5-b133-487fe00a61a0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b6edb0b4-8484-4ef1-b047-f36a42ae2343",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a61ae8bd-436e-4fe9-ae9c-9a066b3024fd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "55070c91-17b1-41f5-964e-9039eda4be98",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "551567f6-d898-4c6e-a8c0-8e0e69d7bb79",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d02855ac-d63f-492f-a0c9-e9a98e3a3407",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T05:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "39f834ef-ca7b-4407-b853-953a8590c4a1",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8eca7135-fece-4f9c-9b24-681ed2717308",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4836f301-14fd-40bc-b734-b3dea2b7a2ac",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "0a7e249f-4262-4e01-906b-2e0510717a5e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "63279169-ddea-4e2f-be2f-1f3650101e85",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "dbc20f5b-eaf6-4cc1-ba83-70a0a522f7ef",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "866bf46a-acf2-4f62-b3ab-de678efd8b22",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "fd10ec34-57d1-47d0-b016-685ad09d1611",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f7782ed0-24d9-4436-ba59-bb3a68a7f52e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5df9bbc3-c1e0-4e2e-8c42-65a743803d4c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8c17075a-f98e-47e7-8c86-94121d104735",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5fe9bf45-e521-4849-928a-fc95b58c462c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T06:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "86f2f2c0-5403-411a-b212-ed15e1864f1c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "17979349-3b39-4ff1-8676-95e8d73aed63",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "efa497d5-c7ca-4fc1-a818-ac634ba9aa20",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "84e4dd75-1a0c-4f66-93de-1a78a8d6101d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "20eb7999-5114-4a53-9bac-8ecc3926bd72",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9c868c7c-4d49-4a58-8196-799ed3987af2",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "443d7105-01ea-4ba0-8c34-88bdc0cf64cf",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "93006f11-34ca-49b4-9f91-5c76e731b63a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "e65d7806-9b58-4035-b7e5-cc317a6c7873",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "7e71b3f7-18fa-4dee-8ab3-289ea07df369",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1f4beac9-4968-4302-9d7b-68004cead2f5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "fae520e3-a810-4b82-8d1e-19c316c1c043",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T07:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "924ae778-18b6-43cb-ba05-a7d116f06b00",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8c50ca4a-3dd2-450b-b116-3dd66dcb9f96",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "27cd5c03-b161-495a-a59a-917ee4e49644",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a4d2d95c-ff67-44c2-a835-784086b86487",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "dbcc7a2b-918a-4f1a-8a21-c5b3a6ce08eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5c477b7a-e1f0-4f92-92d4-e3a8b2541667",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c56ddaa4-fb7b-4f91-8b8d-60aeff599121",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3d11f8a6-438c-4b95-b9b4-d042d04e6cc0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c0e22b4a-5c33-4183-ba4e-2ab0d2552a1e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d7ff8907-9b81-4f33-bed5-d01bc75de5ed",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "02551af2-a403-44b5-a72b-672922929eea",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c5b5ba6c-5e20-477f-b6ad-4abda9ab83da",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T08:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6fbeb7da-d8b2-4cb5-96ac-5ea98e2df180",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5150b5f7-1457-4a72-a8a1-87af03f758f4",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "109b4e85-5037-4a50-86af-dc06a881d8b9",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a878ad68-666b-487c-8d0c-9abd688eba53",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a344178f-c4df-4cdd-b7b9-884ca543837e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f9407cd9-b84e-434b-a2f5-eee18e4f253f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c3c166bc-d836-4a56-9b06-fd95c89a1f51",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ee7d9e6e-d1aa-4b1b-9116-53feea3a646f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5e13afb1-724b-4288-86ab-25bd905605da",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3a8d23ad-b042-428c-8b5c-885e4ce4a54b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8cef334f-7172-4149-ab0d-d649bf84f2e6",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6f6b72b7-65f5-4e8f-9172-23e33328f27f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T09:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8f92e896-ef94-43a2-97fb-cb32fd441b35",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "cb382be7-0ff8-4eef-9490-9416d58d5060",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "29e300b0-e318-40c4-b83b-e9448fc83141",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "bacfb6d7-b9ae-455f-bc6b-ca7aa9b8c54f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c9a32526-54a1-4402-b3a0-bce495005aae",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c5c975f3-8b36-4d45-b6c3-fcb337c84d54",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "cbb32b58-025e-4137-92f4-f3768c9deef7",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "38d43425-0ebc-4e9e-8dc8-554d9ffb46f1",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "715bdeab-dcfd-43ab-bddb-cb9a3f648bb9",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2057fd93-753b-43b1-8249-bd7c963e9c6d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c7e814a6-66a2-4708-9a95-82abe2d3dbac",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5569a115-3891-4152-9587-b556b58aca5e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T10:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "74a24573-6fc9-4ad5-a9c9-f72d237de3bf",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1614334d-65a3-424a-b91d-d95aa646a178",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "629d8241-e7c7-49b0-a3d3-230dc6a2610e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "42b4cd4b-ff6a-484d-ace7-e87183fe5761",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "51eaf9e6-3ede-4331-9c48-1934d68a030f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "bd0eea3b-47af-4319-b192-e44fe991a955",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9c1569a6-007f-4f30-a5ac-434c171debfd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "46e0bad7-65a7-46b5-84dd-ae2223c4466d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "e2326cea-2fb8-49d4-aef3-df7963c44bbe",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b7983498-4c47-4ac8-896b-e43add8419c0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5bcc1054-dbd1-43af-9c5d-cdd1b99b18b1",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "97a7ba89-72dc-40dd-b278-a65f19441d7e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T11:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c414e730-bd61-47f7-888d-bb0e767eb846",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "bcb96458-cec9-43b9-8023-45e0b3da3ce7",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d31600d9-5143-4a23-90fe-8c7257a4cca2",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "19935f61-59ab-4a87-a052-2281ebc7d17f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:16:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "818b2ede-0ed3-4952-8fac-b011f2dddf98",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:21:14Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "0d85597a-ddfc-40bf-bcdb-9a605ae44ad7",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:21:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "291fc197-9b05-48e9-8179-ee16db2ae52a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:26:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4a1a6714-0f21-43ff-83e2-d809ed5d376e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:31:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5e01455a-677e-4625-90bb-1eeaa5c71c63",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:36:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5b50b06a-6cd2-444c-b95b-f87a61f89229",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:41:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8922c2f9-2042-49c9-b3b6-f64270d53d97",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:46:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d120adcc-c4a1-446d-a8b7-1720a9b49c76",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:51:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f651eea8-8a39-48eb-b162-33d3efe332ef",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T12:56:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "361289c3-66ab-4d3c-820c-69e9369c492b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T13:01:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "edb2a5d5-c975-428d-b918-c6c40e87632b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T13:06:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a0dbf2e0-ae08-4e17-8eba-288b1f1c3321",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T13:11:04Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "adbab3ed-cd09-4b61-b2c3-c334b66cf905",
+      "anon_id": "3e323156-90d2-466b-bd73-c88d27e864c1",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T13:11:18Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ab02d4ef-6b5f-49a3-88bf-471edc964937",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T13:12:11Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "3e323156-90d2-466b-bd73-c88d27e864c1",
+      "product_id": "17bc08ac-e29e-45d6-bc8b-95f1ead23c0d",
+      "profile_id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T13:12:19Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "3e323156-90d2-466b-bd73-c88d27e864c1",
+      "product_id": "",
+      "profile_id": "9915124c-6614-4888-a9fd-cd15ce46f4be",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T13:14:14Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f9ca6c30-e50b-4f2e-92f2-f2c1959a69a9",
+      "product_id": "",
+      "profile_id": "",
       "meta": {}
     }
   ],
