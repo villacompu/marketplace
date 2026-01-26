@@ -6,14 +6,12 @@ import unicodedata
 import json
 
 from auth.guards import require_role
+from auth.hashing import hash_password
 from db.repo_json import user_profile, save_db, now_iso
 from services.featured import (
     get_featured_products,
     set_featured_products,
 )
-
-
-
 
 # -------------------------
 # Helpers
@@ -47,6 +45,7 @@ def _match_query(haystack: str, needle: str) -> bool:
 
 # ✅ Normaliza estados de usuario a un set fijo
 USER_STATUS_OPTIONS = ["Todos", "ACTIVE", "PENDING", "BLOCKED"]
+
 
 def _user_status_label(v: str) -> str:
     return {"ACTIVE": "Activo", "PENDING": "Pendiente", "BLOCKED": "Bloqueado", "Todos": "Todos"}.get(v, v)
@@ -92,174 +91,204 @@ def render(db):
             "user_id": u.get("id"),
             "Emprendimiento": (prof.get("business_name") if prof else "—"),
             "Email": u.get("email", "—"),
-            "Estado usuario": (u.get("status") or "PENDING"),  # ✅ siempre ACTIVE/PENDING/BLOCKED
+            "Estado usuario": (u.get("status") or "PENDING"),  # ✅ ACTIVE/PENDING/BLOCKED
             "Perfil aprobado": bool(prof.get("is_approved")) if prof else False,
         })
 
     if not rows:
         st.info("No hay emprendedores registrados.")
-        return
-
-    df = pd.DataFrame(rows)
-
-    f1, f2, f3 = st.columns([2, 1, 1])
-    with f1:
-        q = st.text_input(
-            "Buscar (nombre o email)",
-            value="",
-            placeholder="Ej: café / aurora / @gmail / villa..."
-        )
-    with f2:
-        status_user = st.selectbox(
-            "Estado usuario",
-            USER_STATUS_OPTIONS,
-            index=0,
-            format_func=_user_status_label
-        )
-    with f3:
-        approved_filter = st.selectbox("Perfil aprobado", ["Todos", "Aprobado", "Pendiente"], index=0)
-
-    fdf = df.copy()
-
-    if (q or "").strip():
-        mask = fdf.apply(
-            lambda r: _match_query(f"{r['Emprendimiento']} {r['Email']}", q),
-            axis=1
-        )
-        fdf = fdf[mask]
-
-    if status_user != "Todos":
-        fdf = fdf[fdf["Estado usuario"] == status_user]
-
-    if approved_filter != "Todos":
-        want = True if approved_filter == "Aprobado" else False
-        fdf = fdf[fdf["Perfil aprobado"] == want]
-
-    st.caption(f"{len(fdf)} resultado(s)")
-
-    # ✅ Siempre mostramos tabla/selector si hay resultados,
-    # y NO cortamos el resto del panel si no hay selección.
-    selected_user_id = None
-
-    if fdf.empty:
-        st.info("No hay resultados con esos filtros.")
     else:
-        options = fdf["user_id"].tolist()
+        df = pd.DataFrame(rows)
 
-        labels_map = {
-            uid: f"{row['Emprendimiento']} — {row['Email']}"
-            for uid, row in zip(options, fdf.to_dict("records"))
-        }
+        f1, f2, f3 = st.columns([2, 1, 1])
+        with f1:
+            q = st.text_input(
+                "Buscar (nombre o email)",
+                value="",
+                placeholder="Ej: café / aurora / @gmail / villa..."
+            )
+        with f2:
+            status_user = st.selectbox(
+                "Estado usuario",
+                USER_STATUS_OPTIONS,
+                index=0,
+                format_func=_user_status_label
+            )
+        with f3:
+            approved_filter = st.selectbox("Perfil aprobado", ["Todos", "Aprobado", "Pendiente"], index=0)
 
-        st.session_state.setdefault("admin_selected_user_id", options[0] if options else None)
+        fdf = df.copy()
 
-        if st.session_state.get("admin_selected_user_id") not in options:
-            st.session_state["admin_selected_user_id"] = options[0]
+        if (q or "").strip():
+            mask = fdf.apply(
+                lambda r: _match_query(f"{r['Emprendimiento']} {r['Email']}", q),
+                axis=1
+            )
+            fdf = fdf[mask]
 
-        selected_user_id = st.selectbox(
-            "Selecciona un emprendedor para gestionar",
-            options=options,
-            format_func=lambda uid: labels_map.get(uid, str(uid)),
-            key="admin_selected_user_id",
-        )
+        if status_user != "Todos":
+            fdf = fdf[fdf["Estado usuario"] == status_user]
 
-        show = fdf.drop(columns=["user_id"])
-        st.dataframe(show, use_container_width=True, hide_index=True)
+        if approved_filter != "Todos":
+            want = True if approved_filter == "Aprobado" else False
+            fdf = fdf[fdf["Perfil aprobado"] == want]
 
-        st.write("")
-        st.markdown("#### Acciones")
+        st.caption(f"{len(fdf)} resultado(s)")
 
-        u_sel = next((x for x in db.get("users", []) if x.get("id") == selected_user_id), None)
-        prof_sel = user_profile(db, selected_user_id) if selected_user_id else None
+        selected_user_id = None
+        u_sel = None
+        prof_sel = None
 
-        if not u_sel:
-            st.warning("No se encontró el usuario seleccionado.")
+        if fdf.empty:
+            st.info("No hay resultados con esos filtros.")
         else:
-            name = (prof_sel.get("business_name") if prof_sel else "—")
-            approved = bool(prof_sel.get("is_approved")) if prof_sel else False
-            st.markdown(
-                f"**{name}**  \n"
-                f"Email: `{u_sel.get('email','—')}`  \n"
-                f"Estado: `{u_sel.get('status','—')}`  \n"
-                f"Perfil aprobado: `{approved}`"
+            options = fdf["user_id"].tolist()
+
+            # labels estables
+            labels_map = {}
+            for r in fdf.to_dict("records"):
+                uid = r["user_id"]
+                labels_map[uid] = f"{r['Emprendimiento']} — {r['Email']}"
+
+            st.session_state.setdefault("admin_selected_user_id", options[0] if options else None)
+            if st.session_state.get("admin_selected_user_id") not in options:
+                st.session_state["admin_selected_user_id"] = options[0]
+
+            selected_user_id = st.selectbox(
+                "Selecciona un emprendedor para gestionar",
+                options=options,
+                format_func=lambda uid: labels_map.get(uid, str(uid)),
+                key="admin_selected_user_id",
             )
 
-            a, b, c, d = st.columns(4)
-            with a:
-                if st.button("✅ Aprobar", use_container_width=True):
-                    if prof_sel:
-                        prof_sel["is_approved"] = True
-                        prof_sel["updated_at"] = now_iso()
-                    u_sel["status"] = "ACTIVE"
+            show = fdf.drop(columns=["user_id"])
+            st.dataframe(show, use_container_width=True, hide_index=True)
+
+            st.write("")
+            st.markdown("#### Acciones")
+
+            u_sel = next((x for x in db.get("users", []) if x.get("id") == selected_user_id), None)
+            prof_sel = user_profile(db, selected_user_id) if selected_user_id else None
+
+            if not u_sel:
+                st.warning("No se encontró el usuario seleccionado.")
+            else:
+                name = (prof_sel.get("business_name") if prof_sel else "—")
+                approved = bool(prof_sel.get("is_approved")) if prof_sel else False
+                st.markdown(
+                    f"**{name}**  \n"
+                    f"Email: `{u_sel.get('email','—')}`  \n"
+                    f"Estado: `{u_sel.get('status','—')}`  \n"
+                    f"Perfil aprobado: `{approved}`"
+                )
+
+                a, b, c, d = st.columns(4)
+                with a:
+                    if st.button("✅ Aprobar", use_container_width=True):
+                        if prof_sel:
+                            prof_sel["is_approved"] = True
+                            prof_sel["updated_at"] = now_iso()
+                        u_sel["status"] = "ACTIVE"
+                        u_sel["updated_at"] = now_iso()
+                        save_db(db)
+                        st.rerun()
+
+                with b:
+                    if st.button("🕒 Pendiente", use_container_width=True):
+                        if prof_sel:
+                            prof_sel["is_approved"] = False
+                            prof_sel["updated_at"] = now_iso()
+                        u_sel["status"] = "PENDING"
+                        u_sel["updated_at"] = now_iso()
+                        save_db(db)
+                        st.rerun()
+
+                with c:
+                    if st.button("⛔ Bloquear", use_container_width=True):
+                        u_sel["status"] = "BLOCKED"
+                        u_sel["updated_at"] = now_iso()
+                        save_db(db)
+                        st.rerun()
+
+                with d:
+                    if st.button("🔓 Desbloquear", use_container_width=True):
+                        u_sel["status"] = "ACTIVE"
+                        u_sel["updated_at"] = now_iso()
+                        save_db(db)
+                        st.rerun()
+
+                # =========================
+                # 🔑 Cambiar contraseña
+                # =========================
+                st.divider()
+                st.markdown("#### 🔑 Cambiar contraseña")
+
+                with st.expander("Cambiar contraseña del emprendedor", expanded=False):
+                    new_pw = st.text_input(
+                        "Nueva contraseña",
+                        type="password",
+                        key=f"admin_newpw_{u_sel['id']}"
+                    )
+                    new_pw2 = st.text_input(
+                        "Confirmar contraseña",
+                        type="password",
+                        key=f"admin_newpw2_{u_sel['id']}"
+                    )
+
+                    if st.button("💾 Guardar nueva contraseña", use_container_width=True, key=f"admin_savepw_{u_sel['id']}"):
+                        if len(new_pw or "") < 8:
+                            st.error("La contraseña debe tener mínimo 8 caracteres.")
+                            st.stop()
+                        if (new_pw or "") != (new_pw2 or ""):
+                            st.error("Las contraseñas no coinciden.")
+                            st.stop()
+
+                        u_sel["password_hash"] = hash_password(new_pw)
+                        u_sel["reset_token"] = None
+                        u_sel["reset_token_expires_at"] = None
+                        u_sel["updated_at"] = now_iso()
+                        save_db(db)
+                        st.success("Contraseña actualizada.")
+                        st.rerun()
+
+                # =========================
+                # 🔒 Límite + 📊 Acceso stats
+                # =========================
+                st.write("")
+                st.markdown("#### 🔒 Límite de publicaciones")
+
+                # defaults usuarios viejos
+                if "max_published_products" not in u_sel or u_sel.get("max_published_products") is None:
+                    u_sel["max_published_products"] = 5
+                if "can_view_stats" not in u_sel or u_sel.get("can_view_stats") is None:
+                    u_sel["can_view_stats"] = False
+
+                new_limit = st.number_input(
+                    "Máximo productos publicados (PUBLISHED). Usa -1 para ilimitado",
+                    min_value=-1,
+                    max_value=999,
+                    value=int(u_sel.get("max_published_products", 5)),
+                    step=1,
+                    key=f"admin_limit_{u_sel['id']}",
+                )
+
+                st.markdown("#### 📊 Acceso a estadísticas")
+                new_stats_access = st.toggle(
+                    "Permitir ver estadísticas",
+                    value=bool(u_sel.get("can_view_stats", False)),
+                    key=f"admin_stats_access_{u_sel['id']}",
+                )
+
+                if st.button("💾 Guardar límite / acceso", use_container_width=True, key=f"admin_save_limits_{u_sel['id']}"):
+                    u_sel["max_published_products"] = int(new_limit)
+                    u_sel["can_view_stats"] = bool(new_stats_access)
                     u_sel["updated_at"] = now_iso()
                     save_db(db)
+                    st.success("Actualizado.")
                     st.rerun()
-
-            with b:
-                if st.button("🕒 Pendiente", use_container_width=True):
-                    if prof_sel:
-                        prof_sel["is_approved"] = False
-                        prof_sel["updated_at"] = now_iso()
-                    u_sel["status"] = "PENDING"
-                    u_sel["updated_at"] = now_iso()
-                    save_db(db)
-                    st.rerun()
-
-            with c:
-                if st.button("⛔ Bloquear", use_container_width=True):
-                    u_sel["status"] = "BLOCKED"
-                    u_sel["updated_at"] = now_iso()
-                    save_db(db)
-                    st.rerun()
-
-            with d:
-                if st.button("🔓 Desbloquear", use_container_width=True):
-                    u_sel["status"] = "ACTIVE"
-                    u_sel["updated_at"] = now_iso()
-                    save_db(db)
-                    st.rerun()
-
-
-
-    # =========================
-    # 🔒 Límite + 📊 Acceso stats
-    # =========================
-
-    # defaults para usuarios viejos
-    if "max_published_products" not in u_sel:
-        u_sel["max_published_products"] = 5
-    if "can_view_stats" not in u_sel:
-        u_sel["can_view_stats"] = False
-
-    st.write("")
-    st.markdown("#### 🔒 Límite de publicaciones")
-
-    new_limit = st.number_input(
-        "Máximo productos publicados (PUBLISHED). Usa -1 para ilimitado",
-        min_value=-1,
-        max_value=999,
-        value=int(u_sel.get("max_published_products", 5)),
-        step=1,
-        key=f"admin_limit_{u_sel['id']}",
-    )
-
-    st.markdown("#### 📊 Acceso a estadísticas")
-    new_stats_access = st.toggle(
-        "Permitir ver estadísticas",
-        value=bool(u_sel.get("can_view_stats", False)),
-        key=f"admin_stats_access_{u_sel['id']}",
-    )
-
-    if st.button("💾 Guardar límite / acceso", use_container_width=True, key=f"admin_save_limits_{u_sel['id']}"):
-        u_sel["max_published_products"] = int(new_limit)
-        u_sel["can_view_stats"] = bool(new_stats_access)
-        u_sel["updated_at"] = now_iso()
-        save_db(db)
-        st.success("Actualizado.")
-        st.rerun()
 
     # =========================================================
-    # ⭐ Destacados (Home) - SOLO PRODUCTOS (SIEMPRE visible)
+    # ⭐ Destacados (Home) - SOLO PRODUCTOS
     # =========================================================
     st.divider()
     st.markdown("### ⭐ Destacados (Home)")
@@ -304,7 +333,6 @@ def render(db):
     users = {u.get("id"): u for u in (db.get("users", []) or [])}
     products = db.get("products", []) or []
 
-    # ---- construir dataset ----
     rows = []
     for pr in products:
         prof = profiles.get(pr.get("profile_id"), {}) or {}
@@ -322,177 +350,177 @@ def render(db):
 
     if not rows:
         st.info("No hay productos registrados.")
-        return
-
-    dfp = pd.DataFrame(rows)
-
-    # ---- filtros ----
-    all_cats = sorted([c for c in dfp["Categoría"].unique().tolist() if c and c != "—"])
-    all_status = ["Todos", "PUBLISHED", "PAUSED", "DRAFT"]
-
-    st.session_state.setdefault("admin_prod_status", "Todos")
-    st.session_state.setdefault("admin_prod_cat", "Todas")
-    st.session_state.setdefault("admin_prod_q", "")
-
-    f1, f2, f3 = st.columns([1, 1, 2])
-    with f1:
-        status_f = st.selectbox(
-            "Estado",
-            all_status,
-            format_func=lambda v: {"Todos":"Todos", "PUBLISHED":"Publicado", "PAUSED":"Pausado", "DRAFT":"Borrador"}[v],
-            key="admin_prod_status",
-        )
-    with f2:
-        cat_f = st.selectbox("Categoría", ["Todas"] + all_cats, key="admin_prod_cat")
-    with f3:
-        qprod = st.text_input(
-            "Buscar (producto, descripción, emprendimiento, email)",
-            key="admin_prod_q",
-            placeholder="Ej: torta, café aurora, usuario@email..."
-        )
-
-    fdfp = dfp.copy()
-
-    if status_f != "Todos":
-        fdfp = fdfp[fdfp["Estado"] == status_f]
-
-    if cat_f != "Todas":
-        fdfp = fdfp[fdfp["Categoría"] == cat_f]
-
-    if (qprod or "").strip():
-        keep_ids = []
-        by_id = {x.get("id"): x for x in products}
-        for pid in fdfp["product_id"].tolist():
-            pr = by_id.get(pid) or {}
-            prof = profiles.get(pr.get("profile_id"), {}) or {}
-            owner = users.get(pr.get("owner_user_id"), {}) or {}
-            hay = " ".join([
-                pr.get("name", ""),
-                pr.get("description", ""),
-                prof.get("business_name", ""),
-                owner.get("email", ""),
-            ])
-            if _match_query(hay, qprod):
-                keep_ids.append(pid)
-
-        fdfp = fdfp[fdfp["product_id"].isin(keep_ids)]
-
-    fdfp = fdfp.sort_values(by="Actualizado", ascending=False)
-
-    st.caption(f"Mostrando {len(fdfp)} producto(s).")
-
-    if fdfp.empty:
-        st.info("No hay productos con esos filtros.")
     else:
-        options = fdfp["product_id"].tolist()
-        # ✅ Si quedó una selección pendiente (por ejemplo después de borrar),
-        # la aplicamos ANTES de instanciar el selectbox.
-        if "admin_next_selected_product_id" in st.session_state:
-            st.session_state["admin_selected_product_id"] = st.session_state.pop("admin_next_selected_product_id")
-        st.session_state.setdefault("admin_selected_product_id", options[0] if options else None)
-        if st.session_state.get("admin_selected_product_id") not in options:
-            st.session_state["admin_selected_product_id"] = options[0]
+        dfp = pd.DataFrame(rows)
 
-        def _prod_label2(pid: str) -> str:
-            r = fdfp[fdfp["product_id"] == pid].iloc[0]
-            return f"{r['Producto']} — {r['Emprendimiento']} — {r['Estado']}"
+        all_cats = sorted([c for c in dfp["Categoría"].unique().tolist() if c and c != "—"])
+        all_status = ["Todos", "PUBLISHED", "PAUSED", "DRAFT"]
 
-        selected_pid = st.selectbox(
-            "Selecciona un producto",
-            options=options,
-            format_func=_prod_label2,
-            key="admin_selected_product_id",
-        )
+        st.session_state.setdefault("admin_prod_status", "Todos")
+        st.session_state.setdefault("admin_prod_cat", "Todas")
+        st.session_state.setdefault("admin_prod_q", "")
 
-        show_cols = ["Producto", "Estado", "Categoría", "Precio", "Emprendimiento", "Email", "Actualizado"]
-        st.dataframe(fdfp[show_cols], use_container_width=True, hide_index=True)
-
-        st.write("")
-        st.markdown("#### Acciones del producto seleccionado")
-
-        pr = next((x for x in products if x.get("id") == selected_pid), None)
-        if not pr:
-            st.warning("Producto no encontrado.")
-        else:
-            prof = profiles.get(pr.get("profile_id"), {}) or {}
-            owner = users.get(pr.get("owner_user_id"), {}) or {}
-
-            pname = pr.get("name", "—")
-            bname = prof.get("business_name", "—")
-            email = owner.get("email", "—")
-            status = (pr.get("status") or "DRAFT").upper()
-            cat = pr.get("category", "—")
-            price = _format_price(pr)
-            updated = pr.get("updated_at") or pr.get("created_at") or "—"
-
-            if status == "PUBLISHED":
-                st_state = "✅ Publicado"
-            elif status == "PAUSED":
-                st_state = "⏸️ Pausado"
-            else:
-                st_state = "📝 Borrador"
-
-            st.markdown(
-                f"**{pname}** · {st_state}  \n"
-                f"Categoría: `{cat}` · Precio: **{price}**  \n"
-                f"Emprendimiento: **{bname}** · Usuario: `{email}`  \n"
-                f"Actualizado: `{updated}`"
+        f1, f2, f3 = st.columns([1, 1, 2])
+        with f1:
+            status_f = st.selectbox(
+                "Estado",
+                all_status,
+                format_func=lambda v: {"Todos": "Todos", "PUBLISHED": "Publicado", "PAUSED": "Pausado", "DRAFT": "Borrador"}[v],
+                key="admin_prod_status",
+            )
+        with f2:
+            cat_f = st.selectbox("Categoría", ["Todas"] + all_cats, key="admin_prod_cat")
+        with f3:
+            qprod = st.text_input(
+                "Buscar (producto, descripción, emprendimiento, email)",
+                key="admin_prod_q",
+                placeholder="Ej: torta, café aurora, usuario@email..."
             )
 
-            a1, a2, a3, a4 = st.columns([1.2, 1.2, 1.2, 1.2])
+        fdfp = dfp.copy()
 
-            with a1:
-                if st.button("👁️ Ver", key=f"admin_prod_view_{selected_pid}", use_container_width=True):
-                    st.session_state["selected_product_id"] = selected_pid
-                    st.session_state["route"] = "product_detail"
-                    st.rerun()
+        if status_f != "Todos":
+            fdfp = fdfp[fdfp["Estado"] == status_f]
 
-            with a2:
+        if cat_f != "Todas":
+            fdfp = fdfp[fdfp["Categoría"] == cat_f]
+
+        if (qprod or "").strip():
+            keep_ids = []
+            by_id = {x.get("id"): x for x in products}
+            for pid in fdfp["product_id"].tolist():
+                pr = by_id.get(pid) or {}
+                prof = profiles.get(pr.get("profile_id"), {}) or {}
+                owner = users.get(pr.get("owner_user_id"), {}) or {}
+                hay = " ".join([
+                    pr.get("name", ""),
+                    pr.get("description", ""),
+                    prof.get("business_name", ""),
+                    owner.get("email", ""),
+                ])
+                if _match_query(hay, qprod):
+                    keep_ids.append(pid)
+
+            fdfp = fdfp[fdfp["product_id"].isin(keep_ids)]
+
+        fdfp = fdfp.sort_values(by="Actualizado", ascending=False)
+        st.caption(f"Mostrando {len(fdfp)} producto(s).")
+
+        if fdfp.empty:
+            st.info("No hay productos con esos filtros.")
+        else:
+            options = fdfp["product_id"].tolist()
+
+            # aplicar selección pendiente post-borrado
+            if "admin_next_selected_product_id" in st.session_state:
+                st.session_state["admin_selected_product_id"] = st.session_state.pop("admin_next_selected_product_id")
+
+            st.session_state.setdefault("admin_selected_product_id", options[0] if options else None)
+            if st.session_state.get("admin_selected_product_id") not in options:
+                st.session_state["admin_selected_product_id"] = options[0]
+
+            def _prod_label2(pid: str) -> str:
+                r = fdfp[fdfp["product_id"] == pid].iloc[0]
+                return f"{r['Producto']} — {r['Emprendimiento']} — {r['Estado']}"
+
+            selected_pid = st.selectbox(
+                "Selecciona un producto",
+                options=options,
+                format_func=_prod_label2,
+                key="admin_selected_product_id",
+            )
+
+            show_cols = ["Producto", "Estado", "Categoría", "Precio", "Emprendimiento", "Email", "Actualizado"]
+            st.dataframe(fdfp[show_cols], use_container_width=True, hide_index=True)
+
+            st.write("")
+            st.markdown("#### Acciones del producto seleccionado")
+
+            pr = next((x for x in products if x.get("id") == selected_pid), None)
+            if not pr:
+                st.warning("Producto no encontrado.")
+            else:
+                prof = profiles.get(pr.get("profile_id"), {}) or {}
+                owner = users.get(pr.get("owner_user_id"), {}) or {}
+
+                pname = pr.get("name", "—")
+                bname = prof.get("business_name", "—")
+                email = owner.get("email", "—")
+                status = (pr.get("status") or "DRAFT").upper()
+                cat = pr.get("category", "—")
+                price = _format_price(pr)
+                updated = pr.get("updated_at") or pr.get("created_at") or "—"
+
                 if status == "PUBLISHED":
-                    lbl = "⏸️ Pausar"
-                    next_status = "PAUSED"
+                    st_state = "✅ Publicado"
+                elif status == "PAUSED":
+                    st_state = "⏸️ Pausado"
                 else:
-                    lbl = "🚀 Publicar"
-                    next_status = "PUBLISHED"
+                    st_state = "📝 Borrador"
 
-                if st.button(lbl, key=f"admin_prod_toggle_{selected_pid}", use_container_width=True):
-                    pr["status"] = next_status
-                    pr["updated_at"] = now_iso()
-                    save_db(db)
-                    st.rerun()
+                st.markdown(
+                    f"**{pname}** · {st_state}  \n"
+                    f"Categoría: `{cat}` · Precio: **{price}**  \n"
+                    f"Emprendimiento: **{bname}** · Usuario: `{email}`  \n"
+                    f"Actualizado: `{updated}`"
+                )
 
-            with a3:
-                if st.button("🧊 Borrador", key=f"admin_prod_draft_{selected_pid}", use_container_width=True):
-                    pr["status"] = "DRAFT"
-                    pr["updated_at"] = now_iso()
-                    save_db(db)
-                    st.rerun()
+                a1, a2, a3, a4 = st.columns([1.2, 1.2, 1.2, 1.2])
 
-            with a4:
-                confirm_key = f"admin_prod_del_confirm_{selected_pid}"
-                st.session_state.setdefault(confirm_key, False)
-
-                if not st.session_state[confirm_key]:
-                    if st.button("🗑️ Eliminar", key=f"admin_prod_del_{selected_pid}", use_container_width=True):
-                        st.session_state[confirm_key] = True
+                with a1:
+                    if st.button("👁️ Ver", key=f"admin_prod_view_{selected_pid}", use_container_width=True):
+                        st.session_state["selected_product_id"] = selected_pid
+                        st.session_state["route"] = "product_detail"
                         st.rerun()
-                else:
-                    st.warning("¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.")
-                    cA, cB = st.columns(2, gap="small")
-                    with cA:
-                        if st.button("✅ Sí, eliminar", key=f"admin_prod_del_yes_{selected_pid}", use_container_width=True):
-                            db["products"] = [x for x in db.get("products", []) if x.get("id") != selected_pid]
-                            save_db(db)
-                            st.session_state[confirm_key] = False
-                            remaining = [x.get("id") for x in db.get("products", []) if x.get("id")]
-                            st.session_state["admin_next_selected_product_id"] = remaining[0] if remaining else None
-                            st.rerun()
-                    with cB:
-                        if st.button("↩️ Cancelar", key=f"admin_prod_del_no_{selected_pid}", use_container_width=True):
-                            st.session_state[confirm_key] = False
-                            st.rerun()
 
-    # ... dentro de render(db), para ADMIN:
+                with a2:
+                    if status == "PUBLISHED":
+                        lbl = "⏸️ Pausar"
+                        next_status = "PAUSED"
+                    else:
+                        lbl = "🚀 Publicar"
+                        next_status = "PUBLISHED"
+
+                    if st.button(lbl, key=f"admin_prod_toggle_{selected_pid}", use_container_width=True):
+                        pr["status"] = next_status
+                        pr["updated_at"] = now_iso()
+                        save_db(db)
+                        st.rerun()
+
+                with a3:
+                    if st.button("🧊 Borrador", key=f"admin_prod_draft_{selected_pid}", use_container_width=True):
+                        pr["status"] = "DRAFT"
+                        pr["updated_at"] = now_iso()
+                        save_db(db)
+                        st.rerun()
+
+                with a4:
+                    confirm_key = f"admin_prod_del_confirm_{selected_pid}"
+                    st.session_state.setdefault(confirm_key, False)
+
+                    if not st.session_state[confirm_key]:
+                        if st.button("🗑️ Eliminar", key=f"admin_prod_del_{selected_pid}", use_container_width=True):
+                            st.session_state[confirm_key] = True
+                            st.rerun()
+                    else:
+                        st.warning("¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.")
+                        cA, cB = st.columns(2, gap="small")
+                        with cA:
+                            if st.button("✅ Sí, eliminar", key=f"admin_prod_del_yes_{selected_pid}", use_container_width=True):
+                                db["products"] = [x for x in db.get("products", []) if x.get("id") != selected_pid]
+                                save_db(db)
+                                st.session_state[confirm_key] = False
+                                remaining = [x.get("id") for x in db.get("products", []) if x.get("id")]
+                                st.session_state["admin_next_selected_product_id"] = remaining[0] if remaining else None
+                                st.rerun()
+                        with cB:
+                            if st.button("↩️ Cancelar", key=f"admin_prod_del_no_{selected_pid}", use_container_width=True):
+                                st.session_state[confirm_key] = False
+                                st.rerun()
+
+    # =========================================================
+    # 🗄️ Backup de datos
+    # =========================================================
     st.divider()
     st.markdown("### 🗄️ Backup de datos")
 
@@ -505,7 +533,7 @@ def render(db):
     )
 
     # =========================================================
-    # 🏷️ Sugerencias de tags (tabla + seleccionar + acciones)
+    # 🏷️ Sugerencias de tags
     # =========================================================
     st.divider()
     st.markdown("### 🏷️ Sugerencias de tags (pendientes)")
@@ -599,7 +627,4 @@ def render(db):
                 save_db(db)
             st.rerun()
 
-
-
-    
 

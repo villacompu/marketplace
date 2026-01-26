@@ -44,12 +44,12 @@
     {
       "id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
       "email": "fasamtolireposteria@gmail.com",
-      "password_hash": "$pbkdf2-sha256$290000$e8/5f28NwRhjLKX0fo8x5g$pds86vDtA2bF1jqDsEQJ3l/XRQ4e16NFKxOCvIa5m/4",
+      "password_hash": "$pbkdf2-sha256$290000$ltLam/M.5/z/fy.ltFYKYQ$.MXogYI6crpNwcxdPVbw2SEpH4pkyte2c6BBS8ACjrw",
       "role": "EMPRENDEDOR",
       "status": "ACTIVE",
       "max_published_products": 5,
       "created_at": "2026-01-19T02:11:43Z",
-      "updated_at": "2026-01-19T02:44:55Z",
+      "updated_at": "2026-01-26T22:32:50Z",
       "reset_token": null,
       "reset_token_expires_at": null
     },
@@ -204,19 +204,20 @@
       "city": "La estrella",
       "availability": "",
       "links": {
-        "instagram": "",
+        "instagram": "https://www.instagram.com/cooketaquegalleta",
         "facebook": "",
         "tiktok": "",
-        "whatsapp": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573212427685&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
         "website": "",
         "external_catalog": "",
-        "phone": ""
+        "phone": "3153538779",
+        "whatsapp_phone": "3212427685"
       },
       "logo_url": "",
       "gallery_urls": [],
       "is_approved": true,
       "created_at": "2026-01-19T02:20:47Z",
-      "updated_at": "2026-01-19T02:45:00Z"
+      "updated_at": "2026-01-26T17:05:24Z"
     },
     {
       "id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
@@ -233,11 +234,11 @@
         "instagram": "",
         "facebook": "",
         "tiktok": "",
-        "whatsapp": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573123038911&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
         "website": "https://empaquetadurasysellos.com/",
         "external_catalog": "https://share.google/fcxpwiMPhWmVRO7Tx",
         "phone": "3123038911",
-        "whatsapp_phone": ""
+        "whatsapp_phone": "3123038911"
       },
       "logo_url": "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/LOGOPNG.png.webp",
       "gallery_urls": [
@@ -247,7 +248,7 @@
       ],
       "is_approved": true,
       "created_at": "2026-01-25T19:35:11Z",
-      "updated_at": "2026-01-26T16:53:16Z"
+      "updated_at": "2026-01-26T16:56:26Z"
     },
     {
       "id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
@@ -293,10 +294,11 @@
         "instagram": "https://www.instagram.com/abasicaucho_tapetes",
         "facebook": "",
         "tiktok": "",
-        "whatsapp": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573193846246&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
         "website": "https://tapetespublicitariosabasicaucho.com/",
         "external_catalog": "https://www.youtube.com/@johndejesus7461/shorts",
-        "phone": "3193846246"
+        "phone": "3193846246",
+        "whatsapp_phone": "3193846246"
       },
       "logo_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=240,h=63,fit=crop/YD0vlnnOqPf5LBqQ/logo-YKbN3wyGR7cbRRwR.jpg",
       "gallery_urls": [
@@ -305,7 +307,7 @@
       ],
       "is_approved": true,
       "created_at": "2026-01-26T12:57:51Z",
-      "updated_at": "2026-01-26T13:11:46Z"
+      "updated_at": "2026-01-26T16:58:19Z"
     }
   ],
   "products": [
@@ -617,6 +619,28 @@
       ],
       "status": "PUBLISHED",
       "updated_at": "2026-01-26T13:18:56Z"
+    },
+    {
+      "id": "f455c331-3c4e-473c-8f12-ec236897c0e2",
+      "owner_user_id": "72cf887f-0d0b-48ab-b9ef-619a76a44b3e",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "created_at": "2026-01-26T17:08:10Z",
+      "name": "Galleta",
+      "description": "Galletería Artesanal ‼️ADVERTENCIA‼️Puede causar obsesión inmediata🔥\n¡Pa’ Q’ Hacerla Si Puedes Comprarla!\n😏¿Te atreves a probar?🤤",
+      "category": "Comida",
+      "tags": [
+        "Gourmet / Artesanal",
+        "Panadería",
+        "Postres"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://media.airedesantafe.com.ar/p/d02d115eedf5afce20e8e716b817dc0a/adjuntos/268/imagenes/003/840/0003840135/1200x0/smart/crumbl-cookies2png.png"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T17:08:14Z"
     }
   ],
   "favorites": [
@@ -4547,6 +4571,36 @@
       "anon_id": "ae9e35b6-a5f3-4aac-a855-bd1566f3e97b",
       "product_id": "8f8945d2-a796-4f55-a207-18cd63d95d29",
       "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T17:09:38Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "85b1687e-c51c-40a5-8a10-0bf641386b3a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T17:10:45Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "5a78a523-d1c2-46a9-adef-1a58336cfbfc",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T22:26:09Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9ab0a7ff-04b7-47df-a1d3-50d57baa36de",
+      "product_id": "",
+      "profile_id": "",
       "meta": {}
     }
   ],
