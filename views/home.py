@@ -2,10 +2,12 @@ from __future__ import annotations
 import streamlit as st
 
 from services.catalog import filter_products, format_price
-from services.validators import safe_text
 from views.router import goto
 from services.favorites import is_favorite, toggle_favorite, list_favorites
 from services.featured import get_featured_products
+from services.validators import safe_text, safe_html, safe_html_multiline
+
+
 
 from services.analytics import log_view_home, log_search
 from db.repo_json import save_db
@@ -187,9 +189,12 @@ def render(db):
             city_txt = prof.get("city") or "—"
             owner = prof.get("business_name") or "Emprendimiento"
 
-            desc = safe_text(p.get("description", ""), 110)
-            if len(p.get("description", "")) > 110:
+            raw_desc = (p.get("description", "") or "")
+            desc = safe_text(raw_desc, 110)
+            if len(raw_desc) > 110:
                 desc += "…"
+            desc_html = safe_html_multiline(desc, 200)  # <-- clave
+
 
             with col:
                 st.markdown('<div class="card-wrap">', unsafe_allow_html=True)
@@ -197,30 +202,33 @@ def render(db):
                 photos = p.get("photo_urls") or []
                 photos = [u.strip() for u in photos if (u or "").strip()]
                 thumb_url = photos[0] if photos else ""
-                thumb_style = f"background-image:url('{thumb_url}');" if thumb_url else ""
+                thumb_style = ""
+                if thumb_url:
+                    # escapa la URL para que no rompa el style si trae comillas, paréntesis, etc.
+                    thumb_style = f"background-image:url('{safe_html(thumb_url, 500)}');"
 
                 st.markdown(
                     f"""
                     <div class="card">
-                      <div class="thumb" style="{thumb_style}">
-                        <span>{safe_text(owner, 40)}</span>
-                      </div>
+                    <div class="thumb" style="{thumb_style}">
+                        <span>{safe_html(owner, 40)}</span>
+                    </div>
 
-                      <div class="title">{safe_text(p.get("name",""), 70)}</div>
+                    <div class="title">{safe_html(p.get("name",""), 70)}</div>
 
-                      <div class="row">
-                        <span class="badge">{safe_text(badge, 30)}</span>
-                        <span class="price">{price}</span>
-                      </div>
+                    <div class="row">
+                        <span class="badge">{safe_html(badge, 30)}</span>
+                        <span class="price">{safe_html(price, 60)}</span>
+                    </div>
 
-                      <div class="divider"></div>
+                    <div class="divider"></div>
 
-                      <div class="small">{desc}</div>
+                    <div class="small">{desc_html}</div>
 
-                      <div class="row" style="margin-top:10px;">
-                        <span class="badge badge2">{safe_text(city_txt, 30)}</span>
+                    <div class="row" style="margin-top:10px;">
+                        <span class="badge badge2">{safe_html(city_txt, 30)}</span>
                         <span class="small">Publicado</span>
-                      </div>
+                    </div>
                     </div>
                     """,
                     unsafe_allow_html=True
@@ -290,9 +298,12 @@ def render(db):
                     city_txt = prof.get("city") or "—"
                     owner = prof.get("business_name") or "Emprendimiento"
 
-                    desc = safe_text(p.get("description", ""), 110)
-                    if len(p.get("description", "")) > 110:
+                    raw_desc = (p.get("description", "") or "")
+                    desc = safe_text(raw_desc, 110)
+                    if len(raw_desc) > 110:
                         desc += "…"
+                    desc_html = safe_html_multiline(desc, 200)  # <-- clave
+
 
                     with col:
                         st.markdown('<div class="card-wrap">', unsafe_allow_html=True)
@@ -300,30 +311,38 @@ def render(db):
                         photos = p.get("photo_urls") or []
                         photos = [u.strip() for u in photos if (u or "").strip()]
                         thumb_url = photos[0] if photos else ""
-                        thumb_style = f"background-image:url('{thumb_url}');" if thumb_url else ""
+                        thumb_style = ""
+                        if thumb_url:
+                            # escapa la URL para que no rompa el style si trae comillas, paréntesis, etc.
+                            thumb_style = f"background-image:url('{safe_html(thumb_url, 500)}');"
 
                         st.markdown(
                             f"""
                             <div class="card">
                             <div class="thumb" style="{thumb_style}">
-                                <span>{safe_text(owner, 40)}</span>
+                                <span>{safe_html(owner, 40)}</span>
                             </div>
 
-                            <div class="title">{safe_text(p.get("name",""), 70)}</div>
+                            <div class="title">{safe_html(p.get("name",""), 70)}</div>
+
                             <div class="row">
-                                <span class="badge">{safe_text(badge, 30)}</span>
-                                <span class="price">{price}</span>
+                                <span class="badge">{safe_html(badge, 30)}</span>
+                                <span class="price">{safe_html(price, 60)}</span>
                             </div>
+
                             <div class="divider"></div>
-                            <div class="small">{desc}</div>
+
+                            <div class="small">{desc_html}</div>
+
                             <div class="row" style="margin-top:10px;">
-                                <span class="badge badge2">{safe_text(city_txt, 30)}</span>
-                                <span class="small">Destacado</span>
+                                <span class="badge badge2">{safe_html(city_txt, 30)}</span>
+                                <span class="small">Publicado</span>
                             </div>
                             </div>
                             """,
                             unsafe_allow_html=True
                         )
+
 
                         st.markdown('<div class="card-actions"><div class="actions-3">', unsafe_allow_html=True)
                         b1, b2 = st.columns([1.6, 0.5], gap="small")

@@ -42,6 +42,7 @@ def _topbar(db: dict):
 
     # ✅ Topbar como layout nativo (1 fila estable)
     with st.container():
+        route = st.session_state.get("route", "home")
         c1, c2, c3 = st.columns([3.0, 3, 1.2], vertical_alignment="center")
 
         with c1:
@@ -64,9 +65,10 @@ def _topbar(db: dict):
 
             a1, a2 = st.columns([3, 1], vertical_alignment="center")
             with a1:
-                if st.button("🏠", key="btn_top_home", help="Ir al catálogo", use_container_width=True):
-                    st.session_state["route"] = "home"
-                    st.rerun()
+                if route != "home":
+                    if st.button("🏠", key="btn_top_home", help="Ir al catálogo", use_container_width=True):
+                        st.session_state["route"] = "home"
+                        st.rerun()
 
             with a2:
                 if not u:
@@ -91,7 +93,7 @@ def _topbar(db: dict):
                                 st.session_state["route"] = "my_stats"
                                 st.rerun()
 
-                            st.divider()
+                            # st.divider()
 
                         # -------------------------
                         # ADMIN
@@ -105,14 +107,14 @@ def _topbar(db: dict):
                                 st.session_state["route"] = "admin_stats"
                                 st.rerun()
 
-                            st.divider()
+                         #    st.divider()
 
                         # -------------------------
                         # COMÚN A TODOS LOGUEADOS
                         # -------------------------
-                        if st.button("❤️ Favoritos", use_container_width=True, key="btn_favorites"):
-                            st.session_state["route"] = "favorites"
-                            st.rerun()
+                        # if st.button("❤️ Favoritos", use_container_width=True, key="btn_favorites"):
+                        #     st.session_state["route"] = "favorites"
+                         #    st.rerun()
 
                         st.divider()
                         if st.button("⎋ Cerrar sesión", use_container_width=True, key="btn_logout"):

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import streamlit as st
-
+import re
 from auth.session import get_user
 from db.repo_json import save_db, new_id, now_iso
 from services.validators import safe_text
@@ -15,16 +15,29 @@ def _get_my_profile(db, user_id: str):
     return next((p for p in db.get("profiles", []) if p.get("owner_user_id") == user_id), None)
 
 
-def _parse_urls(raw: str, max_n: int = 6):
+_URL_RE = re.compile(r"^https?://", re.IGNORECASE)
+
+def _parse_urls(raw: str, max_n: int = 6) -> list[str]:
     raw = (raw or "").strip()
     if not raw:
         return []
-    parts = []
-    for line in raw.replace(",", "\n").splitlines():
-        u = (line or "").strip()
-        if u:
-            parts.append(u)
-    return parts[:max_n]
+
+    # 1) Primero: por líneas (recomendado)
+    lines = [ln.strip() for ln in raw.splitlines() if ln.strip()]
+
+    # 2) Si el usuario pegó todo en una sola línea, intentamos separar
+    if len(lines) == 1:
+        one = lines[0]
+
+        # Si parece que pegó varias URLs separadas por coma/espacio, separa SOLO donde empiece otra URL
+        # (esto NO rompe comas dentro de una URL)
+        parts = re.split(r"\s*(?=https?://)", one)
+        lines = [p.strip().lstrip(",") for p in parts if p.strip()]
+
+    # 3) Filtrar: solo URLs http(s)
+    urls = [u for u in lines if _URL_RE.match(u)]
+
+    return urls[:max_n]
 
 
 def _clear_form_keys(suffix: str):
@@ -95,21 +108,27 @@ def render(db):
     my_items = [p for p in db.get("products", []) if p.get("owner_user_id") == u["id"]]
     my_items = sorted(my_items, key=lambda x: x.get("created_at", ""), reverse=True)
 
-    c1, c2 = st.columns([1, 1])
-    with c1:
-        if st.button("➕ Nuevo producto", use_container_width=True):
-            st.session_state["mp_edit_id"] = None
-            st.session_state["mp_mode"] = "edit"
-            st.rerun()
-    with c2:
-        if st.button("🏪 Volver a mi perfil", use_container_width=True):
-            st.session_state["route"] = "my_profile"
-            st.rerun()
-
-    st.write("")
-
     mode = st.session_state.get("mp_mode", "list")
     edit_id = st.session_state.get("mp_edit_id")
+
+
+
+
+    # ✅ Acciones SOLO en modo LISTA
+    if mode != "edit":
+        c1, c2 = st.columns([1, 1])
+        with c1:
+            if st.button("➕ Nuevo producto", use_container_width=True):
+                st.session_state["mp_edit_id"] = None
+                st.session_state["mp_mode"] = "edit"
+                st.rerun()
+        with c2:
+            if st.button("🏪 Volver a mi perfil", use_container_width=True):
+                st.session_state["route"] = "my_profile"
+                st.rerun()
+
+        st.write("")
+
 
     # ===========================
     # FORM (crear/editar)
@@ -235,7 +254,12 @@ def render(db):
             cols = st.columns(min(3, len(photo_urls)))
             for i, url in enumerate(photo_urls):
                 with cols[i % len(cols)]:
-                    st.image(url, use_column_width=True)
+                    try:
+                        st.image(url, use_column_width=True)
+                    except Exception:
+                        st.caption("⚠️ No se pudo cargar esta imagen. Revisa que la URL sea pública y directa.")
+                        st.code(url)
+
         else:
             st.caption("Agrega URLs de imágenes para ver la vista previa aquí.")
 
@@ -296,7 +320,7 @@ def render(db):
                 st.rerun()
 
         with b2:
-            if st.button("↩️ Cancelar", use_container_width=True, key=f"mp_cancel_{suffix}"):
+            if st.button("↩️ Volver sin guardar", use_container_width=True, key=f"mp_cancel_{suffix}"):
                 _clear_form_keys(suffix)
                 st.session_state["mp_mode"] = "list"
                 st.session_state["mp_edit_id"] = None

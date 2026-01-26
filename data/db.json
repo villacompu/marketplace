@@ -65,6 +65,32 @@
       "updated_at": "2026-01-19T02:45:00Z",
       "reset_token": null,
       "reset_token_expires_at": null
+    },
+    {
+      "id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "email": "empaquetadurasysellos@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$7/2/F8L4f09pzRmjtNZ6Tw$k4B1iyCqjQNVDu/634GIvsTJkGPps2MfTvKCJkGQR7o",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-25T19:35:11Z",
+      "updated_at": "2026-01-25T19:52:12Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
+    },
+    {
+      "id": "47cbbcb0-7484-4a82-90dd-c1c8868f7499",
+      "email": "contacto@opticaoptimax.com.co",
+      "password_hash": "$pbkdf2-sha256$290000$ppQSYqx1DuF8z5mzlrI2Bg$71KPOuh7MeTZ.APBdrVbqDjiFHHNUroIwPBHuX5X1a8",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-26T01:52:50Z",
+      "updated_at": "2026-01-26T02:17:23Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
     }
   ],
   "profiles": [
@@ -178,6 +204,64 @@
       "is_approved": true,
       "created_at": "2026-01-19T02:20:47Z",
       "updated_at": "2026-01-19T02:45:00Z"
+    },
+    {
+      "id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "owner_user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "business_name": "Empaquetaduras y sellos",
+      "short_desc": "Especialistas en las áreas de mantenimiento y producción, brindando los mejores productos y servicios en sellado de fluidos y ramas afines.",
+      "long_desc": "Soluciones Integrales\nPara la industria más exigente, basados en los criterios de calidad y normatividad.\n\nNuestros servicios\nEYS está en la capacidad de resolver la mayor cantidad de necesidades relacionados con el área que más necesite:\n\nTorno\nTorno CNC\nFresado\nFabricación piezas en caucho\nReparación de Sellos\nReparación de cilindros (Neumáticos y Hidráulicos)",
+      "categories": [
+        "Servicios"
+      ],
+      "city": "Medellín",
+      "availability": "Lun-Vier 7:00 - 4:30 pm / Sab 8:00 a 12:00 pm",
+      "links": {
+        "instagram": "",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573123038911&text=Hola%20empaquetaduras%20y%20sellos%20me%20interesaria%20comunicarme%20con%20ustedes&source=&data=",
+        "website": "https://empaquetadurasysellos.com/",
+        "external_catalog": "https://share.google/fcxpwiMPhWmVRO7Tx",
+        "phone": "3123038911"
+      },
+      "logo_url": "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/LOGOPNG.png.webp",
+      "gallery_urls": [
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/shm_afilado_fabricacion_piezas_especiales_badalona_29-1024x683.jpg.webp",
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/tmpCF66-150x150.png.webp",
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/telas-y-cintas-aislantes-cordones-y-empaquetaduras-D_NQ_NP_687801-MLV20422060931_092015-F-1024x495.jpg.webp"
+      ],
+      "is_approved": true,
+      "created_at": "2026-01-25T19:35:11Z",
+      "updated_at": "2026-01-25T19:52:12Z"
+    },
+    {
+      "id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "owner_user_id": "47cbbcb0-7484-4a82-90dd-c1c8868f7499",
+      "business_name": "Optica Optimax",
+      "short_desc": "En Óptica Optimax, comprendemos la importancia de una visión clara y nítida en tu vida diaria. Nos enorgullece ofrecerte lo mejor en cuidado visual y atención personalizada. Con un",
+      "long_desc": "Agenda tu Cita Hoy:\n\n¿Listo para experimentar la diferencia que Óptica Optimax puede hacer en tu vida visual ¡Agenda tu cita hoy mismo y déjanos cuidar de tu visión!\n\nEn Óptica Optimax, tu visión es nuestra pasión.\n¡Contáctanos ahora para obtener más información!\n\ncontacto@opticaoptimax.com.co\n\n+57 302 334 5248",
+      "categories": [
+        "Salud",
+        "Servicios",
+        "Moda"
+      ],
+      "city": "Medellin",
+      "availability": "Lun - Sab 8:00 - 6:30 pm",
+      "links": {
+        "instagram": "https://www.instagram.com/optimaxx.1/",
+        "facebook": "",
+        "tiktok": "https://www.tiktok.com/@optimaxmedellin",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573023345248&text=Hola%20me%20interesaria%20comunicarme%20con%20ustedes&source=&data=",
+        "website": "https://opticaoptimax.com.co/",
+        "external_catalog": "",
+        "phone": "3023345248"
+      },
+      "logo_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=370,fit=crop/AGBvo9QBBluVboZM/optimax-m6Lrxk3Mw6HbNPqR.jpg",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-01-26T01:52:50Z",
+      "updated_at": "2026-01-26T02:17:23Z"
     }
   ],
   "products": [
@@ -282,6 +366,126 @@
       "created_at": "2026-01-15T22:42:58Z",
       "updated_at": "2026-01-22T01:58:33Z",
       "tag_suggestion": ""
+    },
+    {
+      "id": "c15159ba-6dfd-474c-af39-a47e476578a6",
+      "owner_user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "created_at": "2026-01-25T19:46:45Z",
+      "name": "Sello ES1",
+      "description": "El sello mecánico Elastomer Bellows ES1 es adecuado para una amplia gama de condiciones de servicio. ES1U, ES1K se ajustan a los estándares de EE. UU. Y RU, respectivamente. La gama de sellos mecánicos tipo 1 está diseñada para aplicaciones universales: bombas, mezcladores, compresores de aire, ventiladores y otros equipos rotativos. Se utiliza con frecuencia en las industrias de celulosa y papel, petroquímica, procesamiento de alimentos, tratamiento de aguas residuales, procesamiento químico y generación de energía.\n\nDiámetro del eje: d1 = 16… 75 mm (0.625 » … 3.000 »)\nPresión: p = 0… 1.7Mpa (246.5psi)\nTemperatura: t = -40°C… 200°C (-40°F a 392°F)\nVelocidad de deslizamiento: Vg≤13m / s (42.6ft / m)",
+      "category": "Servicios",
+      "tags": [
+        "Asesorías / Consultoría"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/ES1.png.webp"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-25T19:46:45Z"
+    },
+    {
+      "id": "42de1ad0-eca2-471e-abb6-fd9cb33721ce",
+      "owner_user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "created_at": "2026-01-25T19:48:20Z",
+      "name": "Tela de teflón",
+      "description": "La tela de teflón, es una tela hecha de fibra de vidrio impregnada de PTFE, tejidos que su principal característica es la anti adhesividad de su superficie, además de resistir a altas temperaturas y contacto con ciertos químicos.\n\nAdemás, también la tela teflón posee gran resistencia a la mecánica, también la a toxicidad, la incombustibilidad, la resistencia al ataque de aceites, tintas, barnices y pegamentos.",
+      "category": "Servicios",
+      "tags": [
+        "Asesorías / Consultoría"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/lamina-de-teflon.jpg.webp"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-25T19:48:20Z"
+    },
+    {
+      "id": "8f8945d2-a796-4f55-a207-18cd63d95d29",
+      "owner_user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "created_at": "2026-01-25T19:50:13Z",
+      "name": "Pista estacionaria E1S60-E1S43-E1NS-E1N",
+      "description": "Este tipo de pista estacionaria se compone de anillo de sellado ortogonal y copa de goma, con estructura simple y bajo costo. Diseñó como no contacto utilizando la fricción para evitar la rotación de la pista.\n\nLa pista estacionaria estándar incluye E1S60 – E1S43 – E1NS – E1N, diferentes tipos de modelo de pista tienen diferentes longitudes de trabajo, y adecuado para diferentes estándares de sello mecánico.\n\nAnillo de acoplamiento: cerámica (B) / carburo de silicio (O) / carburo de tungsteno (W1)\n\nSello auxiliar: NBR / EPDM / VITON.",
+      "category": "Servicios",
+      "tags": [
+        "Asesorías / Consultoría"
+      ],
+      "tag_suggestion": "",
+      "price_type": "FROM",
+      "price_value": 0,
+      "photo_urls": [
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/T1G60-2.png.webp"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-25T19:50:13Z"
+    },
+    {
+      "id": "bd34f9e0-17e6-4867-9b50-4005bcff390f",
+      "owner_user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "created_at": "2026-01-26T00:45:59Z",
+      "name": "Silicona transparente constructor de juntas",
+      "description": "Para empaques y sellamientos en bombas de agua, aceite y gasolina.\nTambién para trabajar en cristal, metal y vinilo.\nTemperatura 260°C.",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FROM",
+      "price_value": 0,
+      "photo_urls": [
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/13-AB-42.png.webp"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T00:59:05Z"
+    },
+    {
+      "id": "417fe71b-3c02-4853-bb1d-3f5febcd92e9",
+      "owner_user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "created_at": "2026-01-26T01:00:34Z",
+      "name": "Lubricante 5-56 CRC",
+      "description": "LUBRICANTE 5-56 CRC\nAUTOMOTRIZ 240CC\nLata de lubricante multipropósito 5-56 marca CRC con sistema de aerosol que te permite aplicar un contenido capaz de eliminar los chirridos de bisagras y suavizar engranajes o piezas móviles en estructuras de metal. Las propiedades del líquido lo hacen altamente penetrante ya que se filtra con facilidad entre los espacios de cada pieza.",
+      "category": "Servicios",
+      "tags": [
+        "Asesorías / Consultoría"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://empaquetadurasysellos.com/wp-content/uploads/2020/10/CRC_556.png.webp"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T01:00:34Z"
+    },
+    {
+      "id": "42063560-2569-464c-b333-e6448f06a784",
+      "owner_user_id": "47cbbcb0-7484-4a82-90dd-c1c8868f7499",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "created_at": "2026-01-26T02:05:25Z",
+      "name": "Visión clara y nítida",
+      "description": "Ofrecemos lo mejor en cuidado visual y atención personalizada",
+      "category": "Salud",
+      "tags": [
+        "Cuidado personal",
+        "Estética"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=774,fit=crop/AGBvo9QBBluVboZM/gafas-mxB81Bj3wkfBn3og.jpg",
+        "https://images.unsplash.com/photo-1615468822882-4828d2602857?ixid=M3wzOTE5Mjl8MHwxfHNlYXJjaHwyfHxvcHRpY2FsfGVufDB8fHx8MTcwNjU2MzA1OXww&ixlib=rb-4.0.3&auto=format&fit=crop&w=612&h=429"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T02:24:02Z"
     }
   ],
   "favorites": [
@@ -2283,13 +2487,450 @@
       "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
       "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
       "meta": {}
+    },
+    {
+      "ts": "2026-01-22T14:35:50Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9333aa2a-75d4-42d5-b1b8-4c3c7f1e7053",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-22T17:00:52Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3898f38d-7753-42cb-a4b9-2401dddca0a4",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-23T00:25:41Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "62129746-4208-401a-a073-36a8540dc07b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T18:26:16Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "474590ac-aefb-48c2-8cdf-1088e8096ebb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T18:26:16Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1102e7d8-c8cb-44b3-a957-eaecdf548650",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T18:26:41Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3b80dc2a-1631-4c05-b823-f0133bdad505",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T19:31:08Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "aa53babb-5aca-430d-aa0d-358721dfc961",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T19:31:14Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9b96bd9d-8a86-4dfd-9711-015e6d7fc60d",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T19:58:43Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "aa53babb-5aca-430d-aa0d-358721dfc961",
+      "product_id": "21688fb6-e668-4d78-aec9-7fee79e37af9",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:10:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "7026cecc-b2ef-4373-8667-18d2db2dde13",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:10:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b9e9df16-1cc1-44fc-85a3-bb41bc2b5e25",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:11:53Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c5119560-1972-4726-86a4-fef81bc76438",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:12:34Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "c5119560-1972-4726-86a4-fef81bc76438",
+      "product_id": "ad3e20fb-b0a5-4279-9cf5-eab8a8dc0adb",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:12:54Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c889ef67-3c27-41ba-bb6e-3092567cdd53",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:51:34Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ce3fa40e-3a42-4e7d-a7fb-02c08e6247f8",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:51:35Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2d1b1ebf-ab43-4a20-bc20-ce2808c73107",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:55:36Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "ce3fa40e-3a42-4e7d-a7fb-02c08e6247f8",
+      "product_id": "3957d62a-f84f-4458-a6c5-226982b8f81c",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:56:39Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "55a05aff-7ab2-4131-962e-a6d5e232cb28",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:56:39Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6202443f-9bc1-4264-9683-4d30a766080a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-25T20:56:39Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c67a9afa-bc80-48e5-beda-b3736500a79e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:16:33Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8d4daf74-acdd-4dcb-bd6b-2862c6816660",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:16:43Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1b5f701f-25fa-46bc-a6af-7da07b230bf2",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:16:51Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3455194e-ae03-41e5-a99c-aca9835a9f59",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:17:15Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9382c2aa-853d-4280-9d5b-a9036b88de34",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:43:59Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d2c1b299-7e61-44e1-ae1f-b216bba8c753",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:44:00Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "fc37dda6-c8c4-41e3-a4b9-9531548ee088",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:44:01Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ae567307-97d4-47d6-80c2-88d63790665e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:46:07Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "63ae68d3-6209-4b3e-a495-9418f01dadaa",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:52:29Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c0cf8bdb-2b51-43c7-9f85-f2fa61ced64b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:52:29Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b521f7db-1687-4c5f-b579-81807890881b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:52:30Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4ecc2b94-d3b4-466c-a8f9-d84730d53f89",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:52:35Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8a350ab4-ef1a-415c-b79c-25f9051c4278",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:55:41Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ae34c399-d469-407d-9a15-59a86c821f3b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:57:51Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d01451fa-2a48-423b-8aa2-ad3e3573e6ee",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:57:51Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "04639085-82b4-4bf1-9821-0ec260b37786",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:57:51Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4b031df1-cac2-47e2-afd6-b74f661613d5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:57:52Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f940e228-92c1-48d1-b770-5d9ae2e264b0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:57:57Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "cd7c30da-f532-4dd4-953f-53d1d71ed19c",
+      "product_id": "bd34f9e0-17e6-4867-9b50-4005bcff390f",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T00:59:16Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "4d24e59c-68eb-432d-a8be-563c6040bb71",
+      "anon_id": "cd7c30da-f532-4dd4-953f-53d1d71ed19c",
+      "product_id": "8f8945d2-a796-4f55-a207-18cd63d95d29",
+      "profile_id": "34c07227-a8d0-4653-a39b-f5fb571fe406",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:17:39Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "d01451fa-2a48-423b-8aa2-ad3e3573e6ee",
+      "product_id": "42063560-2569-464c-b333-e6448f06a784",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:17:57Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "d01451fa-2a48-423b-8aa2-ad3e3573e6ee",
+      "product_id": "",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:22:13Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6f0ad17e-9af4-466f-a07e-b2146828f731",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:22:41Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "7fe987ae-0317-4aab-8989-99d48df7b79c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T02:24:09Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "47cbbcb0-7484-4a82-90dd-c1c8868f7499",
+      "anon_id": "6f0ad17e-9af4-466f-a07e-b2146828f731",
+      "product_id": "42063560-2569-464c-b333-e6448f06a784",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "meta": {}
     }
   ],
   "featured": {
-    "products": [
-      "94a72ad3-53b3-4d16-a7cd-20403be746d6",
-      "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2"
-    ],
+    "products": [],
     "profiles": [
       "20ee60c0-38ce-4a5c-97c4-db67fc96c7ec",
       "98514919-8833-4de4-ae04-67acfccbf02e"
