@@ -44,6 +44,10 @@ def render(db):
         # Guardar sesión
         set_user({k: u[k] for k in ["id", "email", "role", "status"]})
 
+        if bool(set_user.get("must_change_password", False)):
+            st.session_state["route"] = "force_change_password"
+            st.rerun()
+
         # ✅ Redirección inmediata
         st.session_state["route"] = "my_profile" if u.get("role") == "EMPRENDEDOR" else "home"
         st.rerun()

@@ -44,14 +44,15 @@
     {
       "id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
       "email": "fasamtolireposteria@gmail.com",
-      "password_hash": "$pbkdf2-sha256$290000$ltLam/M.5/z/fy.ltFYKYQ$.MXogYI6crpNwcxdPVbw2SEpH4pkyte2c6BBS8ACjrw",
+      "password_hash": "$pbkdf2-sha256$290000$ea/1PgcAAOC8V4oxZixFyA$VLpDJZV0GF.EdsHUvbjWEGSIerWw9AZw/C1SvYTcmn0",
       "role": "EMPRENDEDOR",
       "status": "ACTIVE",
       "max_published_products": 5,
       "created_at": "2026-01-19T02:11:43Z",
-      "updated_at": "2026-01-26T22:32:50Z",
+      "updated_at": "2026-01-26T23:26:21Z",
       "reset_token": null,
-      "reset_token_expires_at": null
+      "reset_token_expires_at": null,
+      "must_change_password": false
     },
     {
       "id": "72cf887f-0d0b-48ab-b9ef-619a76a44b3e",
@@ -102,6 +103,32 @@
       "can_view_stats": false,
       "created_at": "2026-01-26T12:57:51Z",
       "updated_at": "2026-01-26T13:11:46Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
+    },
+    {
+      "id": "6f73ef27-5a47-480b-a2d5-d6faf8d97cf9",
+      "email": "refrigerios.sabores@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$GyNkjNEaY2zNuXfO.f8fgw$IKHwk9vI8ZNEUwXQro4gmJDcZJdZYjEP.7qLr0Xpf18",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-26T23:38:08Z",
+      "updated_at": "2026-01-26T23:44:46Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
+    },
+    {
+      "id": "34fc37a9-1fe3-4be7-b28d-54214667e445",
+      "email": "stefanyguisaozapata@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$NUYoRcg5h3BujdG6d845Jw$FrEE9f4D0q/aLeVkcLngGIfxPfuBAFoyY3lv61RNjeA",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-26T23:54:03Z",
+      "updated_at": "2026-01-27T00:02:54Z",
       "reset_token": null,
       "reset_token_expires_at": null
     }
@@ -169,8 +196,8 @@
       "id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
       "owner_user_id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
       "business_name": "Fasamtoli",
-      "short_desc": "Descripción corta (edítame).",
-      "long_desc": "Descripción larga (edítame).",
+      "short_desc": "fasamtoli repostería artesanal",
+      "long_desc": "Tienda de postres\ntortas- brownies -galletas -alfajores-cuchareables.\n📍 Medellín 📍\npedidos en el enlace de ws🔻",
       "categories": [
         "Comida"
       ],
@@ -190,7 +217,7 @@
       "is_approved": true,
       "is_featured": false,
       "created_at": "2026-01-19T02:11:43Z",
-      "updated_at": "2026-01-19T02:44:55Z"
+      "updated_at": "2026-01-26T23:29:32Z"
     },
     {
       "id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
@@ -308,6 +335,60 @@
       "is_approved": true,
       "created_at": "2026-01-26T12:57:51Z",
       "updated_at": "2026-01-26T16:58:19Z"
+    },
+    {
+      "id": "0f683bd5-574a-4dbf-9083-d7c25e1f714b",
+      "owner_user_id": "6f73ef27-5a47-480b-a2d5-d6faf8d97cf9",
+      "business_name": "Sabores",
+      "short_desc": "Sabores | Regalos | Desayunos",
+      "long_desc": "Emprendedor(a)\nSORPRENDE A QUIEN AMAS\n♡ Desayunos Sorpresa a Domicilio\n🎁 Cajitas de amor\n💼 Empresariales\n#Sabaneta #Itagüí #LaEstrella #Medellín #Envigado",
+      "categories": [
+        "Comida"
+      ],
+      "city": "La estrella",
+      "availability": "Lun-Vier 8:00 - 6:00pm / Sab 8:00 - 4:00pm",
+      "links": {
+        "instagram": "https://www.instagram.com/sabores_refrigeriosyregalos",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573004428402&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
+        "website": "",
+        "external_catalog": "",
+        "phone": "3004428402",
+        "whatsapp_phone": "3004428402"
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-01-26T23:38:08Z",
+      "updated_at": "2026-01-26T23:44:46Z"
+    },
+    {
+      "id": "f469b1fb-b7bc-4250-97be-e5b515d2feac",
+      "owner_user_id": "34fc37a9-1fe3-4be7-b28d-54214667e445",
+      "business_name": "Vidamenaco",
+      "short_desc": "El poder del c🥥c🥥 para estar, sentirse y verse bien! 💙💚\n🍃 Sin tóxicos 🐰 Libre de crueldad",
+      "long_desc": "En VIDAMENA creemos en una belleza saludable, natural y consciente. Por eso, cada uno de nuestros productos como nuestras cremas humectantes y el aceite de coco prensado en frío está hecho con ingredientes 100% naturales, ideales para cuidar tu piel y tu bienestar 🌿💧\nHoy queremos agradecer especialmente al SENA, al Fondo Emprender, quienes han sido aliados clave para que este sueño sea una realidad. Gracias por impulsar el talento emprendedor colombiano 🇨🇴✨",
+      "categories": [
+        "Salud"
+      ],
+      "city": "La estrella",
+      "availability": "",
+      "links": {
+        "instagram": "https://www.instagram.com/vidamenaco",
+        "facebook": "https://www.facebook.com/vidamena.co/",
+        "tiktok": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573176705719&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
+        "website": "https://beacons.ai/vidamena",
+        "external_catalog": "",
+        "phone": "3233948782",
+        "whatsapp_phone": "3176705719"
+      },
+      "logo_url": "https://tse4.mm.bing.net/th/id/OIP.W4BKeEOjW7pIys03EcMpJQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-01-26T23:54:03Z",
+      "updated_at": "2026-01-27T00:02:54Z"
     }
   ],
   "products": [
@@ -641,6 +722,69 @@
       ],
       "status": "PUBLISHED",
       "updated_at": "2026-01-26T17:08:14Z"
+    },
+    {
+      "id": "f4d65bd5-d657-4cb6-a75c-e45ea694e011",
+      "owner_user_id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "created_at": "2026-01-26T23:35:56Z",
+      "name": "Cuchareable de alfajor",
+      "description": "El favorito de muchos ,suave,cremoso,se deshace en la boca. una locura total\nno te mentimos cuando decimos que es simplemente espectacular,pruebalo!",
+      "category": "Comida",
+      "tags": [],
+      "tag_suggestion": "",
+      "price_type": "FROM",
+      "price_value": 14000,
+      "photo_urls": [
+        "https://tofuu.getjusto.com/orioneat-local/resized2/RBdbgccGX79EQpBsy-2400-x.webp"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T23:36:12Z"
+    },
+    {
+      "id": "2742491d-fff6-4032-b067-61ae28a87918",
+      "owner_user_id": "6f73ef27-5a47-480b-a2d5-d6faf8d97cf9",
+      "profile_id": "0f683bd5-574a-4dbf-9083-d7c25e1f714b",
+      "created_at": "2026-01-26T23:44:17Z",
+      "name": "Desayunos sorpresas",
+      "description": "SORPRENDE A QUIEN AMAS\n♡ Desayunos Sorpresa a Domicilio",
+      "category": "Comida",
+      "tags": [
+        "Saludable",
+        "Domicilios",
+        "Gourmet / Artesanal"
+      ],
+      "tag_suggestion": "",
+      "price_type": "FROM",
+      "price_value": 50000,
+      "photo_urls": [
+        "https://tse2.mm.bing.net/th/id/OIP.0NoMP3QDWyoDXObZjh_HdwHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-26T23:44:17Z"
+    },
+    {
+      "id": "43917ac9-f4ea-473c-8417-826000fd7cd2",
+      "owner_user_id": "34fc37a9-1fe3-4be7-b28d-54214667e445",
+      "profile_id": "f469b1fb-b7bc-4250-97be-e5b515d2feac",
+      "created_at": "2026-01-27T00:02:32Z",
+      "name": "Protector Labial Extra Humectante",
+      "description": "El Protector Labial Extra Humectante de Vidamena está formulado con una poderosa mezcla de aceite de coco, aceite de Sacha Inchi, mantecas naturales de mango, cacao y karité, y cera de candelilla, que reemplaza la cera de abejas para ofrecer una opción 100 % natural y vegana.",
+      "category": "Salud",
+      "tags": [
+        "Productos naturales",
+        "Cuidado personal"
+      ],
+      "tag_suggestion": "",
+      "price_type": "FROM",
+      "price_value": 17000,
+      "photo_urls": [
+        "https://vidamena.com.co/cdn/shop/files/Protector-Labial-extra-Humectante-menta_590x.webp?v=1764302253",
+        "https://vidamena.com.co/cdn/shop/files/Protector-Labial-extra-Humectante-coco_540x.webp?v=1764302253",
+        "https://vidamena.com.co/cdn/shop/files/Protector-Labial-extra-Humectante-citrico_540x.webp?v=1764302253"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-27T00:02:32Z"
     }
   ],
   "favorites": [
@@ -4599,6 +4743,136 @@
       "event": "view_home",
       "user_id": "",
       "anon_id": "9ab0a7ff-04b7-47df-a1d3-50d57baa36de",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-26T22:53:23Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:02:59Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "43917ac9-f4ea-473c-8417-826000fd7cd2",
+      "profile_id": "f469b1fb-b7bc-4250-97be-e5b515d2feac",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:01Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "",
+      "profile_id": "f469b1fb-b7bc-4250-97be-e5b515d2feac",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:13Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "2742491d-fff6-4032-b067-61ae28a87918",
+      "profile_id": "0f683bd5-574a-4dbf-9083-d7c25e1f714b",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:15Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "",
+      "profile_id": "0f683bd5-574a-4dbf-9083-d7c25e1f714b",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:21Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "f4d65bd5-d657-4cb6-a75c-e45ea694e011",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:22Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:26Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "f455c331-3c4e-473c-8f12-ec236897c0e2",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:28Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:32Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "12881124-f5ba-49b0-ad5d-f8fedfc107cd",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:33Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "ba725e94-3189-470a-963e-c06b64ab749c",
+      "product_id": "",
+      "profile_id": "ef60d0b6-7b8b-4214-9be6-bad575a402de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:54Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6259ae72-a8d5-45d6-98a1-28696073a212",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:03:55Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "568d4efa-d963-48ae-84ce-9bb6359420e5",
       "product_id": "",
       "profile_id": "",
       "meta": {}

@@ -10,6 +10,7 @@ from views import home, login, register, admin
 from views import public_profile, favorites_page, my_profile
 from views import product_detail, my_products
 from views import admin_stats, my_stats
+from views import force_change_password
 
 
 APP_NAME = "Marketplace de Emprendedores"
@@ -180,6 +181,8 @@ def main():
         admin_stats.render(db)
     elif route == "my_stats":
         my_stats.render(db)
+    elif route == "force_change_password":
+        force_change_password.render(db)    
     else:
         st.session_state["route"] = "home"
         st.rerun()

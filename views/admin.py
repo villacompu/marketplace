@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import unicodedata
 import json
+import secrets
 
 from auth.guards import require_role
 from auth.hashing import hash_password
@@ -217,26 +218,73 @@ def render(db):
                         save_db(db)
                         st.rerun()
 
-                # =========================
+               # =========================
                 # 🔑 Cambiar contraseña
                 # =========================
+                import secrets  # asegúrate de tenerlo arriba si no lo tienes
+
                 st.divider()
                 st.markdown("#### 🔑 Cambiar contraseña")
 
-                with st.expander("Cambiar contraseña del emprendedor", expanded=False):
-                    new_pw = st.text_input(
-                        "Nueva contraseña",
-                        type="password",
-                        key=f"admin_newpw_{u_sel['id']}"
-                    )
-                    new_pw2 = st.text_input(
-                        "Confirmar contraseña",
-                        type="password",
-                        key=f"admin_newpw2_{u_sel['id']}"
-                    )
+                # Keys por usuario
+                exp_key = f"admin_pw_expanded_{u_sel['id']}"
+                pw_key = f"admin_newpw_{u_sel['id']}"
+                pw2_key = f"admin_newpw2_{u_sel['id']}"
+                force_key = f"admin_force_pw_change_{u_sel['id']}"
+                gen_key = f"admin_gen_temp_pw_{u_sel['id']}"
+
+                # ✅ flags / defaults (solo si no existen)
+                st.session_state.setdefault(exp_key, False)
+                st.session_state.setdefault(force_key, bool(u_sel.get("must_change_password", False)))
+
+                # ✅ Limpieza segura (ANTES de instanciar widgets)
+                #    En vez de st.session_state[pw_key]="" al final, usamos este trigger y rerun.
+                clear_flag = f"_admin_pw_clear_{u_sel['id']}"
+                if st.session_state.pop(clear_flag, False):
+                    st.session_state.pop(pw_key, None)
+                    st.session_state.pop(pw2_key, None)
+
+                # ✅ Botón que abre/cierra el expander
+                btn_lbl = "🔑 Cambiar contraseña" if not st.session_state[exp_key] else "✖️ Cerrar"
+                if st.button(btn_lbl, use_container_width=True, key=f"admin_pw_toggle_btn_{u_sel['id']}"):
+                    st.session_state[exp_key] = not st.session_state[exp_key]
+                    st.rerun()
+
+                with st.expander("Cambiar contraseña del emprendedor", expanded=st.session_state[exp_key]):
+                    st.caption("Puedes asignar una contraseña y opcionalmente obligar al usuario a cambiarla al iniciar sesión.")
+
+                    # ✅ Generar contraseña temporal (sin tocar session_state luego de instanciar widgets)
+                    cA, cB = st.columns([1, 1.2])
+
+                    with cA:
+                        if st.button("🎲 Generar contraseña temporal", use_container_width=True, key=gen_key):
+                            temp = secrets.token_urlsafe(9)
+                            # Guardamos en session_state y rerun para que los inputs nazcan con ese valor
+                            st.session_state[pw_key] = temp
+                            st.session_state[pw2_key] = temp
+                            st.session_state[force_key] = True
+                            st.session_state[exp_key] = True
+                            st.session_state[f"_admin_show_temp_{u_sel['id']}"] = temp  # para mostrarlo después del rerun
+                            st.rerun()
+
+                    with cB:
+                        st.toggle(
+                            "Obligar cambio de contraseña al ingresar",
+                            value=bool(st.session_state.get(force_key, False)),
+                            key=force_key,
+                        )
+
+                    # ✅ Si acabamos de generar una temporal, la mostramos (solo lectura)
+                    temp_show_key = f"_admin_show_temp_{u_sel['id']}"
+                    if st.session_state.get(temp_show_key):
+                        st.success("Contraseña temporal generada. Copia y guárdala.")
+                        st.code(st.session_state[temp_show_key])
+
+                    new_pw = st.text_input("Nueva contraseña", type="password", key=pw_key)
+                    new_pw2 = st.text_input("Confirmar contraseña", type="password", key=pw2_key)
 
                     if st.button("💾 Guardar nueva contraseña", use_container_width=True, key=f"admin_savepw_{u_sel['id']}"):
-                        if len(new_pw or "") < 8:
+                        if len((new_pw or "")) < 8:
                             st.error("La contraseña debe tener mínimo 8 caracteres.")
                             st.stop()
                         if (new_pw or "") != (new_pw2 or ""):
@@ -246,9 +294,15 @@ def render(db):
                         u_sel["password_hash"] = hash_password(new_pw)
                         u_sel["reset_token"] = None
                         u_sel["reset_token_expires_at"] = None
+                        u_sel["must_change_password"] = bool(st.session_state.get(force_key, False))
                         u_sel["updated_at"] = now_iso()
                         save_db(db)
-                        st.success("Contraseña actualizada.")
+
+                        # ✅ UX: éxito + limpiar + colapsar expander (sin tocar keys ya instanciadas)
+                        st.success("✅ Contraseña actualizada correctamente.")
+                        st.session_state[temp_show_key] = ""              # ocultar el código temporal si estaba visible
+                        st.session_state[exp_key] = False                 # colapsar
+                        st.session_state[clear_flag] = True               # trigger de limpieza segura
                         st.rerun()
 
                 # =========================
