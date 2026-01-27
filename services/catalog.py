@@ -36,10 +36,9 @@ def _match_query(haystack: str, needle: str) -> bool:
     return all(t in h for t in terms)
 
 
-def format_price(price_type: str | None, price_value: Any) -> str:
-    pt = (price_type or "FIXED").upper()
-    pv = price_value
-
+def format_price(p: dict) -> str:
+    pt = (p.get("price_type") or "FIXED").upper()
+    pv = p.get("price_value")
     if pt == "AGREE":
         return "A convenir"
     if pt == "FROM":

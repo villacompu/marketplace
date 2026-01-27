@@ -184,7 +184,7 @@ def render(db):
 
         for col, p in zip(cols, row):
             prof = p["_profile"]
-            price = format_price(p.get("price_type"), p.get("price_value"))
+            price = format_price(p)
             badge = p.get("category", "—")
             city_txt = prof.get("city") or "—"
             owner = prof.get("business_name") or "Emprendimiento"
@@ -293,7 +293,7 @@ def render(db):
                 cols = st.columns(n_cols, gap="medium")
                 for col, p in zip(cols, row):
                     prof = next((x for x in db.get("profiles", []) if x.get("id") == p.get("profile_id")), {}) or {}
-                    price = format_price(p.get("price_type"), p.get("price_value"))
+                    price = format_price(p)
                     badge = p.get("category", "—")
                     city_txt = prof.get("city") or "—"
                     owner = prof.get("business_name") or "Emprendimiento"
