@@ -11,6 +11,10 @@ from views import public_profile, favorites_page, my_profile
 from views import product_detail, my_products
 from views import admin_stats, my_stats
 from views import force_change_password
+from services.presence import heartbeat, online_count
+
+
+
 
 
 APP_NAME = "Marketplace de Emprendedores"
@@ -51,15 +55,19 @@ def _topbar(db: dict):
                 '<div class="brand"><span class="dot"></span> Marketplace de Emprendedores</div>',
                 unsafe_allow_html=True
             )
+            
+
 
         with c2:
             if u:
+                st.caption(f"🟢 Usuarios en línea: {online_count(ttl_seconds=90)}")
                 st.markdown(
                     f'<div class="session">Sesión: <b>{u.get("email","—")}</b> • {u.get("role","—")}</div>',
-                    unsafe_allow_html=True
+                    unsafe_allow_html=True   
                 )
             else:
                 st.markdown('<div class="session">Modo visitante</div>', unsafe_allow_html=True)
+                
 
         with c3:
             st.markdown('<div class="top-actions">', unsafe_allow_html=True)
@@ -70,7 +78,6 @@ def _topbar(db: dict):
                     if st.button("🏠", key="btn_top_home", help="Ir al catálogo", use_container_width=True):
                         st.session_state["route"] = "home"
                         st.rerun()
-
             with a2:
                 if not u:
                     if st.button("👤", key="btn_top_login", help="Ingresar", use_container_width=True):
@@ -150,6 +157,9 @@ def main():
     _inject_css()
 
     db = seed_if_empty(load_db())
+
+    # En linea con la nueva funcionalidad de presencia
+    heartbeat(ttl_seconds=90)
 
     # ✅ 1) Primero sincronizamos la ruta desde la URL
     _sync_route_from_query_params()
