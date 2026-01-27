@@ -206,7 +206,7 @@ def render(db):
                 st.session_state[k_tags] = tags
 
             tag_suggest = st.text_input(
-                "¿No está tu tag? Sugiere 1 para revisar en una proxima actualización (opcional)",
+                "¿No está tu tag? Sugiere 1 para revisar en una próxima actualización (opcional)",
                 value=init_tag_suggest,
                 placeholder="Ej: 'Urgente', '24/7', 'Sin gluten'...",
                 key=k_tag_suggest,

@@ -8,19 +8,12 @@ from services.validators import safe_text
 from views.router import goto
 from auth.session import get_user
 from services.analytics import log_view_product
+from services.catalog import format_price
 
 from db.repo_json import save_db
 
 
-def _format_price(p: dict) -> str:
-    pt = (p.get("price_type") or "FIXED").upper()
-    pv = p.get("price_value")
 
-    if pt == "AGREE":
-        return "A convenir"
-    if pt == "FROM":
-        return f"Desde ${int(pv or 0):,}".replace(",", ".")
-    return f"${int(pv or 0):,}".replace(",", ".")
 
 
 def _norm_tel(t: str) -> str:
@@ -166,7 +159,7 @@ def render(db):
             st.markdown(textwrap.dedent(html), unsafe_allow_html=True)
 
     with right:
-        price_txt = _format_price(p)
+        price_txt = format_price(p)
 
         prof = None
         profile_id = p.get("profile_id")

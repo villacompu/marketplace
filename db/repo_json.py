@@ -94,7 +94,7 @@ def seed_if_empty(db: Dict[str, Any]) -> Dict[str, Any]:
     demo_products = [
         {"name":"Caja de brownies x6","description":"Brownies húmedos con chocolate premium. Ideal para regalo.","price_type":"FIXED","price_value":32000,"category":"Comida","subcategory":"Postres","tags":["brownie","regalo","chocolate"]},
         {"name":"Café molido 250g","description":"Café de origen, tueste medio, notas a cacao y caramelo.","price_type":"FROM","price_value":28000,"category":"Bebidas","subcategory":"Café","tags":["café","origen","tostado"]},
-        {"name":"Catering para eventos","description":"Servicio a convenir según cantidad de personas y menú.","price_type":"AGREED","price_value":None,"category":"Servicios","subcategory":"Eventos","tags":["catering","eventos"]},
+        {"name":"Catering para eventos","description":"Servicio a convenir según cantidad de personas y menú.","price_type":"AGREE","price_value":None,"category":"Servicios","subcategory":"Eventos","tags":["catering","eventos"]},
     ]
     for pr in demo_products:
         db["products"].append({

@@ -8,14 +8,15 @@ Esta versión mejora la UI:
 ## Instalación
 ```bash
 python -m venv .venv
+# Windows
 .venv\Scripts\activate
+# macOS / Linux
+source .venv/bin/activate
 pip install -r requirements.txt
 streamlit run app.py
+
 ```
 
-## Credenciales demo (seed automático)
-- ADMIN:  admin@demo.com / Admin123!
-- EMP:    emprendedor@demo.com / Emprendedor123!
 
 ## Nota de hashing
 Se usa PBKDF2-SHA256 (Passlib) para evitar fallos de bcrypt en algunos Windows/Python.

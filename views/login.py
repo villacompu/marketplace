@@ -7,7 +7,7 @@ from auth.session import set_user
 
 def render(db):
     # Si ya hay sesión, no tiene sentido quedarse aquí
-    if st.session_state.get("user"):
+    if st.session_state.get("auth_user"):
         st.session_state["route"] = "home"
         st.rerun()
 

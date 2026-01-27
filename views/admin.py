@@ -13,18 +13,12 @@ from services.featured import (
     get_featured_products,
     set_featured_products,
 )
+from services.catalog import format_price
 
 # -------------------------
 # Helpers
 # -------------------------
-def _format_price(pr: dict) -> str:
-    pt = (pr.get("price_type") or "FIXED").upper()
-    pv = pr.get("price_value")
-    if pt == "AGREE":
-        return "A convenir"
-    if pt == "FROM":
-        return f"Desde ${int(pv or 0):,}".replace(",", ".")
-    return f"${int(pv or 0):,}".replace(",", ".")
+
 
 
 def _norm_text(s: str) -> str:
@@ -396,7 +390,7 @@ def render(db):
             "Producto": pr.get("name", "—"),
             "Estado": (pr.get("status") or "DRAFT").upper(),
             "Categoría": pr.get("category", "—") or "—",
-            "Precio": _format_price(pr),
+            "Precio": format_price(pr),
             "Emprendimiento": prof.get("business_name", "—") or "—",
             "Email": owner.get("email", "—") or "—",
             "Actualizado": pr.get("updated_at") or pr.get("created_at") or "—",
@@ -502,7 +496,7 @@ def render(db):
                 email = owner.get("email", "—")
                 status = (pr.get("status") or "DRAFT").upper()
                 cat = pr.get("category", "—")
-                price = _format_price(pr)
+                price = format_price(pr)
                 updated = pr.get("updated_at") or pr.get("created_at") or "—"
 
                 if status == "PUBLISHED":
