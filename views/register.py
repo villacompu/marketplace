@@ -78,6 +78,7 @@ def render(db):
             "updated_at": now_iso(),
             "reset_token": None,
             "reset_token_expires_at": None,
+            "must_change_password": False,
         })
 
         profile_id = new_id()

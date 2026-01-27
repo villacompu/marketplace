@@ -131,6 +131,47 @@
       "updated_at": "2026-01-27T00:02:54Z",
       "reset_token": null,
       "reset_token_expires_at": null
+    },
+    {
+      "id": "c673dff6-3659-4f9f-a967-879c9e24ee15",
+      "email": "nataliaespeletam@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$pnSOESKk1HovRagVgvCekw$7jUkS2mXNu/iUFNM0zNgnKBB7/brIFHwGiXmPSJIanE",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-27T00:14:06Z",
+      "updated_at": "2026-01-27T00:36:23Z",
+      "reset_token": null,
+      "reset_token_expires_at": null
+    },
+    {
+      "id": "5f04101b-3de9-4b4b-9d1b-e4e80efc1aff",
+      "email": "alimentosjama@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$WQthbO291zrnXOt9D8F4bw$HuhrOLWvGeiDBTwc503dqkexWCIdhnRDvB0YnoOA7ZY",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-27T00:38:17Z",
+      "updated_at": "2026-01-27T00:52:58Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "must_change_password": false
+    },
+    {
+      "id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "email": "contacto@olfatea.com",
+      "password_hash": "$pbkdf2-sha256$290000$Ouf8HyMkxBgjxLh3zlmrtQ$Fi5pL61vbL6PjKELvsHg0mEh8L5/CYbX1H1x5BWceco",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-27T00:46:55Z",
+      "updated_at": "2026-01-27T00:53:02Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "must_change_password": false
     }
   ],
   "profiles": [
@@ -389,6 +430,92 @@
       "is_approved": true,
       "created_at": "2026-01-26T23:54:03Z",
       "updated_at": "2026-01-27T00:02:54Z"
+    },
+    {
+      "id": "e45425e8-2d32-49c5-9983-6c2501b5b8e3",
+      "owner_user_id": "c673dff6-3659-4f9f-a967-879c9e24ee15",
+      "business_name": "Print3d Crafts",
+      "short_desc": "Print3d Crafts",
+      "long_desc": "Emprendedor(a)\nMaker World - Lo hacemos posible\n👨🏼‍🎨👾🎨\n📍La Estrella, Antioquia",
+      "categories": [
+        "Arte"
+      ],
+      "city": "La estrella",
+      "availability": "",
+      "links": {
+        "instagram": "https://www.instagram.com/print3d_crafts",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573243070167&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
+        "website": "",
+        "external_catalog": "",
+        "phone": "3243070167",
+        "whatsapp_phone": "3243070167"
+      },
+      "logo_url": "https://3dprinteddecor.com/wp-content/uploads/2024/10/DIY-3D-Printed-Decor.png",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-01-27T00:14:06Z",
+      "updated_at": "2026-01-27T00:36:23Z"
+    },
+    {
+      "id": "61c6e152-b9b6-43e1-8743-82ad8c25a7ba",
+      "owner_user_id": "5f04101b-3de9-4b4b-9d1b-e4e80efc1aff",
+      "business_name": "Alimentos Jama",
+      "short_desc": "Descripción corta (edítame).",
+      "long_desc": "Descripción larga (edítame).",
+      "categories": [
+        "Comida",
+        "Salud"
+      ],
+      "city": "La estrella",
+      "availability": "",
+      "links": {
+        "instagram": "https://www.instagram.com/alimentosjama",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573023625150&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
+        "website": "",
+        "external_catalog": "",
+        "phone": "3023625150",
+        "whatsapp_phone": "3023625150"
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-01-27T00:38:17Z",
+      "updated_at": "2026-01-27T00:52:58Z"
+    },
+    {
+      "id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "owner_user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "business_name": "Olfate.ai",
+      "short_desc": "Animales y mascotas",
+      "long_desc": "Cada peludo perdido merece volver a casa 💜\n🌎 Promovemos bienestar animal y apoyamos fundaciones.\nTu mascota de vuelta a casa, gracias a la IA",
+      "categories": [
+        "Servicios"
+      ],
+      "city": "Medellin",
+      "availability": "24 horas",
+      "links": {
+        "instagram": "https://www.instagram.com/olfatea.ai/",
+        "facebook": "https://www.facebook.com/people/Olfateaai/61580678546946/",
+        "tiktok": "https://www.tiktok.com/@olfatea.ai",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573052227183&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
+        "website": "https://www.olfatea.com/",
+        "external_catalog": "",
+        "phone": "3052227183",
+        "whatsapp_phone": "3052227183"
+      },
+      "logo_url": "https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/547267469_122095361013022618_4774999203285102866_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=8feke8sR6o4Q7kNvwGHaBkz&_nc_oc=Adl58hCRywz9Yl9EzzLiH-o06rL4xvjHejak0qafnoKo1eHfjDlg5MdUm0f66jrSjoQ&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=MaRxFk31IB5waNsTHKLuOA&oh=00_Afp46F6J9mUqG-2uvu6sa65SIsZCYpIrASoeQ-E9kVwxtQ&oe=697DEEBA",
+      "gallery_urls": [
+        "https://d9hhrg4mnvzow.cloudfront.net/www.olfatea.com/c240c6eb-banner-1.webp",
+        "https://d9hhrg4mnvzow.cloudfront.net/www.olfatea.com/52f73353-olfatea-iphone-1.webp",
+        "https://d9hhrg4mnvzow.cloudfront.net/www.olfatea.com/f815c43f-edit-shutterstock-2495719611-1.webp"
+      ],
+      "is_approved": true,
+      "created_at": "2026-01-27T00:46:55Z",
+      "updated_at": "2026-01-27T00:53:02Z"
     }
   ],
   "products": [
@@ -785,6 +912,71 @@
       ],
       "status": "PUBLISHED",
       "updated_at": "2026-01-27T00:02:32Z"
+    },
+    {
+      "id": "52a3b075-00a8-4f5a-a31b-e1d58a07c45a",
+      "owner_user_id": "c673dff6-3659-4f9f-a967-879c9e24ee15",
+      "profile_id": "e45425e8-2d32-49c5-9983-6c2501b5b8e3",
+      "created_at": "2026-01-27T00:35:43Z",
+      "name": "Impresión 3D",
+      "description": "Maker World - Lo hacemos posible 👨🏼‍🎨👾🎨",
+      "category": "Arte",
+      "tags": [
+        "Personalizados",
+        "Manualidades",
+        "Decoración artística",
+        "Arte digital"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://teachyourkidscode.com/wp-content/uploads/2023/04/image-6.jpg",
+        "https://ae01.alicdn.com/kf/S68e5d70c989f40d9a3c480598c75a899V.jpg"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-27T00:35:43Z"
+    },
+    {
+      "id": "08156714-5215-4be6-976d-6be92a42a382",
+      "owner_user_id": "5f04101b-3de9-4b4b-9d1b-e4e80efc1aff",
+      "profile_id": "61c6e152-b9b6-43e1-8743-82ad8c25a7ba",
+      "created_at": "2026-01-27T00:45:35Z",
+      "name": "Alimento saluble",
+      "description": "Ahora puedes disfrutar de esta carne 100% sin origen animal",
+      "category": "Comida",
+      "tags": [
+        "Vegano / Vegetariano",
+        "Saludable"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://economiasustentable.com/wp-content/uploads/2021/07/carne-artificial.png"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-27T00:45:35Z"
+    },
+    {
+      "id": "14ed2474-dabb-4405-8a0e-e37dc130fb80",
+      "owner_user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "created_at": "2026-01-27T00:52:32Z",
+      "name": "¡Pruébalo ahora mismo!",
+      "description": "Estamos donde ya estás: en tu WhatsApp. Olfatea.ai no es solo una herramienta, es una red de seguridad inteligente.  WhatsApp-first: Conversación fluida con un agente de IA, sin menús complicados.\nCoincidencias inteligentes: Cruzamos foto + datos + zona + tiempo para ordenar los matches por probabilidad.\nContacto seguro: Tus datos se comparten solo con tu consentimiento.\nPara todos: Funciona con audio, texto y fotos, haciéndolo accesible para cualquiera.",
+      "category": "Servicios",
+      "tags": [
+        "Asesorías / Consultoría"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://d9hhrg4mnvzow.cloudfront.net/www.olfatea.com/52f73353-olfatea-iphone-1.webp"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-01-27T00:53:48Z"
     }
   ],
   "favorites": [
@@ -4873,6 +5065,36 @@
       "event": "view_home",
       "user_id": "",
       "anon_id": "568d4efa-d963-48ae-84ce-9bb6359420e5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:12:30Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c88d0951-b940-474f-9e84-ef65eb0264eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:12:31Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b4ba61cd-ce02-479d-9721-f8f67f14675e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-27T00:13:24Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "49590999-2fb8-44d3-a618-1f5040fad042",
       "product_id": "",
       "profile_id": "",
       "meta": {}
