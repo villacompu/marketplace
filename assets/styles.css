@@ -262,6 +262,9 @@ summary{
 
 .pp-sub{
   color:var(--muted);
+  justify-content:center;
+  align-items:center;
+  text-align:center;
   margin-top:4px;
   font-size:14px;
 }
