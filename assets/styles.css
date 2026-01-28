@@ -20,6 +20,12 @@
 
 .muted{color:var(--muted);}
 
+/* ---------------- Admin polish: global containers ---------------- */
+.block-container{
+  padding-top: 2.5rem !important;
+  padding-bottom: 2rem !important;
+  max-width: 1600px;
+}
 
 /* ----- TOPBAR REAL: fondo + contenido encima ----- */
 .topbar-native{
@@ -28,14 +34,14 @@
   backdrop-filter:blur(8px);
   border-radius:18px;
   box-shadow:var(--shadow);
-  height:64px;              /* alto del fondo */
+  height:64px;
   margin-bottom:14px;
 }
 
 /* “Meter” el bloque de columnas dentro del fondo */
 .topbar-native + div{
-  margin-top:-64px;         /* sube el contenido */
-  padding:12px 14px;        /* padding interno como topbar */
+  margin-top:-64px;
+  padding:12px 14px;
 }
 
 /* Alinear verticalmente la fila */
@@ -72,10 +78,6 @@
   font-weight:900 !important;
 }
 
-
-
-
-
 /* ---------------- Grid / Cards ---------------- */
 .grid{
   display:grid;
@@ -110,8 +112,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  /* fondo bonito por defecto (cuando no hay imagen) */
   background-image: linear-gradient(135deg, rgba(109,40,217,0.18), rgba(16,185,129,0.15));
 }
 
@@ -173,40 +173,83 @@
   border-radius:14px !important;
 }
 
-/* Card action bar */
-.card-actions{
-  padding:10px 12px;
-  border-top:1px solid rgba(15,23,42,0.08);
-  background:linear-gradient(180deg,var(--surface),var(--surface2));
+/* ---------------- Admin: Tabs modern ---------------- */
+.stTabs [data-baseweb="tab-list"]{
+  gap:10px;
+  padding:6px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.75);
+  border-radius:18px;
+  box-shadow:var(--shadow);
 }
 
-.card-actions .stButton>button{
-  width:100%;
+.stTabs [data-baseweb="tab"]{
   border-radius:14px !important;
+  padding:10px 14px !important;
   font-weight:900 !important;
-  padding:0.55rem 0.8rem !important;
+  color:var(--muted) !important;
 }
 
-.card-actions .btn-view .stButton>button{
+.stTabs [aria-selected="true"]{
   background:rgba(109,40,217,0.12) !important;
-  border:1px solid rgba(109,40,217,0.22) !important;
+  border:1px solid rgba(109,40,217,0.20) !important;
+  color:var(--text) !important;
 }
 
-.card-actions .btn-ico .stButton>button{
-  padding:0.55rem 0.6rem !important;
-  min-width:46px !important;
-  text-align:center !important;
+/* ---------------- Admin: Metrics as cards ---------------- */
+[data-testid="stMetric"]{
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,var(--surface),var(--surface2));
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:14px 14px 10px 14px;
 }
 
-.top-actions .stButton>button{
+[data-testid="stMetricLabel"]{
+  color:var(--muted) !important;
+  font-weight:850 !important;
+}
+
+[data-testid="stMetricValue"]{
+  font-weight:950 !important;
+}
+
+/* ---------------- Admin: Dataframe table container ---------------- */
+[data-testid="stDataFrame"]{
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+/* ---------------- Admin: Expander nicer ---------------- */
+details{
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:linear-gradient(180deg,var(--surface),var(--surface2));
+  box-shadow:var(--shadow);
+  padding:6px 10px;
+}
+
+summary{
+  font-weight:950;
+  color:var(--text);
+}
+
+/* ---------------- Streamlit buttons: consistent ---------------- */
+.stButton>button{
   border-radius:14px !important;
-  height:42px !important;
   font-weight:900 !important;
 }
 
-/* ---------- Public Profile ---------- */
+/* ---------------- Alerts style soften ---------------- */
+[data-testid="stAlert"]{
+  border-radius:18px !important;
+}
+
+/* --- Public Profile ---------- */
 .pp-title{
-  display:flex;              /* ✅ ahora sí sirve */
+  display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
@@ -311,7 +354,6 @@
   border-radius: 14px;
 }
 
-/* Mobile: reduce imagen y mejora spacing */
 @media (max-width: 520px){
   .pp-hero-wrap [data-testid="stImage"] img{
     max-height: 220px;
@@ -325,13 +367,11 @@
   background:linear-gradient(180deg,var(--surface),var(--surface2));
 }
 
-/* contenedor de 3 acciones */
 .card-actions .actions-3{
   display:flex;
   gap:10px;
 }
 
-/* que los botones ocupen bien el alto */
 .card-actions .actions-3 .stButton>button{
   height:40px !important;
   border-radius:14px !important;
@@ -339,7 +379,6 @@
   padding:0.45rem 0.8rem !important;
 }
 
-/* tamaños por defecto: Ver grande, los otros 2 chicos */
 .card-actions .actions-3 .btn-view{flex:1;}
 .card-actions .actions-3 .btn-ico{flex:0 0 52px;}
 .card-actions .actions-3 .btn-fav{flex:0 0 52px;}
@@ -349,7 +388,6 @@
   border: 1px solid rgba(109,40,217,0.22) !important;
 }
 
-/* en móvil: todo más compacto */
 @media (max-width: 520px){
   .card-actions .actions-3{gap:8px;}
   .card-actions .actions-3 .stButton>button{
@@ -429,7 +467,6 @@
   padding:0.55rem 0.8rem !important;
 }
 
-/* móvil: 2 botones arriba y 1 abajo */
 @media (max-width:520px){
   .mp-actions .stButton>button{ padding:0.6rem 0.7rem !important; }
 }
@@ -447,7 +484,7 @@
 .pd-hero-wrap{ width:100%; }
 .pd-hero-img{
   width:100%;
-  height:340px;                 /* <- imagen principal más “contenida” */
+  height:340px;
   object-fit:cover;
   border-radius:18px;
   border:1px solid var(--border);
@@ -483,7 +520,6 @@
   margin-top:8px;
 }
 
-/* todas las miniaturas mismo tamaño */
 .pd-thumb{
   width:92px;
   height:64px;
@@ -507,7 +543,7 @@
 
 .pd-thumb--static{
   cursor: default;
-  pointer-events: none; /* clave: no clic */
+  pointer-events: none;
 }
 
 .pd-card{
@@ -566,7 +602,6 @@
   z-index: 20;
 }
 
-/* Estilo del botón que Streamlit renderiza dentro */
 .fav-overlay [data-testid="stButton"] > button{
   border-radius: 999px !important;
   width: 42px !important;

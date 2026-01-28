@@ -45,7 +45,7 @@ def render(db):
         return
 
     # ---------------------------------
-    # Header + métricas (siempre arriba)
+    # Header + métricas
     # ---------------------------------
     st.markdown("## Panel de administración")
     st.markdown(
@@ -89,7 +89,6 @@ def render(db):
         if not emps:
             st.info("No hay emprendedores registrados.")
         else:
-            # dataset tabla
             rows = []
             for u in emps:
                 prof = user_profile(db, u.get("id"))
@@ -105,7 +104,6 @@ def render(db):
 
             left, right = st.columns([2.2, 1.3], gap="large")
 
-            # -------- Columna izquierda: filtros + tabla + selector
             with left:
                 f1, f2, f3 = st.columns([2, 1, 1])
                 with f1:
@@ -154,11 +152,7 @@ def render(db):
                     selected_user_id = None
                 else:
                     options = fdf["user_id"].tolist()
-
-                    labels_map = {}
-                    for r in fdf.to_dict("records"):
-                        uid = r["user_id"]
-                        labels_map[uid] = f"{r['Emprendimiento']} — {r['Email']}"
+                    labels_map = {r["user_id"]: f"{r['Emprendimiento']} — {r['Email']}" for r in fdf.to_dict("records")}
 
                     st.session_state.setdefault("admin_selected_user_id", options[0] if options else None)
                     if st.session_state.get("admin_selected_user_id") not in options:
@@ -174,7 +168,6 @@ def render(db):
                     show = fdf.drop(columns=["user_id"])
                     st.dataframe(show, use_container_width=True, hide_index=True)
 
-            # -------- Columna derecha: detalle + acciones
             with right:
                 st.markdown("#### Acciones")
                 if not selected_user_id:
@@ -247,7 +240,6 @@ def render(db):
                         st.session_state.setdefault(force_key, bool(u_sel.get("must_change_password", False)))
 
                         clear_flag = f"_admin_pw_clear_{u_sel['id']}"
-                        # ✅ Limpieza segura ANTES de instanciar inputs
                         if st.session_state.pop(clear_flag, False):
                             st.session_state.pop(pw_key, None)
                             st.session_state.pop(pw2_key, None)
@@ -301,7 +293,6 @@ def render(db):
                                 u_sel["updated_at"] = now_iso()
                                 save_db(db)
 
-                                # ✅ UX: éxito + limpiar + colapsar expander (sin tocar keys ya instanciadas)
                                 st.success("✅ Contraseña actualizada correctamente.")
                                 st.session_state[temp_show_key] = ""
                                 st.session_state[exp_key] = False
@@ -430,7 +421,6 @@ def render(db):
                 else:
                     options = fdfp["product_id"].tolist()
 
-                    # selección pendiente post-borrado
                     if "admin_next_selected_product_id" in st.session_state:
                         st.session_state["admin_selected_product_id"] = st.session_state.pop("admin_next_selected_product_id")
 
