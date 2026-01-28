@@ -172,6 +172,20 @@
       "reset_token": null,
       "reset_token_expires_at": null,
       "must_change_password": false
+    },
+    {
+      "id": "79b2b598-7457-4ff4-a7d4-74389f36fa40",
+      "email": "anitta.gallo@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$V8qZ05ozxhhjbO09RyglxA$NePGsZ2xlM0gc05Gj61S6soNZB04AqQdHtoPtawUVFM",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-01-28T18:26:43Z",
+      "updated_at": "2026-01-28T19:15:44Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "must_change_password": false
     }
   ],
   "profiles": [
@@ -490,10 +504,10 @@
       "id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
       "owner_user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
       "business_name": "Olfate.ai",
-      "short_desc": "Animales y mascotas",
+      "short_desc": "Regresamos mascotas perdidas a casa con IA y somos asistentes 24/7 sobre consultas de bienestar animal",
       "long_desc": "Cada peludo perdido merece volver a casa 💜\n🌎 Promovemos bienestar animal y apoyamos fundaciones.\nTu mascota de vuelta a casa, gracias a la IA",
       "categories": [
-        "Servicios"
+        "Mascotas"
       ],
       "city": "Medellin",
       "availability": "24 horas",
@@ -515,7 +529,34 @@
       ],
       "is_approved": true,
       "created_at": "2026-01-27T00:46:55Z",
-      "updated_at": "2026-01-27T00:53:02Z"
+      "updated_at": "2026-01-28T18:48:36Z"
+    },
+    {
+      "id": "171ab465-490b-465a-9811-816b0b5ef74f",
+      "owner_user_id": "79b2b598-7457-4ff4-a7d4-74389f36fa40",
+      "business_name": "Mamá en esencia",
+      "short_desc": "Acompaño a las personas para que puedan conectar con su esencia a través de terapias holisticas",
+      "long_desc": "Mamá en Esencia es un espacio de acompañamiento para todas las personas que desean caminar en sus procesos de vida y sienten el llamado de crecer, en las diferentes áreas de su vida, sin desconectarse de sí mismas. Acompaño procesos de reconexión interior, gestión emocional y coherencia entre lo que somos y lo que creamos, para emprender desde el corazón, con mayor calma, claridad y sentido.",
+      "categories": [
+        "Servicios",
+        "Salud"
+      ],
+      "city": "Valle de Aburrá y Oriente Antioqueño",
+      "availability": "Lunes/viernes 9 am/1 pm",
+      "links": {
+        "instagram": "",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "",
+        "website": "",
+        "external_catalog": "",
+        "phone": ""
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-01-28T18:26:43Z",
+      "updated_at": "2026-01-28T19:15:44Z"
     }
   ],
   "products": [
@@ -966,10 +1007,11 @@
       "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
       "created_at": "2026-01-27T00:52:32Z",
       "name": "¡Pruébalo ahora mismo!",
-      "description": "Estamos donde ya estás: en tu WhatsApp. Olfatea.ai no es solo una herramienta, es una red de seguridad inteligente.  WhatsApp-first: Conversación fluida con un agente de IA, sin menús complicados.\nCoincidencias inteligentes: Cruzamos foto + datos + zona + tiempo para ordenar los matches por probabilidad.\nContacto seguro: Tus datos se comparten solo con tu consentimiento.\nPara todos: Funciona con audio, texto y fotos, haciéndolo accesible para cualquiera.",
+      "description": "Olfatea.ai Es una herramienta 100% inteligencia artificial que está en whatsApp.  Regresa Mascotas perdidas a sus hogares.   \n1.\tLos dueños registran preventivamente a su mascota por WhatsApp, para estar preparados.\n2.\tCualquier persona, tenga o no mascota, puede reportar gratuitamente una mascota avistada.\n3.\tFunciona como asistente de cuidado y protección animal 24/7 todos desde su WhatsApp. Incluidas asesorías de adopción y maltrato animal.\n4.\tApoyamos Entidades sin Ánimo de Lucro que velan por el cuidado y bienestar animal. \n\nSolo agregas nuestro número telefónico a tu agenda y ahí inicias la conversación con CELIA nuestro agente de IA.",
       "category": "Servicios",
       "tags": [
-        "Asesorías / Consultoría"
+        "Asesorías / Consultoría",
+        "IA para mascotas"
       ],
       "tag_suggestion": "",
       "price_type": "AGREE",
@@ -978,7 +1020,7 @@
         "https://d9hhrg4mnvzow.cloudfront.net/www.olfatea.com/52f73353-olfatea-iphone-1.webp"
       ],
       "status": "PUBLISHED",
-      "updated_at": "2026-01-27T00:53:48Z"
+      "updated_at": "2026-01-28T18:54:03Z"
     }
   ],
   "favorites": [
@@ -7740,6 +7782,610 @@
       "event": "view_home",
       "user_id": "",
       "anon_id": "28dac8f9-4b1d-4169-97e3-7b2d5ca3e41c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T16:53:10Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "75facf86-a0d7-47a3-a8c0-e90dbb66a03a",
+      "product_id": "f455c331-3c4e-473c-8f12-ec236897c0e2",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T16:53:13Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "75facf86-a0d7-47a3-a8c0-e90dbb66a03a",
+      "product_id": "",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T16:53:25Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "75facf86-a0d7-47a3-a8c0-e90dbb66a03a",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T16:53:29Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "75facf86-a0d7-47a3-a8c0-e90dbb66a03a",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T16:56:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1477def0-e531-43fc-976c-9a50643553d6",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:01:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "288e46d5-72fd-4700-83a4-188cb6a64b89",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:06:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1ce0b50f-b059-484a-b4e8-73536244f6d4",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:11:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "454e8f45-8872-4349-a581-dd95bdc346bf",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:16:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "b22d6da0-586a-46e0-9469-1c4ca9c2c0c3",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:21:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8eced43d-dc54-465b-8393-1be6f77c24c0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:26:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "7745fd07-2339-4ffc-a716-09be53b874a5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:31:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "735b7aec-f7e3-4f57-ba2f-8bb2a231c480",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:36:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "0e37976b-4526-4783-9cac-3eaf664c887a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:41:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a9bc7611-ab05-43f1-b27c-a3f42f7d21e3",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:45:42Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ee004c9a-4e9f-457d-a1f1-b200b82d48a5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:46:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "21682446-f10a-4f95-a0c9-169ef59e4dab",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:48:23Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "ee004c9a-4e9f-457d-a1f1-b200b82d48a5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "mascotas",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T17:51:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "e5b64788-515a-49e1-9894-c4d6d86c2c6f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T17:56:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "224a0dab-1594-4f20-afee-d1a943ee0675",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:01:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1e9975ed-7189-41e8-a148-7fb933d5b51f",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:06:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "019cf91e-7256-42f1-9725-76c887550ff1",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:11:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2b44231e-074e-49de-94ce-25885c84e3da",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:16:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "e57fd434-b7cd-426b-95f7-af7a8fcb7078",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:21:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ca586a55-ac23-4a59-81f0-187f26672206",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:23:32Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "636dd6bd-aa87-4ec5-9ec8-c02854252f76",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:24:03Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9e8c60cc-d730-4d00-83eb-30b953c9df50",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:24:45Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "29203160-9c5a-41f7-bb37-1a7b81d761a4",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:26:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "50c780dc-d0f0-4373-9c65-e4148eabffdd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:31:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "eaf17870-1033-4d97-a941-eebaa03d2aff",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:34:19Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ecd87eff-53b0-425e-939f-0a6e5cfda9f3",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:36:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "f7deab04-00f2-467c-8c7d-68e688571020",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:40:04Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:41:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6f3dcf44-14b4-4ee2-99e8-baf4a668ccbe",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:42:41Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d91a586d-ed88-4a8b-8dfc-d40ce569bc55",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:45:18Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "mascotas",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T18:45:26Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "mascotas",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "origen",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T18:45:34Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "origen",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T18:45:40Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "regalo",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T18:45:43Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "tostado",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T18:45:47Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "café",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T18:45:51Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "brownie",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 0
+      }
+    },
+    {
+      "ts": "2026-01-28T18:46:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4a92dacd-cbc1-4f4f-8a29-fbfe7575fe8a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:51:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "ca57b469-8523-47c2-95ff-d2d008f68797",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:54:56Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "98b565e8-1cb8-4937-866f-093c4b40b5ba",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T18:56:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3535f86e-aad9-4aea-bf64-6488dbfcb01e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:01:54Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "fc5f7836-c374-4cad-afbc-1076117c0137",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:01:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "0600ed41-6fd1-4f63-b6c2-990dfdb721d2",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:06:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6f15fc11-b045-4034-9527-648f34ca9a6e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:11:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "09a2dc1d-6624-4e3a-905e-87415a4f3be0",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:15:17Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "8dea5aac-e07c-4bef-8a1f-182d9db0f094",
       "product_id": "",
       "profile_id": "",
       "meta": {}

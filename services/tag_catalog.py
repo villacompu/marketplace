@@ -156,8 +156,13 @@ def tags_for_category(category: str) -> list[str]:
     Incluye tags globales al final (sin duplicados).
     """
     cat = (category or "").strip()
-    base = TAGS_BY_CATEGORY.get(cat, [])
+    base = TAGS_BY_CATEGORY.get(cat, []) if cat else []
     # Unir base + global y dejar ordenado, sin duplicados
     merged = list(dict.fromkeys([*base, *GLOBAL_TAGS]))
     return merged
+
+
+def list_categories() -> list[str]:
+    """Lista oficial de categorías."""
+    return sorted(list(TAGS_BY_CATEGORY.keys()))
 

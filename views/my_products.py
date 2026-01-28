@@ -5,7 +5,7 @@ import re
 from auth.session import get_user
 from db.repo_json import save_db, new_id, now_iso
 from services.validators import safe_text
-from services.tag_catalog import tags_for_category
+from services.tag_catalog import tags_for_category, list_categories
 from services.limits import can_publish_more, count_published_products, get_publish_limit
 
 
@@ -178,16 +178,50 @@ def render(db):
 
         colA, colB = st.columns([1, 1])
         with colA:
+            # ✅ Categorías oficiales (desde tag_catalog)
+            categories = list_categories()
+
+            # ✅ Opción vacía para forzar selección consciente (UX)
+            category_options = ["— Selecciona —"] + categories
+
+            # ✅ Valor inicial: producto > perfil > vacío
+            profile_category = (st.session_state.get("selected_profile_category") or "").strip()
+            # Si tu perfil tiene categories como lista, toma la primera
+            if not profile_category:
+                prof = next((p for p in db.get("profiles", []) if p.get("id") == (item.get("profile_id") if item else st.session_state.get("selected_profile_id"))), None)
+                if prof:
+                    # si el perfil maneja categories list
+                    prof_cats = prof.get("categories") or []
+                    if isinstance(prof_cats, list) and prof_cats:
+                        profile_category = (prof_cats[0] or "").strip()
+
+            # init_category: producto > perfil > ""
+            init_category = (item.get("category") or "").strip() if item else ""
+            if not init_category:
+                init_category = profile_category
+
+            # índice seguro
+            if init_category in category_options:
+                init_idx = category_options.index(init_category)
+            elif init_category in categories:
+                init_idx = category_options.index(init_category)
+            else:
+                init_idx = 0  # — Selecciona —
+
             category = st.selectbox(
                 "Categoría",
-                ["Comida", "Moda", "Servicios", "Tecnología", "Hogar", "Salud", "Educación", "Arte"],
-                index=["Comida", "Moda", "Servicios", "Tecnología", "Hogar", "Salud", "Educación", "Arte"].index(init_category)
-                if init_category in ["Comida", "Moda", "Servicios", "Tecnología", "Hogar", "Salud", "Educación", "Arte"] else 0,
+                category_options,
+                index=init_idx,
                 key=k_category,
             )
 
-            # ✅ Tags CONTROLADOS por categoría (NO ensuciar catálogo)
-            base_options = tags_for_category(category)
+            # Normaliza: si quedó vacío, lo guardamos como ""
+            if category == "— Selecciona —":
+                category = ""
+
+
+            # ✅ Tags por categoría (si no hay categoría, solo globales)
+            base_options = tags_for_category(category) if category else tags_for_category("")
 
             # ✅ Para no romper si hay tags viejos guardados
             tag_options = sorted(set(base_options + (init_tags or [])))
@@ -198,6 +232,7 @@ def render(db):
                 default=[t for t in (init_tags or []) if t in tag_options],
                 key=k_tags,
             )
+
 
             if len(tags) > 5:
                 st.warning("Máximo 5 tags por producto.")
@@ -282,6 +317,10 @@ def render(db):
                 if not (name or "").strip():
                     st.error("El nombre es obligatorio.")
                     st.stop()
+                if not category:
+                    st.error("Selecciona una categoría para tu producto.")
+                    st.stop()
+
 
                 now = now_iso()
 
