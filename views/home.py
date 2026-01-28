@@ -86,14 +86,22 @@ def render(db):
     st.sidebar.header("Filtros")
 
     all_categories = sorted({
-        p.get("category", "") for p in db.get("products", [])
-        if p.get("status") == "PUBLISHED" and p.get("category")
+        (p.get("category") or "").strip()
+        for p in db.get("products", [])
+        if (p.get("status") or "").upper() == "PUBLISHED" and (p.get("category") or "").strip()
     })
     all_cities = sorted({
         pr.get("city", "") for pr in db.get("profiles", [])
         if pr.get("is_approved") and pr.get("city")
     })
-    all_tags = sorted({t for pr in db.get("products", []) for t in (pr.get("tags") or [])})
+    all_tags = sorted({
+        t
+        for p in db.get("products", [])
+        if (p.get("status") or "").upper() == "PUBLISHED"
+        for t in (p.get("tags") or [])
+        if (t or "").strip()
+    })
+
 
     # Keys estables
     st.session_state.setdefault("home_cat", "Todas")

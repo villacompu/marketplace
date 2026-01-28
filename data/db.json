@@ -8389,6 +8389,225 @@
       "product_id": "",
       "profile_id": "",
       "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:18:31Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "8dea5aac-e07c-4bef-8a1f-182d9db0f094",
+      "product_id": "14ed2474-dabb-4405-8a0e-e37dc130fb80",
+      "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:18:43Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "8dea5aac-e07c-4bef-8a1f-182d9db0f094",
+      "product_id": "",
+      "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:19:02Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "8dea5aac-e07c-4bef-8a1f-182d9db0f094",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "mascotas",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 1
+      }
+    },
+    {
+      "ts": "2026-01-28T19:19:09Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "8dea5aac-e07c-4bef-8a1f-182d9db0f094",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "mascota",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 1
+      }
+    },
+    {
+      "ts": "2026-01-28T19:19:14Z",
+      "type": "search",
+      "event": "search",
+      "user_id": "c3caff95-cdf3-440e-8454-286a711f689f",
+      "anon_id": "8dea5aac-e07c-4bef-8a1f-182d9db0f094",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "q": "ma",
+        "filters": {
+          "category": "Todas",
+          "city": "Todas",
+          "tag": "Todos",
+          "price_range": [
+            0,
+            100000
+          ],
+          "sort_by": "Relevancia"
+        },
+        "results_n": 19
+      }
+    },
+    {
+      "ts": "2026-01-28T19:21:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d1adfc8f-39a1-44ed-9e2c-5baff643f9c8",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:22:36Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "14ed2474-dabb-4405-8a0e-e37dc130fb80",
+      "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:22:42Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
+      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
+      "product_id": "",
+      "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:24:08Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2a91648e-a976-4ae5-bd30-fbe565cef7f3",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:26:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "c735624d-c8b0-4695-b331-5106c4e2c65b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:31:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "36c19599-2af5-42b3-9ca0-6009e120880a",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:36:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "1d888363-0adb-4148-81ca-854e06499d06",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:41:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "8545ea9a-d0b1-4d64-83b5-1e74274441dd",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:46:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "a46d3311-b9f5-469c-9690-65c25618b4a7",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:51:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2d373365-4ce5-4f65-8f4a-689e0210e44b",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:56:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4abea484-ff47-4fce-9589-c62701e32b49",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T19:57:27Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "56b90662-1b10-4bce-8706-72eafab9e96c",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-01-28T20:01:58Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "cf9e0396-6343-4e82-8de8-760cd7f91b68",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
     }
   ],
   "featured": {
