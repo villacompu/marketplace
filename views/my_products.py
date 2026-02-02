@@ -9,13 +9,23 @@ from services.tag_catalog import tags_for_category, list_categories
 from services.limits import can_publish_more, count_published_products, get_publish_limit
 
 
-
-
 def _get_my_profile(db, user_id: str):
-    return next((p for p in db.get("profiles", []) if p.get("owner_user_id") == user_id), None)
+    """
+    Busca el perfil del usuario de forma robusta.
+    Soporta owner_user_id o user_id.
+    """
+    profiles = db.get("profiles", []) or []
+    return next(
+        (
+            p for p in profiles
+            if (p.get("owner_user_id") == user_id) or (p.get("user_id") == user_id)
+        ),
+        None
+    )
 
 
 _URL_RE = re.compile(r"^https?://", re.IGNORECASE)
+
 
 def _parse_urls(raw: str, max_n: int = 6) -> list[str]:
     raw = (raw or "").strip()
@@ -71,14 +81,18 @@ def render(db):
         st.error("Solo emprendedores pueden gestionar productos.")
         return
 
-    prof = _get_my_profile(db, u["id"])
-    if not prof:
+    # ✅ Resolver perfil UNA sola vez (robusto)
+    prof = _get_my_profile(db, u.get("id"))
+    if not isinstance(prof, dict):
         st.error("No tienes perfil asociado.")
+        return
+    if not prof.get("id"):
+        st.error("Tu perfil existe pero no tiene 'id'. Ve a 'Mi perfil' y guarda de nuevo para completar datos.")
         return
 
     st.markdown("## Mis productos / servicios")
     approved = bool(prof.get("is_approved"))
-    
+
     # ✅ Cargar usuario REAL desde db (no el cache de sesión)
     u_db = next((x for x in db.get("users", []) if x.get("id") == u.get("id")), None) or u
 
@@ -91,7 +105,7 @@ def render(db):
     # (opcional) refrescar sesión para que quede consistente
     u["max_published_products"] = u_db.get("max_published_products", 5)
 
-    limit = get_publish_limit(u_db)                # -1 = ilimitado
+    limit = get_publish_limit(u_db)                 # -1 = ilimitado
     used = count_published_products(db, u_db["id"]) # cuántos PUBLISHED tiene
 
     limit_txt = "Ilimitado" if limit == -1 else str(limit)
@@ -111,9 +125,6 @@ def render(db):
     mode = st.session_state.get("mp_mode", "list")
     edit_id = st.session_state.get("mp_edit_id")
 
-
-
-
     # ✅ Acciones SOLO en modo LISTA
     if mode != "edit":
         c1, c2 = st.columns([1, 1])
@@ -128,7 +139,6 @@ def render(db):
                 st.rerun()
 
         st.write("")
-
 
     # ===========================
     # FORM (crear/editar)
@@ -165,7 +175,10 @@ def render(db):
         # ✅ Valores iniciales (NO setdefault)
         init_name = item.get("name", "") if item else ""
         init_desc = item.get("description", "") if item else ""
-        init_category = item.get("category", "Comida") if item else "Comida"
+
+        # 👇 Ojo: aquí lo dejamos sin default "Comida" para forzar elección consciente,
+        # pero respetando item/category o primera categoría del perfil si existe.
+        init_category = (item.get("category") or "").strip() if item else ""
         init_tags = item.get("tags", []) if item else []
         init_tag_suggest = item.get("tag_suggestion", "") if item else ""
         init_price_type = item.get("price_type", "FIXED") if item else "FIXED"
@@ -180,23 +193,14 @@ def render(db):
         with colA:
             # ✅ Categorías oficiales (desde tag_catalog)
             categories = list_categories()
-
-            # ✅ Opción vacía para forzar selección consciente (UX)
             category_options = ["— Selecciona —"] + categories
 
-            # ✅ Valor inicial: producto > perfil > vacío
-            profile_category = (st.session_state.get("selected_profile_category") or "").strip()
-            # Si tu perfil tiene categories como lista, toma la primera
-            if not profile_category:
-                prof = next((p for p in db.get("profiles", []) if p.get("id") == (item.get("profile_id") if item else st.session_state.get("selected_profile_id"))), None)
-                if prof:
-                    # si el perfil maneja categories list
-                    prof_cats = prof.get("categories") or []
-                    if isinstance(prof_cats, list) and prof_cats:
-                        profile_category = (prof_cats[0] or "").strip()
+            # ✅ Valor inicial: producto > perfil (primera) > vacío
+            profile_category = ""
+            prof_cats = prof.get("categories") or []
+            if isinstance(prof_cats, list) and prof_cats:
+                profile_category = (prof_cats[0] or "").strip()
 
-            # init_category: producto > perfil > ""
-            init_category = (item.get("category") or "").strip() if item else ""
             if not init_category:
                 init_category = profile_category
 
@@ -219,7 +223,6 @@ def render(db):
             if category == "— Selecciona —":
                 category = ""
 
-
             # ✅ Tags por categoría (si no hay categoría, solo globales)
             base_options = tags_for_category(category) if category else tags_for_category("")
 
@@ -233,11 +236,9 @@ def render(db):
                 key=k_tags,
             )
 
-
             if len(tags) > 5:
                 st.warning("Máximo 5 tags por producto.")
                 tags = tags[:5]
-                # reflejar en session_state del widget actual
                 st.session_state[k_tags] = tags
 
             tag_suggest = st.text_input(
@@ -266,7 +267,6 @@ def render(db):
                 disabled=(price_type == "AGREE"),
             )
 
-
             status = st.selectbox(
                 "Estado",
                 ["DRAFT", "PUBLISHED", "PAUSED"],
@@ -294,22 +294,19 @@ def render(db):
                     except Exception:
                         st.caption("⚠️ No se pudo cargar esta imagen. Revisa que la URL sea pública y directa.")
                         st.code(url)
-
         else:
             st.caption("Agrega URLs de imágenes para ver la vista previa aquí.")
 
         # ✅ Límite: si intenta publicar, validar cupo
         exclude_id = item.get("id") if item else None
 
-        if status == "PUBLISHED" and not can_publish_more(db, u, exclude_product_id=exclude_id):
-            limit = get_publish_limit(u)
-            used = count_published_products(db, u["id"], exclude_product_id=exclude_id)
-            limit_txt = "Ilimitado" if limit == -1 else str(limit)
+        if status == "PUBLISHED" and not can_publish_more(db, u_db, exclude_product_id=exclude_id):
+            lim = get_publish_limit(u_db)
+            used_now = count_published_products(db, u_db["id"], exclude_product_id=exclude_id)
+            lim_txt = "Ilimitado" if lim == -1 else str(lim)
 
-            st.warning(f"Has alcanzado tu límite de publicación ({used}/{limit_txt}). Se guardará como borrador.")
+            st.warning(f"Has alcanzado tu límite de publicación ({used_now}/{lim_txt}). Se guardará como borrador.")
             status = "DRAFT"
-
-
 
         b1, b2 = st.columns([1, 1])
         with b1:
@@ -320,7 +317,6 @@ def render(db):
                 if not category:
                     st.error("Selecciona una categoría para tu producto.")
                     st.stop()
-
 
                 now = now_iso()
 
@@ -340,10 +336,11 @@ def render(db):
                 if item:
                     item.update(payload)
                 else:
+                    # ✅ Seguridad extra: prof existe y tiene id (ya validado arriba)
                     db.setdefault("products", []).append({
                         "id": new_id(),
                         "owner_user_id": u["id"],
-                        "profile_id": prof["id"],
+                        "profile_id": prof.get("id"),
                         "created_at": now,
                         **payload,
                     })
@@ -388,7 +385,6 @@ def render(db):
         # Badges estado
         if status == "PUBLISHED":
             status_label, status_cls = "Publicado", "ok"
-            
         elif status == "PAUSED":
             status_label, status_cls = "PAUSED", "warn"
         else:
@@ -404,7 +400,7 @@ def render(db):
         else:
             price_txt = f"${int(pv or 0):,}".replace(",", ".")
 
-        # Thumb (usa primera foto si existe, si no placeholder)
+        # Thumb
         photo = (p.get("photo_urls") or [])
         thumb_txt = safe_text(p.get("category", ""), 18)
 
@@ -463,10 +459,10 @@ def render(db):
                     if not approved:
                         st.warning("Tu perfil aún no está aprobado. No puedes publicar.")
                     elif not can_publish_more(db, u_db, exclude_product_id=p["id"]):
-                        limit = get_publish_limit(u_db)
+                        lim = get_publish_limit(u_db)
                         used_now = count_published_products(db, u_db["id"], exclude_product_id=p["id"])
-                        limit_txt = "Ilimitado" if limit == -1 else str(limit)
-                        st.warning(f"No puedes publicar más. Límite: {used_now}/{limit_txt}.")
+                        lim_txt = "Ilimitado" if lim == -1 else str(lim)
+                        st.warning(f"No puedes publicar más. Límite: {used_now}/{lim_txt}.")
                     else:
                         p["status"] = "PUBLISHED"
                         p["updated_at"] = now_iso()
@@ -478,8 +474,6 @@ def render(db):
                     p["updated_at"] = now_iso()
                     save_db(db)
                     st.rerun()
-
-
 
         with c:
             confirm_key = f"mp_del_confirm_{p['id']}"
@@ -504,7 +498,6 @@ def render(db):
                     if st.button("↩️ Cancelar", key=f"mp_del_no_{p['id']}", use_container_width=True):
                         st.session_state[confirm_key] = False
                         st.rerun()
-
 
         st.markdown("</div>", unsafe_allow_html=True)  # mp-actions
         st.markdown("</div>", unsafe_allow_html=True)  # mp-card
