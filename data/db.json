@@ -11128,6 +11128,56 @@
       "product_id": "",
       "profile_id": "",
       "meta": {}
+    },
+    {
+      "ts": "2026-02-06T15:02:15Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "42d2a111-3c43-47b1-a92c-677f3900ea33",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {}
+    },
+    {
+      "ts": "2026-02-06T15:02:22Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "42d2a111-3c43-47b1-a92c-677f3900ea33",
+      "product_id": "08156714-5215-4be6-976d-6be92a42a382",
+      "profile_id": "61c6e152-b9b6-43e1-8743-82ad8c25a7ba",
+      "meta": {}
+    },
+    {
+      "ts": "2026-02-06T15:02:23Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "42d2a111-3c43-47b1-a92c-677f3900ea33",
+      "product_id": "",
+      "profile_id": "61c6e152-b9b6-43e1-8743-82ad8c25a7ba",
+      "meta": {}
+    },
+    {
+      "ts": "2026-02-06T15:02:36Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "42d2a111-3c43-47b1-a92c-677f3900ea33",
+      "product_id": "f4d65bd5-d657-4cb6-a75c-e45ea694e011",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {}
+    },
+    {
+      "ts": "2026-02-06T15:02:37Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "42d2a111-3c43-47b1-a92c-677f3900ea33",
+      "product_id": "",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {}
     }
   ],
   "featured": {
