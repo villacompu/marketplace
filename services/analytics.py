@@ -5,6 +5,7 @@ from datetime import datetime
 import re
 import uuid
 import streamlit as st
+from services.analytics_context import get_event_context
 
 
 MAX_EVENTS = 5000
@@ -58,6 +59,8 @@ def track_event(
     - Guardamos `type` y también `event` con el mismo valor.
     """
     db.setdefault("events", [])
+    ctx = get_event_context()
+    merged_meta = {**(meta or {}), **ctx}
     db["events"].append({
         "ts": _now_iso(),
         "type": event_type,   # ✅ recomendado para stats
@@ -67,11 +70,16 @@ def track_event(
         "product_id": product_id or "",
         "profile_id": profile_id or "",
         "meta": meta or {},
+        "meta": merged_meta,
     })
+    
 
     if len(db["events"]) > MAX_EVENTS:
         db["events"] = db["events"][-MAX_EVENTS:]
 
+    
+
+   
 
 def track_event_once(
     db: dict,

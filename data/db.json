@@ -11178,6 +11178,60 @@
       "product_id": "",
       "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
       "meta": {}
+    },
+    {
+      "ts": "2026-02-06T15:04:08Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "42d2a111-3c43-47b1-a92c-677f3900ea33",
+      "product_id": "14ed2474-dabb-4405-8a0e-e37dc130fb80",
+      "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-02-06T15:04:12Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "42d2a111-3c43-47b1-a92c-677f3900ea33",
+      "product_id": "",
+      "profile_id": "2e726202-da3f-4f9a-a03e-2c1f037232de",
+      "meta": {}
+    },
+    {
+      "ts": "2026-02-06T16:08:22Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "69f886fd-f33c-4cd0-8cdd-65ba3aa73c38",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-06T16:09:01Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "173c9dbd-7fd8-4282-ab52-348389859148",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
     }
   ],
   "featured": {
