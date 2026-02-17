@@ -262,17 +262,18 @@
         "instagram": "",
         "facebook": "",
         "tiktok": "",
-        "whatsapp": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573184584371&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
         "website": "",
         "external_catalog": "",
-        "phone": ""
+        "phone": "3184584371",
+        "whatsapp_phone": "3184584371"
       },
-      "logo_url": "",
+      "logo_url": "https://live.staticflickr.com/65535/55099251162_f80cc433a5_z.jpg",
       "gallery_urls": [],
       "is_approved": true,
       "is_featured": false,
       "created_at": "2026-01-19T02:11:43Z",
-      "updated_at": "2026-01-26T23:29:32Z"
+      "updated_at": "2026-02-17T03:11:49Z"
     },
     {
       "id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
@@ -12963,6 +12964,210 @@
         "utm_medium": "",
         "channel": "Direct",
         "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T02:51:02Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "bf388f98-8570-4ba4-aac5-acf44b357093",
+      "product_id": "f4d65bd5-d657-4cb6-a75c-e45ea694e011",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T02:51:03Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "bf388f98-8570-4ba4-aac5-acf44b357093",
+      "product_id": "",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T02:51:20Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "9b025f98-dc33-44cb-bc48-23c2ca2a6dcc",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T02:51:36Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "542902a4-3ac1-4746-8765-52b2a69dada9",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T02:56:36Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "7d9eb5ee-4b01-40eb-bc3f-0fb1594714ef",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T03:01:36Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "4edf6d32-1df9-456e-a4d7-99eae6f8ebc6",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T03:04:49Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
+      "anon_id": "9b025f98-dc33-44cb-bc48-23c2ca2a6dcc",
+      "product_id": "f4d65bd5-d657-4cb6-a75c-e45ea694e011",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T03:04:50Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "f6ea9f2b-df13-45b1-b97b-b4bcb74cc814",
+      "anon_id": "9b025f98-dc33-44cb-bc48-23c2ca2a6dcc",
+      "product_id": "",
+      "profile_id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T03:06:29Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "65cdaed5-d5f7-4afa-95e8-19cc782159af",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T03:06:32Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "3fa41053-7e0c-4513-840e-083888a30e5e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T03:06:36Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2057051c-3d15-4f2c-bdfd-4b82831a50e5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-17T03:11:36Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "2865da16-2194-4a4d-8f46-2b4b48f8b2a5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "",
         "device": "Desktop",
         "referrer": ""
       }
