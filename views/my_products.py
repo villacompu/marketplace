@@ -7,6 +7,7 @@ from db.repo_json import save_db, new_id, now_iso
 from services.validators import safe_text
 from services.tag_catalog import tags_for_category, list_categories
 from services.limits import can_publish_more, count_published_products, get_publish_limit
+from services.media_urls import normalize_many
 
 
 def _get_my_profile(db, user_id: str):
@@ -281,7 +282,13 @@ def render(db):
             key=k_photos_raw,
             height=110
         )
-        photo_urls = _parse_urls(photos_raw, max_n=6)
+
+        raw_urls = _parse_urls(photos_raw, max_n=6)
+        photo_urls = normalize_many(raw_urls, max_n=6)
+
+        # Debug opcional (puedes borrar después)
+        # st.caption("RAW -> NORMALIZED")
+        # st.code("\n".join([f"{a}  ->  {b}" for a, b in zip(raw_urls, photo_urls)]))
 
         # --- Preview fotos antes de guardar ---
         st.markdown("**Vista previa**")
@@ -401,7 +408,7 @@ def render(db):
             price_txt = f"${int(pv or 0):,}".replace(",", ".")
 
         # Thumb
-        photo = (p.get("photo_urls") or [])
+        photo = normalize_many(p.get("photo_urls") or [], max_n=6)
         thumb_txt = safe_text(p.get("category", ""), 18)
 
         st.markdown("<div class='mp-card'>", unsafe_allow_html=True)
