@@ -9,6 +9,7 @@ from auth.session import get_user
 from db.repo_json import user_profile, new_id, now_iso, save_db
 from services.validators import safe_text
 from urllib.parse import quote_plus
+from services.media_urls import normalize_many
 
 # ✅ Incluimos Bebidas y filtramos defaults para evitar errores
 CATEGORIES = [
@@ -180,7 +181,9 @@ def render(db):
             st.success("Perfil actualizado.")
             st.rerun()
 
-    # -------- TAB 2: Imágenes (por URL) --------
+    from services.media_urls import normalize_many
+
+# -------- TAB 2: Imágenes (por URL) --------
     with t2:
         st.caption("En el MVP usamos URLs.")
 
@@ -204,6 +207,7 @@ def render(db):
             logo_url = (logo_url or "").strip()
             gallery_urls = _split_urls(gallery_text, max_items=8)
 
+            # ✅ Validación sobre lo que el usuario escribió (antes de normalizar)
             errors = []
             if logo_url and not _is_url(logo_url):
                 errors.append("Logo: URL inválida.")
@@ -216,6 +220,12 @@ def render(db):
                     st.error(e)
                 st.stop()
 
+            # ✅ Normalización (Drive -> lh3.googleusercontent.com/d/<id>)
+            logo_norm = normalize_many([logo_url], max_n=1)
+            logo_url = (logo_norm[0] if (logo_norm and logo_norm[0]) else "")
+
+            gallery_urls = normalize_many(gallery_urls, max_n=8)
+
             prof["logo_url"] = logo_url
             prof["gallery_urls"] = gallery_urls
             prof["updated_at"] = now_iso()
@@ -225,16 +235,21 @@ def render(db):
 
         st.write("")
         st.markdown("### Vista previa")
-        if prof.get("logo_url"):
-            st.image(prof["logo_url"], caption="Logo / principal", use_column_width=True)
-        if prof.get("gallery_urls"):
-            urls = prof.get("gallery_urls") or []
-            urls = [u for u in urls if (u or "").strip()]
-            if urls:
-                cols = st.columns(3)
-                for i, u in enumerate(urls[:8]):
-                    with cols[i % 3]:
-                        st.image(u, use_column_width=True)
+
+        # ✅ Vista previa también normalizada (por si en DB quedaron links viejos)
+        logo_prev = normalize_many([prof.get("logo_url", "")], max_n=1)
+        logo_prev = logo_prev[0] if (logo_prev and logo_prev[0]) else ""
+
+        if logo_prev:
+            st.image(logo_prev, caption="Logo / principal", use_column_width=True)
+
+        urls = normalize_many(prof.get("gallery_urls", []) or [], max_n=8)
+        urls = [u for u in urls if (u or "").strip()]
+        if urls:
+            cols = st.columns(3)
+            for i, u in enumerate(urls[:8]):
+                with cols[i % 3]:
+                    st.image(u, use_column_width=True)
 
     # -------- TAB 3: Redes y enlaces --------
     with t3:

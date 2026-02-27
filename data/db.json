@@ -273,7 +273,7 @@
       ],
       "is_approved": true,
       "created_at": "2026-01-15T21:54:28Z",
-      "updated_at": "2026-02-27T03:45:50Z"
+      "updated_at": "2026-02-27T05:02:52Z"
     },
     {
       "id": "e6b8502d-f66f-4d64-9435-7a9d07b1dbdb",
@@ -746,7 +746,7 @@
       ],
       "status": "PUBLISHED",
       "created_at": "2026-01-15T22:42:58Z",
-      "updated_at": "2026-02-27T03:44:44Z",
+      "updated_at": "2026-02-27T04:04:40Z",
       "tag_suggestion": ""
     },
     {
@@ -34388,6 +34388,74 @@
       "anon_id": "f50bf233-c873-4ee8-b125-1e06cc63f3fe",
       "product_id": "",
       "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-27T05:00:24Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "6a190388-850c-422b-99cd-84e7d9a7d297",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-27T05:00:25Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d7d943ca-e426-4453-a6bd-eba9d233bcea",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-27T05:01:23Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "6a190388-850c-422b-99cd-84e7d9a7d297",
+      "product_id": "5dd8405b-a442-4fb3-a47a-bf0c66eb9078",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "channel": "Direct",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": ""
+      }
+    },
+    {
+      "ts": "2026-02-27T05:01:24Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "6a190388-850c-422b-99cd-84e7d9a7d297",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
       "meta": {
         "utm_source": "",
         "utm_medium": "",
