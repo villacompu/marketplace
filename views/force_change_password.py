@@ -27,7 +27,7 @@ def render(db):
     p1 = st.text_input("Nueva contraseña", type="password", key="fcp_pw1")
     p2 = st.text_input("Confirmar contraseña", type="password", key="fcp_pw2")
 
-    if st.button("✅ Guardar y continuar", use_container_width=True):
+    if st.button("✅ Guardar y continuar", width='stretch'):
         if len((p1 or "")) < 8:
             st.error("La contraseña debe tener al menos 8 caracteres.")
             st.stop()

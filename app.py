@@ -72,32 +72,32 @@ def _topbar(db: dict):
         with c3:
             st.markdown('<div class="top-actions">', unsafe_allow_html=True)
 
-            a1, a2 = st.columns([3, 1], vertical_alignment="center")
+            a1, a2 = st.columns([3, 4], vertical_alignment="center")
             with a1:
                 if route != "home":
-                    if st.button("🏠", key="btn_top_home", help="Ir al catálogo", use_container_width=True):
+                    if st.button("🏠", key="btn_top_home", help="Ir al catálogo", width='stretch'):
                         st.session_state["route"] = "home"
                         st.rerun()
             with a2:
                 if not u:
-                    if st.button("👤", key="btn_top_login", help="Ingresar", use_container_width=True):
+                    if st.button("👤 Ingreso", key="btn_top_login", help="Ingresar", width='stretch'):
                         st.session_state["route"] = "login"
                         st.rerun()
                 else:
-                    with st.popover("👤", help="Cuenta"):
+                    with st.popover("👤 Mi Perfil", help="Cuenta",width='stretch'):
                         # -------------------------
                         # EMPRENDEDOR
                         # -------------------------
                         if u.get("role") == "EMPRENDEDOR":
-                            if st.button("🏪 Mi perfil", use_container_width=True, key="btn_my_profile"):
+                            if st.button("🏪 Mi perfil", width='stretch', key="btn_my_profile"):
                                 st.session_state["route"] = "my_profile"
                                 st.rerun()
 
-                            if st.button("📦 Mis productos", use_container_width=True, key="btn_my_products"):
+                            if st.button("📦 Mis productos", width='stretch', key="btn_my_products"):
                                 st.session_state["route"] = "my_products"
                                 st.rerun()
 
-                            if st.button("📊 Mis estadísticas", use_container_width=True, key="btn_my_stats"):
+                            if st.button("📊 Mis estadísticas", width='stretch', key="btn_my_stats"):
                                 st.session_state["route"] = "my_stats"
                                 st.rerun()
 
@@ -107,11 +107,11 @@ def _topbar(db: dict):
                         # ADMIN
                         # -------------------------
                         if u.get("role") == "ADMIN":
-                            if st.button("🛠️ Admin", use_container_width=True, key="btn_admin"):
+                            if st.button("🛠️ Admin", width='stretch', key="btn_admin"):
                                 st.session_state["route"] = "admin"
                                 st.rerun()
 
-                            if st.button("📊 Analíticas", use_container_width=True, key="btn_admin_stats"):
+                            if st.button("📊 Analíticas", width='stretch', key="btn_admin_stats"):
                                 st.session_state["route"] = "admin_stats"
                                 st.rerun()
 
@@ -120,12 +120,12 @@ def _topbar(db: dict):
                         # -------------------------
                         # COMÚN A TODOS LOGUEADOS
                         # -------------------------
-                        # if st.button("❤️ Favoritos", use_container_width=True, key="btn_favorites"):
+                        # if st.button("❤️ Favoritos", width='stretch', key="btn_favorites"):
                         #     st.session_state["route"] = "favorites"
                          #    st.rerun()
 
                         st.divider()
-                        if st.button("⎋ Cerrar sesión", use_container_width=True, key="btn_logout"):
+                        if st.button("⎋ Cerrar sesión", width='stretch', key="btn_logout"):
                             logout()
                             # ✅ extra: limpia lo que pudo quedar en session_state
                             st.session_state.pop("user", None)

@@ -98,7 +98,7 @@ def render(db):
                 "Vistas": int(r["vistas"]),
             })
 
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(rows), width='stretch', hide_index=True)
 
     st.write("")
 
@@ -123,12 +123,12 @@ def render(db):
                 "Vistas": int(r["vistas"]),
             })
 
-        st.dataframe(pd.DataFrame(rows2), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(rows2), width='stretch', hide_index=True)
 
     st.write("")
     with st.expander("Ver eventos (raw)"):
         # orden si existe ts, si no, deja tal cual
         if "ts" in df.columns:
-            st.dataframe(df.sort_values("ts", ascending=False), use_container_width=True, hide_index=True)
+            st.dataframe(df.sort_values("ts", ascending=False), width='stretch', hide_index=True)
         else:
-            st.dataframe(df, use_container_width=True, hide_index=True)
+            st.dataframe(df, width='stretch', hide_index=True)

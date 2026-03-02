@@ -170,7 +170,7 @@ def render(db):
         city = safe_text((prof or {}).get("city", "—"), 60)
 
         if prof:
-            if st.button("👤 Ver emprendimiento", use_container_width=True, key="pd_view_profile"):
+            if st.button("👤 Ver emprendimiento", width='stretch', key="pd_view_profile"):
                 goto("public_profile", selected_profile_id=prof["id"])
 
         tags = p.get("tags") or []

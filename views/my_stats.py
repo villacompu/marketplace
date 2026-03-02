@@ -151,7 +151,7 @@ def render(db: dict):
                 "Vistas": int(r["vistas"]),
             })
 
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(rows), width='stretch', hide_index=True)
 
     # ==========================
     # ✅ AVANZADO (solo con permiso)
@@ -229,7 +229,7 @@ def render(db: dict):
 
         fig_line = px.line(daily, x="day", y="visitors")
         fig_line.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=320)
-        st.plotly_chart(fig_line, use_container_width=True)
+        st.plotly_chart(fig_line, width='stretch')
 
     with right:
         tab1, tab2, tab3 = st.tabs(["Canales", "Ubicaciones", "Dispositivos"])
@@ -238,19 +238,19 @@ def render(db: dict):
             ch = df_cur.groupby("channel").size().reset_index(name="count").sort_values("count", ascending=False)
             fig = px.pie(ch, names="channel", values="count", hole=0.65)
             fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=360)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
 
         with tab2:
             loc = df_cur.groupby("location").size().reset_index(name="count").sort_values("count", ascending=False)
             fig = px.pie(loc, names="location", values="count", hole=0.65)
             fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=360)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
 
         with tab3:
             dev = df_cur.groupby("device").size().reset_index(name="count").sort_values("count", ascending=False)
             fig = px.pie(dev, names="device", values="count", hole=0.65)
             fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=360)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
 
     st.divider()
 
@@ -268,5 +268,5 @@ def render(db: dict):
     )
 
     pivot = daily_events.pivot_table(index="day", columns="etype", values="count", fill_value=0).reset_index()
-    st.dataframe(pivot, use_container_width=True, hide_index=True)
+    st.dataframe(pivot, width='stretch', hide_index=True)
 

@@ -130,12 +130,12 @@ def render(db):
     if mode != "edit":
         c1, c2 = st.columns([1, 1])
         with c1:
-            if st.button("➕ Nuevo producto", use_container_width=True):
+            if st.button("➕ Nuevo producto", width='stretch'):
                 st.session_state["mp_edit_id"] = None
                 st.session_state["mp_mode"] = "edit"
                 st.rerun()
         with c2:
-            if st.button("🏪 Volver a mi perfil", use_container_width=True):
+            if st.button("🏪 Volver a mi perfil", width='stretch'):
                 st.session_state["route"] = "my_profile"
                 st.rerun()
 
@@ -297,7 +297,7 @@ def render(db):
             for i, url in enumerate(photo_urls):
                 with cols[i % len(cols)]:
                     try:
-                        st.image(url, use_column_width=True)
+                        st.image(url, width="stretch")
                     except Exception:
                         st.caption("⚠️ No se pudo cargar esta imagen. Revisa que la URL sea pública y directa.")
                         st.code(url)
@@ -317,7 +317,7 @@ def render(db):
 
         b1, b2 = st.columns([1, 1])
         with b1:
-            if st.button("💾 Guardar", use_container_width=True, key=f"mp_save_{suffix}"):
+            if st.button("💾 Guardar", width='stretch', key=f"mp_save_{suffix}"):
                 if not (name or "").strip():
                     st.error("El nombre es obligatorio.")
                     st.stop()
@@ -363,7 +363,7 @@ def render(db):
                 st.rerun()
 
         with b2:
-            if st.button("↩️ Volver sin guardar", use_container_width=True, key=f"mp_cancel_{suffix}"):
+            if st.button("↩️ Volver sin guardar", width='stretch', key=f"mp_cancel_{suffix}"):
                 _clear_form_keys(suffix)
                 st.session_state["mp_mode"] = "list"
                 st.session_state["mp_edit_id"] = None
@@ -435,7 +435,7 @@ def render(db):
 
         with top_right:
             if photo and (photo[0] or "").strip():
-                st.image(photo[0].strip(), use_column_width=True)
+                st.image(photo[0].strip(), width="stretch")
             else:
                 st.markdown(f"<div class='mp-thumb'>{thumb_txt}</div>", unsafe_allow_html=True)
 
@@ -451,7 +451,7 @@ def render(db):
             a, b, c = st.columns([1, 1, 1])
 
         with a:
-            if st.button("✏️ Editar", key=f"mp_edit_{p['id']}", use_container_width=True):
+            if st.button("✏️ Editar", key=f"mp_edit_{p['id']}", width='stretch'):
                 st.session_state["mp_edit_id"] = p["id"]
                 st.session_state["mp_mode"] = "edit"
                 st.rerun()
@@ -460,7 +460,7 @@ def render(db):
             next_status = "PAUSED" if status == "PUBLISHED" else "PUBLISHED"
             label = "⏸️ Pausar" if next_status == "PAUSED" else "🚀 Publicar"
 
-            if st.button(label, key=f"mp_toggle_{p['id']}", use_container_width=True):
+            if st.button(label, key=f"mp_toggle_{p['id']}", width='stretch'):
                 # ✅ si quiere publicar, validar cupo y aprobación SIN st.stop()
                 if next_status == "PUBLISHED":
                     if not approved:
@@ -487,7 +487,7 @@ def render(db):
             st.session_state.setdefault(confirm_key, False)
 
             if not st.session_state[confirm_key]:
-                if st.button("🗑️ Eliminar", key=f"mp_del_{p['id']}", use_container_width=True):
+                if st.button("🗑️ Eliminar", key=f"mp_del_{p['id']}", width='stretch'):
                     st.session_state[confirm_key] = True
                     st.rerun()
             else:
@@ -495,14 +495,14 @@ def render(db):
                 cA, cB = st.columns(2, gap="small")
 
                 with cA:
-                    if st.button("✅ Sí, eliminar", key=f"mp_del_yes_{p['id']}", use_container_width=True):
+                    if st.button("✅ Sí, eliminar", key=f"mp_del_yes_{p['id']}", width='stretch'):
                         db["products"] = [x for x in db.get("products", []) if x.get("id") != p["id"]]
                         save_db(db)
                         st.session_state[confirm_key] = False
                         st.rerun()
 
                 with cB:
-                    if st.button("↩️ Cancelar", key=f"mp_del_no_{p['id']}", use_container_width=True):
+                    if st.button("↩️ Cancelar", key=f"mp_del_no_{p['id']}", width='stretch'):
                         st.session_state[confirm_key] = False
                         st.rerun()
 

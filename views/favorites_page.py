@@ -80,19 +80,19 @@ def render(db):
 
                 with b1:
                     st.markdown('<div class="btn-view">', unsafe_allow_html=True)
-                    if st.button("👁️ Ver", key=f"fav_view_{p['id']}", use_container_width=True):
+                    if st.button("👁️ Ver", key=f"fav_view_{p['id']}", width='stretch'):
                         goto("product_detail", selected_product_id=p["id"])
                     st.markdown('</div>', unsafe_allow_html=True)
 
                 with b2:
                     st.markdown('<div class="btn-ico">', unsafe_allow_html=True)
-                    if st.button("👤", key=f"fav_biz_{p['id']}", use_container_width=True, help="Ver emprendimiento"):
+                    if st.button("👤", key=f"fav_biz_{p['id']}", width='stretch', help="Ver emprendimiento"):
                         goto("public_profile", selected_profile_id=prof["id"])
                     st.markdown('</div>', unsafe_allow_html=True)
 
                 with b3:
                     st.markdown('<div class="btn-ico">', unsafe_allow_html=True)
-                    if st.button("💔", key=f"fav_rm_{p['id']}", use_container_width=True, help="Quitar de favoritos"):
+                    if st.button("💔", key=f"fav_rm_{p['id']}", width='stretch', help="Quitar de favoritos"):
                         toggle_favorite(db, p["id"])
                         st.rerun()
                     st.markdown('</div>', unsafe_allow_html=True)

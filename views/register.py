@@ -42,7 +42,7 @@ def render(db):
         key="reg_categories"
     )
 
-    if st.button("Crear cuenta", use_container_width=True):
+    if st.button("Crear cuenta", width='stretch'):
         e = (email or "").strip().lower()
 
         if not e:

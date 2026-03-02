@@ -156,7 +156,7 @@ def render(db):
                     placeholder="Ej: Lun–Sáb 8am–6pm",
                 )
 
-            submitted = st.form_submit_button("💾 Guardar información", use_container_width=True)
+            submitted = st.form_submit_button("💾 Guardar información", width='stretch')
 
         if submitted:
             business_name = safe_text(business_name, 80)
@@ -201,7 +201,7 @@ def render(db):
                 placeholder="https://... \nhttps://... \n...",
             )
 
-            submitted = st.form_submit_button("💾 Guardar imágenes", use_container_width=True)
+            submitted = st.form_submit_button("💾 Guardar imágenes", width='stretch')
 
         if submitted:
             logo_url = (logo_url or "").strip()
@@ -241,7 +241,7 @@ def render(db):
         logo_prev = logo_prev[0] if (logo_prev and logo_prev[0]) else ""
 
         if logo_prev:
-            st.image(logo_prev, caption="Logo / principal", use_column_width=True)
+            st.image(logo_prev, caption="Logo / principal", width="stretch")
 
         urls = normalize_many(prof.get("gallery_urls", []) or [], max_n=8)
         urls = [u for u in urls if (u or "").strip()]
@@ -249,7 +249,7 @@ def render(db):
             cols = st.columns(3)
             for i, u in enumerate(urls[:8]):
                 with cols[i % 3]:
-                    st.image(u, use_column_width=True)
+                    st.image(u, width="stretch")
 
     # -------- TAB 3: Redes y enlaces --------
     with t3:
@@ -280,7 +280,7 @@ def render(db):
                         placeholder="https://... (opcional)",
                     )
 
-            submitted = st.form_submit_button("💾 Guardar enlaces", use_container_width=True)
+            submitted = st.form_submit_button("💾 Guardar enlaces", width='stretch')
 
 
         if submitted:
@@ -329,6 +329,6 @@ def render(db):
 
 
 
-    if st.button("📦 Mis productos", key="profile_my_products", use_container_width=True):
+    if st.button("📦 Mis productos", key="profile_my_products", width='stretch'):
         st.session_state["route"] = "my_products"
         st.rerun()

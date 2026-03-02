@@ -25,7 +25,7 @@ def render(db):
     email = st.text_input("Email", placeholder="tu@email.com", key="login_email")
     password = st.text_input("Contraseña", type="password", placeholder="••••••••", key="login_pass")
 
-    if st.button("Entrar", use_container_width=True):
+    if st.button("Entrar", width='stretch'):
         e = (email or "").strip().lower()
         u = next((x for x in db.get("users", []) if x.get("email") == e), None)
 
@@ -57,7 +57,7 @@ def render(db):
 
     c1, c2 = st.columns([1.2, 1])
     with c1:
-        if st.button("✨ Regístrate", use_container_width=True):
+        if st.button("✨ Regístrate", width='stretch'):
             st.session_state["route"] = "register"
             st.rerun()
     with c2:

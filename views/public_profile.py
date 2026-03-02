@@ -121,7 +121,7 @@ def _render_products_grid(products: list[dict]):
             cover_url = _product_cover_url(pr)
 
             if cover_url:
-                st.image(cover_url, use_column_width=True)
+                st.image(cover_url, width="stretch")
             else:
                 st.markdown("<div class='pp-hero-placeholder'>🛍️</div>", unsafe_allow_html=True)
 
@@ -330,7 +330,7 @@ def render(db):
             hero = (prof.get("logo_url") or "").strip()
             if hero:
                 st.markdown("<div class='pd-hero-wrap'>", unsafe_allow_html=True)
-                st.image(hero, use_column_width=True)
+                st.image(hero, width="stretch")
                 st.markdown("</div>", unsafe_allow_html=True)
             else:
                 st.markdown("<div class='pd-hero-placeholder'>🛍️</div>", unsafe_allow_html=True)
@@ -415,7 +415,7 @@ def render(db):
             cols = st.columns(4)
             for i, url in enumerate(gallery[:20]):
                 with cols[i % 4]:
-                    st.image(url, use_column_width=True)
+                    st.image(url, width="stretch")
 
     # =========================================================
     # TAB: Instagram (muro embebido)

@@ -54,7 +54,7 @@ def render(db):
     )
     st.write("")
 
-    if st.button("📊 Ver analíticas", use_container_width=True, key="admin_go_stats"):
+    if st.button("📊 Ver analíticas", width='stretch', key="admin_go_stats"):
         st.session_state["route"] = "admin_stats"
         st.rerun()
 
@@ -166,7 +166,7 @@ def render(db):
                     )
 
                     show = fdf.drop(columns=["user_id"])
-                    st.dataframe(show, use_container_width=True, hide_index=True)
+                    st.dataframe(show, width='stretch', hide_index=True)
 
             with right:
                 st.markdown("#### Acciones")
@@ -191,7 +191,7 @@ def render(db):
 
                         a, b, c, d = st.columns(4, gap="small")
                         with a:
-                            if st.button("✅ Aprobar", use_container_width=True, key=f"admin_user_appr_{u_sel['id']}"):
+                            if st.button("✅ Aprobar", width='stretch', key=f"admin_user_appr_{u_sel['id']}"):
                                 if prof_sel:
                                     prof_sel["is_approved"] = True
                                     prof_sel["updated_at"] = now_iso()
@@ -201,7 +201,7 @@ def render(db):
                                 st.rerun()
 
                         with b:
-                            if st.button("🕒 Pendiente", use_container_width=True, key=f"admin_user_pend_{u_sel['id']}"):
+                            if st.button("🕒 Pendiente", width='stretch', key=f"admin_user_pend_{u_sel['id']}"):
                                 if prof_sel:
                                     prof_sel["is_approved"] = False
                                     prof_sel["updated_at"] = now_iso()
@@ -211,14 +211,14 @@ def render(db):
                                 st.rerun()
 
                         with c:
-                            if st.button("⛔ Bloquear", use_container_width=True, key=f"admin_user_blk_{u_sel['id']}"):
+                            if st.button("⛔ Bloquear", width='stretch', key=f"admin_user_blk_{u_sel['id']}"):
                                 u_sel["status"] = "BLOCKED"
                                 u_sel["updated_at"] = now_iso()
                                 save_db(db)
                                 st.rerun()
 
                         with d:
-                            if st.button("🔓 Desbloquear", use_container_width=True, key=f"admin_user_unblk_{u_sel['id']}"):
+                            if st.button("🔓 Desbloquear", width='stretch', key=f"admin_user_unblk_{u_sel['id']}"):
                                 u_sel["status"] = "ACTIVE"
                                 u_sel["updated_at"] = now_iso()
                                 save_db(db)
@@ -245,7 +245,7 @@ def render(db):
                             st.session_state.pop(pw2_key, None)
 
                         btn_lbl = "🔑 Cambiar contraseña" if not st.session_state[exp_key] else "✖️ Cerrar"
-                        if st.button(btn_lbl, use_container_width=True, key=f"admin_pw_toggle_btn_{u_sel['id']}"):
+                        if st.button(btn_lbl, width='stretch', key=f"admin_pw_toggle_btn_{u_sel['id']}"):
                             st.session_state[exp_key] = not st.session_state[exp_key]
                             st.rerun()
 
@@ -254,7 +254,7 @@ def render(db):
 
                             cA, cB = st.columns([1, 1.2])
                             with cA:
-                                if st.button("🎲 Generar contraseña temporal", use_container_width=True, key=gen_key):
+                                if st.button("🎲 Generar contraseña temporal", width='stretch', key=gen_key):
                                     temp = secrets.token_urlsafe(9)
                                     st.session_state[pw_key] = temp
                                     st.session_state[pw2_key] = temp
@@ -278,7 +278,7 @@ def render(db):
                             new_pw = st.text_input("Nueva contraseña", type="password", key=pw_key)
                             new_pw2 = st.text_input("Confirmar contraseña", type="password", key=pw2_key)
 
-                            if st.button("💾 Guardar nueva contraseña", use_container_width=True, key=f"admin_savepw_{u_sel['id']}"):
+                            if st.button("💾 Guardar nueva contraseña", width='stretch', key=f"admin_savepw_{u_sel['id']}"):
                                 if len((new_pw or "")) < 8:
                                     st.error("La contraseña debe tener mínimo 8 caracteres.")
                                     st.stop()
@@ -326,7 +326,7 @@ def render(db):
                             key=f"admin_stats_access_{u_sel['id']}",
                         )
 
-                        if st.button("💾 Guardar límite / acceso", use_container_width=True, key=f"admin_save_limits_{u_sel['id']}"):
+                        if st.button("💾 Guardar límite / acceso", width='stretch', key=f"admin_save_limits_{u_sel['id']}"):
                             u_sel["max_published_products"] = int(new_limit)
                             u_sel["can_view_stats"] = bool(new_stats_access)
                             u_sel["updated_at"] = now_iso()
@@ -440,7 +440,7 @@ def render(db):
                     )
 
                     show_cols = ["Producto", "Estado", "Categoría", "Precio", "Emprendimiento", "Email", "Actualizado"]
-                    st.dataframe(fdfp[show_cols], use_container_width=True, hide_index=True)
+                    st.dataframe(fdfp[show_cols], width='stretch', hide_index=True)
 
             with right:
                 st.markdown("#### Acciones del producto")
@@ -479,7 +479,7 @@ def render(db):
                         a1, a2, a3, a4 = st.columns([1.1, 1.1, 1.1, 1.1], gap="small")
 
                         with a1:
-                            if st.button("👁️ Ver", key=f"admin_prod_view_{selected_pid}", use_container_width=True):
+                            if st.button("👁️ Ver", key=f"admin_prod_view_{selected_pid}", width='stretch'):
                                 st.session_state["selected_product_id"] = selected_pid
                                 st.session_state["route"] = "product_detail"
                                 st.rerun()
@@ -492,14 +492,14 @@ def render(db):
                                 lbl = "🚀 Publicar"
                                 next_status = "PUBLISHED"
 
-                            if st.button(lbl, key=f"admin_prod_toggle_{selected_pid}", use_container_width=True):
+                            if st.button(lbl, key=f"admin_prod_toggle_{selected_pid}", width='stretch'):
                                 pr["status"] = next_status
                                 pr["updated_at"] = now_iso()
                                 save_db(db)
                                 st.rerun()
 
                         with a3:
-                            if st.button("🧊 Borrador", key=f"admin_prod_draft_{selected_pid}", use_container_width=True):
+                            if st.button("🧊 Borrador", key=f"admin_prod_draft_{selected_pid}", width='stretch'):
                                 pr["status"] = "DRAFT"
                                 pr["updated_at"] = now_iso()
                                 save_db(db)
@@ -510,14 +510,14 @@ def render(db):
                             st.session_state.setdefault(confirm_key, False)
 
                             if not st.session_state[confirm_key]:
-                                if st.button("🗑️ Eliminar", key=f"admin_prod_del_{selected_pid}", use_container_width=True):
+                                if st.button("🗑️ Eliminar", key=f"admin_prod_del_{selected_pid}", width='stretch'):
                                     st.session_state[confirm_key] = True
                                     st.rerun()
                             else:
                                 st.warning("¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.")
                                 cA, cB = st.columns(2, gap="small")
                                 with cA:
-                                    if st.button("✅ Sí, eliminar", key=f"admin_prod_del_yes_{selected_pid}", use_container_width=True):
+                                    if st.button("✅ Sí, eliminar", key=f"admin_prod_del_yes_{selected_pid}", width='stretch'):
                                         db["products"] = [x for x in (db.get("products", []) or []) if x.get("id") != selected_pid]
                                         save_db(db)
                                         st.session_state[confirm_key] = False
@@ -525,7 +525,7 @@ def render(db):
                                         st.session_state["admin_next_selected_product_id"] = remaining[0] if remaining else None
                                         st.rerun()
                                 with cB:
-                                    if st.button("↩️ Cancelar", key=f"admin_prod_del_no_{selected_pid}", use_container_width=True):
+                                    if st.button("↩️ Cancelar", key=f"admin_prod_del_no_{selected_pid}", width='stretch'):
                                         st.session_state[confirm_key] = False
                                         st.rerun()
 
@@ -553,7 +553,7 @@ def render(db):
                 default=current_feat_prods,
                 format_func=_prod_label,
             )
-            submitted = st.form_submit_button("💾 Guardar destacados", use_container_width=True)
+            submitted = st.form_submit_button("💾 Guardar destacados", width='stretch')
 
         if submitted:
             set_featured_products(db, sel_prods, max_n=12)
@@ -634,19 +634,19 @@ def render(db):
 
                 st.dataframe(
                     fds[["Sugerencia", "Categoría", "Producto", "Emprendimiento", "Email", "Actualizado"]],
-                    use_container_width=True,
+                    width='stretch',
                     hide_index=True
                 )
 
                 b1, b2 = st.columns([1, 1])
                 with b1:
-                    if st.button("👁️ Ver producto", key=f"admin_sug_view_{selected_sug_pid}", use_container_width=True):
+                    if st.button("👁️ Ver producto", key=f"admin_sug_view_{selected_sug_pid}", width='stretch'):
                         st.session_state["selected_product_id"] = selected_sug_pid
                         st.session_state["route"] = "product_detail"
                         st.rerun()
 
                 with b2:
-                    if st.button("✅ Marcar revisada (limpiar)", key=f"admin_sug_clear_{selected_sug_pid}", use_container_width=True):
+                    if st.button("✅ Marcar revisada (limpiar)", key=f"admin_sug_clear_{selected_sug_pid}", width='stretch'):
                         prod = next((x for x in (db.get("products", []) or []) if x.get("id") == selected_sug_pid), None)
                         if prod:
                             prod["tag_suggestion"] = ""
@@ -664,5 +664,5 @@ def render(db):
             data=json.dumps(db, ensure_ascii=False, indent=2),
             file_name="db_export.json",
             mime="application/json",
-            use_container_width=True
+            width='stretch'
         )
