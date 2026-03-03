@@ -84,7 +84,7 @@ def _topbar(db: dict):
                         st.session_state["route"] = "login"
                         st.rerun()
                 else:
-                    with st.popover("👤 Mi Perfil", help="Cuenta",width='stretch'):
+                    with st.popover("👤 Perfil", help="Cuenta",width='stretch'):
                         # -------------------------
                         # EMPRENDEDOR
                         # -------------------------
