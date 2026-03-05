@@ -135,6 +135,7 @@ def _render_products_grid(products: list[dict]):
 _IG_DOMAIN_RE = re.compile(r"^https?://(www\.)?instagram\.com/", re.IGNORECASE)
 _IG_POST_RE = re.compile(r"^https?://(www\.)?instagram\.com/(p|reel|tv)/", re.IGNORECASE)
 
+
 def _normalize_instagram_url(url: str) -> str:
     """Normaliza y limpia el URL de Instagram."""
     url = (url or "").strip()
@@ -163,16 +164,12 @@ def _render_instagram_section(insta_url: str):
         st.warning("El enlace de Instagram no parece válido.")
         return
 
-    # Nota UX
     st.markdown(
         '<div class="muted">*Si el perfil o la publicación es privada, Instagram puede no mostrar el contenido aquí.*</div>',
         unsafe_allow_html=True
     )
     st.write("")
 
-    # Instagram embed oficial
-    # - Para post/reel funciona excelente.
-    # - Para perfil, Instagram también puede renderizar algo, pero depende de restricciones.
     html = f"""
     <div style="display:flex;justify-content:center;">
       <blockquote class="instagram-media"
@@ -184,15 +181,11 @@ def _render_instagram_section(insta_url: str):
     <script async src="https://www.instagram.com/embed.js"></script>
     """
 
-    # Altura: post/reel suele requerir más
     height = 760 if _IG_POST_RE.match(insta_url) else 980
     components.html(html, height=height, scrolling=False)
 
     st.write("")
-    st.markdown(
-        f"🔗 Abrir en Instagram: {insta_url}",
-        unsafe_allow_html=False
-    )
+    st.markdown(f"🔗 Abrir en Instagram: {insta_url}")
 
 
 # =========================
@@ -226,7 +219,7 @@ def render(db):
     )
     st.write("")
 
-    # ---- Chips (MISMO mecanismo) ----
+    # ---- Links / Chips ----
     links = prof.get("links") or {}
 
     phone_clean = _clean_phone(links.get("phone", ""))
@@ -318,7 +311,17 @@ def render(db):
         )
 
     # ---- Tabs ----
-    t_resume, t_products, t_gallery, t_insta = st.tabs(["📌 Resumen", "🛍️ Productos", "🖼️ Galería", "📸 Instagram"])
+    insta_url = (links.get("instagram") or "").strip()
+    tabs = ["📌 Resumen", "🛍️ Productos", "🖼️ Galería"]
+    if insta_url:
+        tabs.append("📸 Instagram")
+
+    tab_objs = st.tabs(tabs)
+
+    t_resume = tab_objs[0]
+    t_products = tab_objs[1]
+    t_gallery = tab_objs[2]
+    t_insta = tab_objs[3] if insta_url else None
 
     # =========================================================
     # TAB: Resumen
@@ -418,9 +421,9 @@ def render(db):
                     st.image(url, width="stretch")
 
     # =========================================================
-    # TAB: Instagram (muro embebido)
+    # TAB: Instagram (solo si existe link)
     # =========================================================
-    with t_insta:
-        insta_url = (links.get("instagram") or "").strip()
-        st.markdown("### 📸 Instagram")
-        _render_instagram_section(insta_url)
+    if t_insta:
+        with t_insta:
+            st.markdown("### 📸 Instagram")
+            _render_instagram_section(insta_url)
