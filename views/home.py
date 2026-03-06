@@ -33,10 +33,15 @@ def render(db):
     st.session_state.setdefault("global_q_draft", "")
     st.session_state.setdefault("home_limit", PAGE_STEP)
     st.session_state.setdefault("home_sig", "")
+    st.session_state.setdefault("entry_source", "home")
 
     # ✅ 1) Track view_home (dedupe por sesión)
     u = get_user()
-    did = log_view_home(db, user_id=(u or {}).get("id"))
+    did = log_view_home(
+        db,
+        user_id=(u or {}).get("id"),
+        meta={"entry_source": "home_top"},
+    )
     if did:
         save_db(db)
 
@@ -68,8 +73,7 @@ def render(db):
         with b3:
             if st.button("📇 Directorio", width="stretch"):
                 st.session_state["global_q"] = ""
-                st.session_state["route"] = "directory"
-                st.rerun()
+                goto("directory")
 
     st.write("")
     q = st.session_state.get("global_q", "")
@@ -170,7 +174,14 @@ def render(db):
             "price_range": [int(price_range[0]), int(price_range[1])],
             "sort_by": sort_by,
         }
-        if log_search(db, q=q, filters=filters, results_n=len(results_all), user_id=(u.get("id") if u else None)):
+        if log_search(
+            db,
+            q=q,
+            filters=filters,
+            results_n=len(results_all),
+            user_id=(u.get("id") if u else None),
+            meta={"entry_source": "home_search"},
+        ):
             save_db(db)
 
     st.markdown("### Resultados")
@@ -255,6 +266,7 @@ def render(db):
                 #with b1:
                 st.markdown('<div class="btn-view">', unsafe_allow_html=True)
                 if st.button("👀 Ver", key=f"view_{p['id']}", width='stretch'):
+                    st.session_state["entry_source"] = "home_results"
                     goto("product_detail", selected_product_id=p["id"])
                 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -363,12 +375,14 @@ def render(db):
                         with b1:
                             st.markdown('<div class="btn-view">', unsafe_allow_html=True)
                             if st.button("👀 Ver", key=f"feat_view_{p['id']}", width='stretch'):
+                                st.session_state["entry_source"] = "home_featured"
                                 goto("product_detail", selected_product_id=p["id"])
                             st.markdown('</div>', unsafe_allow_html=True)
 
                         with b2:
                             st.markdown('<div class="btn-ico">', unsafe_allow_html=True)
                             if st.button("👤", key=f"feat_biz_{p['id']}", width='stretch', help="Ver emprendimiento"):
+                                st.session_state["entry_source"] = "home_featured_profile"
                                 goto("public_profile", selected_profile_id=prof.get("id"))
                             st.markdown('</div>', unsafe_allow_html=True)
 

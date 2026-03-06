@@ -85,6 +85,7 @@ def render(db):
 
     # ✅ Bloqueo real (salvo owner o admin)
     u = get_user()
+    st.session_state.setdefault("entry_source", "product_detail")
     is_owner = bool(u and u.get("id") == p.get("owner_user_id"))
     is_admin = bool(u and u.get("role") == "ADMIN")
 
@@ -102,6 +103,10 @@ def render(db):
         product_id=p.get("id"),
         profile_id=p.get("profile_id"),
         user_id=(u or {}).get("id"),
+        meta={
+            "entry_source": st.session_state.get("entry_source") or st.session_state.get("last_route", "product_detail"),
+            "page_context": "product_detail",
+        },
     )
     if did:
         save_db(db)
@@ -171,6 +176,7 @@ def render(db):
 
         if prof:
             if st.button("👤 Ver emprendimiento", width='stretch', key="pd_view_profile"):
+                st.session_state["entry_source"] = "product_detail_profile_button"
                 goto("public_profile", selected_profile_id=prof["id"])
 
         tags = p.get("tags") or []

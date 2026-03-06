@@ -201,10 +201,20 @@ def render(db):
     if not prof:
         st.error("Perfil no encontrado.")
         return
+    
+    st.session_state.setdefault("entry_source", "public_profile")
 
     # ---- analytics view ----
     u = get_user()
-    did = log_view_profile(db, profile_id=prof.get("id"), user_id=(u or {}).get("id"))
+    did = log_view_profile(
+        db,
+        profile_id=prof.get("id"),
+        user_id=(u or {}).get("id"),
+        meta={
+            "entry_source": st.session_state.get("entry_source") or st.session_state.get("last_route", "public_profile"),
+            "page_context": "public_profile",
+        },
+    )
     if did:
         save_db(db)
 

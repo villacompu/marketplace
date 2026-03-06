@@ -6,6 +6,8 @@ import streamlit as st
 
 from services.validators import safe_text
 from views.router import goto
+from services.analytics import log_view_directory
+from db.repo_json import save_db
 
 
 def _norm_text(s: str) -> str:
@@ -144,6 +146,20 @@ def render(db: dict):
     )
     st.write("")
 
+    u = st.session_state.get("user") or {}
+    did = log_view_directory(
+        db,
+        user_id=u.get("id"),
+        meta={
+            "entry_source": st.session_state.get("entry_source") or st.session_state.get("last_route", "directory"),
+            "page_context": "directory",
+        },
+    )
+    if did:
+        save_db(db)
+
+    st.session_state.setdefault("entry_source", "directory")
+
     profiles_all = db.get("profiles", []) or []
     visible_profiles = [p for p in profiles_all if _is_profile_public_allowed(db, p)]
 
@@ -265,6 +281,7 @@ def render(db: dict):
                     with btn_col:
                         if kind == "profile":
                             if st.button(label, key=f"dir_profile_{prof['id']}", use_container_width=True):
+                                st.session_state["entry_source"] = "directory_profile_card"
                                 goto("public_profile", selected_profile_id=prof["id"])
                         else:
                             st.markdown(

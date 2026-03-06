@@ -79,9 +79,9 @@ def _pct_change(cur: float, prev: float) -> float:
     return ((float(cur) - float(prev)) / base_prev) * 100.0
 
 
-def _metric_delta_text(cur: float, prev: float, suffix: str = "% vs 28 días previos") -> str:
+def _metric_delta_text(cur: float, prev: float, suffix: str = "vs 28 días previos") -> str:
     pct = _pct_change(cur, prev)
-    return f"{pct:.1f}{suffix}"
+    return f"{pct:.1f}% {suffix}"
 
 
 def _prepare_pie(df: pd.DataFrame, col: str, label_empty: str) -> pd.DataFrame:
@@ -170,12 +170,15 @@ def render(db: dict):
     # Perfil y productos del emprendedor
     # -----------------------------------------
     prof = next(
-        (p for p in (db.get("profiles", []) or []) if p.get("owner_user_id") == u_db.get("id")),
+        (
+            p for p in (db.get("profiles", []) or [])
+            if (p.get("owner_user_id") == u_db.get("id")) or (p.get("user_id") == u_db.get("id"))
+        ),
         None
     ) or {}
 
     my_profile_id = str(prof.get("id") or "")
-    my_products = [p for p in (db.get("products", []) or []) if p.get("owner_user_id") == u_db.get("id")]
+    my_products = [p for p in (db.get("products", []) or []) if str(p.get("owner_user_id") or "") == str(u_db.get("id") or "")]
     my_product_ids = {str(p.get("id") or "") for p in my_products}
     prod_map = {str(p.get("id") or ""): p for p in (db.get("products", []) or [])}
 
@@ -266,7 +269,23 @@ def render(db: dict):
     # -----------------------------------------
     df_me_all["channel"] = _get_meta_field(df_me_all, "channel").replace({"": "Direct"})
     df_me_all["device"] = _get_meta_field(df_me_all, "device").replace({"": "Desktop"})
-    df_me_all["location"] = _get_meta_field(df_me_all, "country").replace({"": "Unknown"})
+    df_me_all["location"] = (
+        _get_meta_field(df_me_all, "country")
+        .replace({"": ""})
+    )
+
+    # fallback más útil para ubicación
+    loc_city = _get_meta_field(df_me_all, "city_hint")
+    loc_country = _get_meta_field(df_me_all, "country_hint")
+    loc_generic = _get_meta_field(df_me_all, "location_hint")
+
+    df_me_all["location"] = df_me_all["location"].where(df_me_all["location"] != "", loc_country)
+    df_me_all["location"] = df_me_all["location"].where(df_me_all["location"] != "", loc_city)
+    df_me_all["location"] = df_me_all["location"].where(df_me_all["location"] != "", loc_generic)
+    df_me_all["location"] = df_me_all["location"].replace({"": "Unknown"})
+
+    df_me_all["entry_source"] = _get_meta_field(df_me_all, "entry_source").replace({"": "Unknown"})
+    df_me_all["page_context"] = _get_meta_field(df_me_all, "page_context").replace({"": "Unknown"})
     df_me_all["visitor"] = df_me_all.apply(_visitor_id, axis=1)
 
     # -----------------------------------------
@@ -288,7 +307,7 @@ def render(db: dict):
     # =========================================================
     # TABS GRANDES
     # =========================================================
-    t_unique, t_visits = st.tabs(["👥 Visitantes únicos", "🔁 Visitas / eventos"])
+    t_unique, t_visits, t_sources = st.tabs(["👥 Visitantes únicos", "🔁 Visitas / eventos", "🧭 Origen del tráfico"])
 
     # =========================================================
     # TAB 1: VISITANTES ÚNICOS
@@ -470,3 +489,152 @@ def render(db: dict):
             st.dataframe(pivot, width="stretch", hide_index=True)
         else:
             st.info("No hay detalle diario para mostrar.")
+
+    # =========================================================
+    # TAB 3: ORIGEN DEL TRÁFICO
+    # =========================================================
+    with t_sources:
+        st.markdown("#### Desde dónde llegan a tu emprendimiento")
+
+        if df_cur.empty:
+            st.info("No hay datos en los últimos 28 días.")
+        else:
+            # -----------------------------
+            # KPIs rápidos
+            # -----------------------------
+            src_top = (
+                df_cur.groupby("entry_source")
+                .size()
+                .reset_index(name="visitas")
+                .sort_values("visitas", ascending=False)
+            )
+
+            ctx_top = (
+                df_cur.groupby("page_context")
+                .size()
+                .reset_index(name="visitas")
+                .sort_values("visitas", ascending=False)
+            )
+
+            top_source = src_top.iloc[0]["entry_source"] if not src_top.empty else "—"
+            top_source_n = int(src_top.iloc[0]["visitas"]) if not src_top.empty else 0
+
+            top_context = ctx_top.iloc[0]["page_context"] if not ctx_top.empty else "—"
+            top_context_n = int(ctx_top.iloc[0]["visitas"]) if not ctx_top.empty else 0
+
+            s1, s2, s3, s4 = st.columns(4)
+            s1.metric("Fuentes detectadas", int(df_cur["entry_source"].nunique()))
+            s2.metric("Contextos detectados", int(df_cur["page_context"].nunique()))
+            s3.metric("Fuente principal", top_source)
+            s4.metric("Visitas fuente principal", top_source_n)
+
+            st.write("")
+
+            # -----------------------------
+            # Gráficos
+            # -----------------------------
+            left3, right3 = st.columns([1.5, 1.5], gap="large")
+
+            with left3:
+                st.markdown("##### Entrada por fuente")
+                src_chart = src_top.head(12).copy()
+                if src_chart.empty:
+                    st.info("No hay fuentes para mostrar.")
+                else:
+                    _render_bar(
+                        src_chart,
+                        x="entry_source",
+                        y="visitas",
+                        height=320,
+                        key="stats_sources_entry_source_bar",
+                    )
+
+            with right3:
+                st.markdown("##### Entrada por contexto de página")
+                ctx_chart = ctx_top.head(12).copy()
+                if ctx_chart.empty:
+                    st.info("No hay contextos para mostrar.")
+                else:
+                    _render_bar(
+                        ctx_chart,
+                        x="page_context",
+                        y="visitas",
+                        height=320,
+                        key="stats_sources_page_context_bar",
+                    )
+
+            st.write("")
+
+            # -----------------------------
+            # Cruce fuente x tipo de evento
+            # -----------------------------
+            st.markdown("##### Cruce: fuente vs tipo de evento")
+
+            source_event = (
+                df_cur.groupby(["entry_source", "etype"])
+                .size()
+                .reset_index(name="count")
+                .sort_values(["count", "entry_source"], ascending=[False, True])
+            )
+
+            if source_event.empty:
+                st.info("No hay cruces para mostrar.")
+            else:
+                pivot_source_event = (
+                    source_event.pivot_table(
+                        index="entry_source",
+                        columns="etype",
+                        values="count",
+                        fill_value=0
+                    )
+                    .reset_index()
+                )
+                st.dataframe(pivot_source_event, width="stretch", hide_index=True)
+
+            st.write("")
+
+            # -----------------------------
+            # Tabla detallada de fuentes
+            # -----------------------------
+            st.markdown("##### Detalle de fuentes")
+
+            source_detail = (
+                df_cur.groupby("entry_source")
+                .agg(
+                    visitas=("entry_source", "size"),
+                    visitantes_unicos=("visitor", "nunique"),
+                )
+                .reset_index()
+                .sort_values("visitas", ascending=False)
+            )
+
+            if not source_detail.empty:
+                source_detail["promedio_por_visitante"] = (
+                    source_detail["visitas"] / source_detail["visitantes_unicos"].replace(0, 1)
+                ).round(2)
+
+            st.dataframe(source_detail, width="stretch", hide_index=True)
+
+            st.write("")
+
+            # -----------------------------
+            # Tabla detallada de contextos
+            # -----------------------------
+            st.markdown("##### Detalle de contextos de página")
+
+            context_detail = (
+                df_cur.groupby("page_context")
+                .agg(
+                    visitas=("page_context", "size"),
+                    visitantes_unicos=("visitor", "nunique"),
+                )
+                .reset_index()
+                .sort_values("visitas", ascending=False)
+            )
+
+            if not context_detail.empty:
+                context_detail["promedio_por_visitante"] = (
+                    context_detail["visitas"] / context_detail["visitantes_unicos"].replace(0, 1)
+                ).round(2)
+
+            st.dataframe(context_detail, width="stretch", hide_index=True)
