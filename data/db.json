@@ -76556,6 +76556,37 @@
         "is_logged_in": false,
         "role_hint": ""
       }
+    },
+    {
+      "ts": "2026-03-06T05:25:19Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "416e2654-1ea4-42c8-8a14-a08e22fed3f7",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "home_top",
+        "page_context": "home",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
     }
   ],
   "featured": {
