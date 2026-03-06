@@ -181,8 +181,6 @@ def render(db):
             st.success("Perfil actualizado.")
             st.rerun()
 
-    from services.media_urls import normalize_many
-
 # -------- TAB 2: Imágenes (por URL) --------
     with t2:
         st.caption("En el MVP usamos URLs.")

@@ -479,7 +479,7 @@ def render(db):
                         a1, a2, a3, a4 = st.columns([1.1, 1.1, 1.1, 1.1], gap="small")
 
                         with a1:
-                            if st.button("👁️ Ver", key=f"admin_prod_view_{selected_pid}", width='stretch'):
+                            if st.button("� Ver", key=f"admin_prod_view_{selected_pid}", width='stretch'):
                                 st.session_state["selected_product_id"] = selected_pid
                                 st.session_state["route"] = "product_detail"
                                 st.rerun()
@@ -640,7 +640,7 @@ def render(db):
 
                 b1, b2 = st.columns([1, 1])
                 with b1:
-                    if st.button("👁️ Ver producto", key=f"admin_sug_view_{selected_sug_pid}", width='stretch'):
+                    if st.button("� Ver producto", key=f"admin_sug_view_{selected_sug_pid}", width='stretch'):
                         st.session_state["selected_product_id"] = selected_sug_pid
                         st.session_state["route"] = "product_detail"
                         st.rerun()

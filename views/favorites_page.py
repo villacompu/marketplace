@@ -80,7 +80,7 @@ def render(db):
 
                 with b1:
                     st.markdown('<div class="btn-view">', unsafe_allow_html=True)
-                    if st.button("👁️ Ver", key=f"fav_view_{p['id']}", width='stretch'):
+                    if st.button("👀 Ver", key=f"fav_view_{p['id']}", width='stretch'):
                         goto("product_detail", selected_product_id=p["id"])
                     st.markdown('</div>', unsafe_allow_html=True)
 

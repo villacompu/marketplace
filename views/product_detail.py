@@ -210,11 +210,11 @@ def render(db):
         with a1:
             if wa_href:
                 st.markdown(
-                    f'<a class="btn-contact" href="{wa_href}" target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>',
+                    f'<a class="btn-contact" href="{wa_href}" target="_blank" rel="noopener noreferrer">📲 WhatsApp</a>',
                     unsafe_allow_html=True
                 )
             else:
-                st.markdown('<div class="btn-contact disabled">🟢 WhatsApp</div>', unsafe_allow_html=True)
+                st.markdown('<div class="btn-contact disabled">📲 WhatsApp</div>', unsafe_allow_html=True)
 
         with a2:
             if ig_href:

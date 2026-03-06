@@ -8,8 +8,9 @@ from auth.session import get_user
 from auth.guards import require_role
 
 
-# Compat: si en algún momento guardaste "product_view"/"profile_view",
-# lo mapeamos a los nuevos nombres.
+# =========================================================
+# Compatibilidad de nombres antiguos de eventos
+# =========================================================
 EVENT_ALIASES = {
     "product_view": "view_product",
     "profile_view": "view_profile",
@@ -17,6 +18,9 @@ EVENT_ALIASES = {
 }
 
 
+# =========================================================
+# Helpers base
+# =========================================================
 def _event_type(df: pd.DataFrame) -> pd.Series:
     """
     Retorna la columna de tipo de evento de forma robusta:
@@ -29,7 +33,8 @@ def _event_type(df: pd.DataFrame) -> pd.Series:
     elif "event" in df.columns:
         s = df["event"].astype(str)
     else:
-        s = pd.Series([""] * len(df))
+        s = pd.Series([""] * len(df), index=df.index)
+
     return s.replace(EVENT_ALIASES)
 
 
@@ -39,7 +44,7 @@ def _get_meta_field(df: pd.DataFrame, key: str) -> pd.Series:
     Si no existe meta o viene mal formado, retorna vacío.
     """
     if "meta" not in df.columns:
-        return pd.Series([""] * len(df))
+        return pd.Series([""] * len(df), index=df.index)
 
     def pick(x):
         try:
@@ -63,17 +68,81 @@ def _visitor_id(row: pd.Series) -> str:
     return u if u else a
 
 
+def _safe_div(num: float, den: float) -> float:
+    if not den:
+        return 0.0
+    return float(num) / float(den)
+
+
+def _pct_change(cur: float, prev: float) -> float:
+    base_prev = max(1.0, float(prev))
+    return ((float(cur) - float(prev)) / base_prev) * 100.0
+
+
+def _metric_delta_text(cur: float, prev: float, suffix: str = "% vs 28 días previos") -> str:
+    pct = _pct_change(cur, prev)
+    return f"{pct:.1f}{suffix}"
+
+
+def _prepare_pie(df: pd.DataFrame, col: str, label_empty: str) -> pd.DataFrame:
+    if df.empty:
+        return pd.DataFrame({col: [label_empty], "count": [1]})
+
+    s = df[col].fillna("").astype(str).replace({"": label_empty})
+    out = (
+        s.groupby(s)
+        .size()
+        .reset_index(name="count")
+        .sort_values("count", ascending=False)
+    )
+    out.columns = [col, "count"]
+    return out
+
+
+def _render_pie(df: pd.DataFrame, names: str, values: str, height: int = 360, key: str = ""):
+    fig = px.pie(df, names=names, values=values, hole=0.65)
+    fig.update_layout(
+        margin=dict(l=0, r=0, t=10, b=0),
+        height=height,
+        legend_title_text="",
+    )
+    st.plotly_chart(fig, width="stretch", key=key)
+
+
+def _render_line(df: pd.DataFrame, x: str, y: str, height: int = 340, key: str = ""):
+    fig = px.line(df, x=x, y=y)
+    fig.update_layout(
+        margin=dict(l=0, r=0, t=10, b=0),
+        height=height,
+        xaxis_title="",
+        yaxis_title="",
+    )
+    st.plotly_chart(fig, width="stretch", key=key)
+
+
+def _render_bar(df: pd.DataFrame, x: str, y: str, height: int = 320, key: str = ""):
+    fig = px.bar(df, x=x, y=y)
+    fig.update_layout(
+        margin=dict(l=0, r=0, t=10, b=0),
+        height=height,
+        xaxis_title="",
+        yaxis_title="",
+    )
+    st.plotly_chart(fig, width="stretch", key=key)
+
+
+# =========================================================
+# Main
+# =========================================================
 def render(db: dict):
     u = get_user()
     if not u:
         st.warning("Debes iniciar sesión.")
         return
 
-    # ✅ Solo emprendedores (y admin si quieres probar)
     if not require_role(["EMPRENDEDOR", "ADMIN"]):
         return
 
-    # ✅ cargar usuario REAL desde DB (no confiar solo en sesión)
     u_db = next((x for x in (db.get("users", []) or []) if x.get("id") == u.get("id")), None) or u
 
     st.markdown("## 📊 Mis estadísticas")
@@ -97,37 +166,38 @@ def render(db: dict):
 
     et = _event_type(df)
 
-    # 🔎 encontrar mi perfil y mis productos
+    # -----------------------------------------
+    # Perfil y productos del emprendedor
+    # -----------------------------------------
     prof = next(
         (p for p in (db.get("profiles", []) or []) if p.get("owner_user_id") == u_db.get("id")),
         None
     ) or {}
-    my_profile_id = str(prof.get("id") or "")
 
+    my_profile_id = str(prof.get("id") or "")
     my_products = [p for p in (db.get("products", []) or []) if p.get("owner_user_id") == u_db.get("id")]
     my_product_ids = {str(p.get("id") or "") for p in my_products}
     prod_map = {str(p.get("id") or ""): p for p in (db.get("products", []) or [])}
 
-    # ==========================
-    # ✅ BÁSICO (para TODOS)
-    # ==========================
+    # =========================================================
+    # RESUMEN BÁSICO
+    # =========================================================
     my_prod_views = df[(et == "view_product") & (df["product_id"].astype(str).isin(list(my_product_ids)))]
     my_prof_views = (
         df[(et == "view_profile") & (df["profile_id"].astype(str) == my_profile_id)]
         if my_profile_id else df.iloc[0:0]
     )
 
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Vistas a mis productos", int(len(my_prod_views)))
-    c2.metric("Vistas a mi perfil", int(len(my_prof_views)))
-    c3.metric(
+    k1, k2, k3 = st.columns(3)
+    k1.metric("Vistas a mis productos", int(len(my_prod_views)))
+    k2.metric("Vistas a mi perfil", int(len(my_prof_views)))
+    k3.metric(
         "Productos publicados",
         int(sum(1 for p in my_products if (p.get("status") or "").upper() == "PUBLISHED"))
     )
 
     st.divider()
 
-    # Top productos
     st.markdown("### 🔥 Top productos por vistas")
     if my_prod_views.empty:
         st.info("Aún no hay vistas de tus productos.")
@@ -142,7 +212,7 @@ def render(db: dict):
 
         rows = []
         for _, r in top.iterrows():
-            pid = str(r.iloc[0] or "")  # primer col = product_id tras groupby
+            pid = str(r.iloc[0] or "")
             pr = prod_map.get(pid) or {}
             rows.append({
                 "Producto": pr.get("name", "—"),
@@ -151,15 +221,16 @@ def render(db: dict):
                 "Vistas": int(r["vistas"]),
             })
 
-        st.dataframe(pd.DataFrame(rows), width='stretch', hide_index=True)
+        st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
 
-    # ==========================
-    # ✅ AVANZADO (solo con permiso)
-    # ==========================
+    # =========================================================
+    # ANALÍTICA AVANZADA
+    # =========================================================
     has_advanced = bool(u_db.get("can_view_stats") is True)
 
     st.write("")
     st.markdown("### 📈 Analítica avanzada")
+
     if not has_advanced:
         st.info(
             "Tu cuenta tiene acceso al resumen básico. Para ver analítica avanzada, solicita al administrador "
@@ -167,18 +238,20 @@ def render(db: dict):
         )
         return
 
-    # ----------------------------------------------------------
-    # 1) Base con timestamps + filtro “solo mis eventos”
-    # ----------------------------------------------------------
+    # -----------------------------------------
+    # Base con timestamps válidos
+    # -----------------------------------------
     df2 = df.copy()
     df2["ts_dt"] = pd.to_datetime(df2["ts"], errors="coerce", utc=True)
     df2 = df2.dropna(subset=["ts_dt"])
+
     if df2.empty:
         st.info("No hay timestamps válidos para graficar.")
         return
 
     et2 = _event_type(df2)
 
+    # Solo eventos del emprendedor
     df_me_all = df2[
         ((et2 == "view_product") & (df2["product_id"].astype(str).isin(list(my_product_ids))))
         | ((et2 == "view_profile") & (df2["profile_id"].astype(str) == my_profile_id))
@@ -188,9 +261,17 @@ def render(db: dict):
         st.info("Aún no hay eventos tuyos para analítica avanzada.")
         return
 
-    # ----------------------------------------------------------
-    # 2) “Visitantes” 28 días vs 28 días previos + tendencia
-    # ----------------------------------------------------------
+    # -----------------------------------------
+    # Meta fields (con fallback)
+    # -----------------------------------------
+    df_me_all["channel"] = _get_meta_field(df_me_all, "channel").replace({"": "Direct"})
+    df_me_all["device"] = _get_meta_field(df_me_all, "device").replace({"": "Desktop"})
+    df_me_all["location"] = _get_meta_field(df_me_all, "country").replace({"": "Unknown"})
+    df_me_all["visitor"] = df_me_all.apply(_visitor_id, axis=1)
+
+    # -----------------------------------------
+    # Ventanas de tiempo
+    # -----------------------------------------
     end = df_me_all["ts_dt"].max()
     cur_start = end - pd.Timedelta(days=28)
     prev_start = cur_start - pd.Timedelta(days=28)
@@ -198,75 +279,194 @@ def render(db: dict):
     df_cur = df_me_all[(df_me_all["ts_dt"] >= cur_start) & (df_me_all["ts_dt"] <= end)].copy()
     df_prev = df_me_all[(df_me_all["ts_dt"] >= prev_start) & (df_me_all["ts_dt"] < cur_start)].copy()
 
-    df_cur["visitor"] = df_cur.apply(_visitor_id, axis=1)
-    df_prev["visitor"] = df_prev.apply(_visitor_id, axis=1)
+    # Normalizaciones
+    for part in [df_cur, df_prev]:
+        if not part.empty:
+            part["day"] = part["ts_dt"].dt.date.astype(str)
+            part["etype"] = _event_type(part)
 
-    vis_cur = int(df_cur["visitor"].nunique())
-    vis_prev = int(df_prev["visitor"].nunique())
-    base_prev = max(1, vis_prev)
-    pct = ((vis_cur - vis_prev) / base_prev) * 100.0
+    # =========================================================
+    # TABS GRANDES
+    # =========================================================
+    t_unique, t_visits = st.tabs(["👥 Visitantes únicos", "🔁 Visitas / eventos"])
 
-    # Tendencia diaria (visitantes únicos)
-    df_cur["day"] = df_cur["ts_dt"].dt.date.astype(str)
-    daily = df_cur.groupby("day")["visitor"].nunique().reset_index(name="visitors")
+    # =========================================================
+    # TAB 1: VISITANTES ÚNICOS
+    # =========================================================
+    with t_unique:
+        st.markdown("#### Audiencia única de los últimos 28 días")
 
-    # ----------------------------------------------------------
-    # 3) Meta para donuts: Canal / Ubicación / Dispositivo
-    # (Si no estás guardando meta aún, saldrá “Direct/Unknown/Desktop”)
-    # ----------------------------------------------------------
-    df_cur["channel"] = _get_meta_field(df_cur, "channel").replace({"": "Direct"})
-    df_cur["device"] = _get_meta_field(df_cur, "device").replace({"": "Desktop"})
-    df_cur["location"] = _get_meta_field(df_cur, "country").replace({"": "Unknown"})
+        # ---- métricas únicas
+        vis_cur = int(df_cur["visitor"].nunique()) if not df_cur.empty else 0
+        vis_prev = int(df_prev["visitor"].nunique()) if not df_prev.empty else 0
 
-    # ----------------------------------------------------------
-    # 4) UI tipo “Analytics”
-    # ----------------------------------------------------------
-    left, right = st.columns([2.2, 1.3], gap="large")
+        unique_prod_visitors = (
+            int(df_cur[df_cur["etype"] == "view_product"]["visitor"].nunique())
+            if not df_cur.empty else 0
+        )
+        unique_prof_visitors = (
+            int(df_cur[df_cur["etype"] == "view_profile"]["visitor"].nunique())
+            if not df_cur.empty else 0
+        )
 
-    with left:
-        st.markdown("#### Todos los visitantes")
-        st.metric("Visitantes (últimos 28 días)", vis_cur, f"{pct:.1f}% vs 28 días previos")
+        # recurrentes = visitantes con más de 1 evento en la ventana
+        if not df_cur.empty:
+            visitor_counts_cur = df_cur.groupby("visitor").size().reset_index(name="events")
+            returning_cur = int((visitor_counts_cur["events"] > 1).sum())
+            new_cur = int((visitor_counts_cur["events"] == 1).sum())
+        else:
+            returning_cur = 0
+            new_cur = 0
 
-        fig_line = px.line(daily, x="day", y="visitors")
-        fig_line.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=320)
-        st.plotly_chart(fig_line, width='stretch')
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Visitantes únicos", vis_cur, _metric_delta_text(vis_cur, vis_prev))
+        m2.metric("Vieron productos", unique_prod_visitors)
+        m3.metric("Vieron perfil", unique_prof_visitors)
+        m4.metric("Recurrentes", returning_cur)
 
-    with right:
-        tab1, tab2, tab3 = st.tabs(["Canales", "Ubicaciones", "Dispositivos"])
+        st.write("")
 
-        with tab1:
-            ch = df_cur.groupby("channel").size().reset_index(name="count").sort_values("count", ascending=False)
-            fig = px.pie(ch, names="channel", values="count", hole=0.65)
-            fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=360)
-            st.plotly_chart(fig, width='stretch')
+        # ---- tendencia única por día
+        if not df_cur.empty:
+            daily_unique = (
+                df_cur.groupby("day")["visitor"]
+                .nunique()
+                .reset_index(name="visitantes_unicos")
+            )
+        else:
+            daily_unique = pd.DataFrame({"day": [], "visitantes_unicos": []})
 
-        with tab2:
-            loc = df_cur.groupby("location").size().reset_index(name="count").sort_values("count", ascending=False)
-            fig = px.pie(loc, names="location", values="count", hole=0.65)
-            fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=360)
-            st.plotly_chart(fig, width='stretch')
+        left, right = st.columns([2.15, 1.25], gap="large")
 
-        with tab3:
-            dev = df_cur.groupby("device").size().reset_index(name="count").sort_values("count", ascending=False)
-            fig = px.pie(dev, names="device", values="count", hole=0.65)
-            fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=360)
-            st.plotly_chart(fig, width='stretch')
+        with left:
+            st.markdown("##### Tendencia diaria de visitantes únicos")
+            if daily_unique.empty:
+                st.info("No hay datos en los últimos 28 días.")
+            else:
+                _render_line(daily_unique, x="day", y="visitantes_unicos", height=340, key="stats_unique_line")
 
-    st.divider()
+        with right:
+            tabs = st.tabs(["Canales", "Ubicaciones", "Dispositivos"])
+            with tabs[0]:
+                ch = _prepare_pie(df_cur, "channel", "Direct")
+                _render_pie(ch, names="channel", values="count", height=340, key="stats_unique_channel")
+            with tabs[1]:
+                loc = _prepare_pie(df_cur, "location", "Unknown")
+                _render_pie(loc, names="location", values="count", height=340, key="stats_unique_location")
+            with tabs[2]:
+                dev = _prepare_pie(df_cur, "device", "Desktop")
+                _render_pie(dev, names="device", values="count", height=340, key="stats_unique_device")
 
-    # ----------------------------------------------------------
-    # 5) Tabla diaria (opcional): view_product vs view_profile
-    # ----------------------------------------------------------
-    st.markdown("#### Detalle por día (eventos)")
-    df_cur["etype"] = _event_type(df_cur)
+        st.write("")
+        st.markdown("##### Nuevos vs recurrentes")
 
-    daily_events = (
-        df_cur.groupby(["day", "etype"])
-        .size()
-        .reset_index(name="count")
-        .sort_values(["day", "etype"])
-    )
+        n1, n2 = st.columns(2)
+        with n1:
+            st.metric("Nuevos visitantes", new_cur)
+        with n2:
+            st.metric("Visitantes recurrentes", returning_cur)
 
-    pivot = daily_events.pivot_table(index="day", columns="etype", values="count", fill_value=0).reset_index()
-    st.dataframe(pivot, width='stretch', hide_index=True)
+        if not df_cur.empty:
+            nr = pd.DataFrame({
+                "tipo": ["Nuevos", "Recurrentes"],
+                "cantidad": [new_cur, returning_cur],
+            })
+            _render_bar(nr, x="tipo", y="cantidad", height=280, key="stats_unique_new_vs_returning")
+        else:
+            st.info("No hay datos suficientes para nuevos vs recurrentes.")
 
+        st.write("")
+        st.markdown("##### Detalle por día (visitantes únicos)")
+
+        if daily_unique.empty:
+            st.info("No hay datos diarios para mostrar.")
+        else:
+            st.dataframe(daily_unique, width="stretch", hide_index=True)
+
+    # =========================================================
+    # TAB 2: VISITAS / EVENTOS
+    # =========================================================
+    with t_visits:
+        st.markdown("#### Interacciones y visitas de los últimos 28 días")
+
+        total_events_cur = int(len(df_cur))
+        total_events_prev = int(len(df_prev))
+
+        prod_events_cur = int(len(df_cur[df_cur["etype"] == "view_product"])) if not df_cur.empty else 0
+        prof_events_cur = int(len(df_cur[df_cur["etype"] == "view_profile"])) if not df_cur.empty else 0
+
+        avg_events_per_visitor = round(_safe_div(total_events_cur, max(1, vis_cur)), 2)
+
+        v1, v2, v3, v4 = st.columns(4)
+        v1.metric("Visitas / eventos", total_events_cur, _metric_delta_text(total_events_cur, total_events_prev))
+        v2.metric("Vistas a productos", prod_events_cur)
+        v3.metric("Vistas a perfil", prof_events_cur)
+        v4.metric("Promedio por visitante", avg_events_per_visitor)
+
+        st.write("")
+
+        # ---- tendencia de eventos
+        if not df_cur.empty:
+            daily_events_total = (
+                df_cur.groupby("day")
+                .size()
+                .reset_index(name="eventos")
+            )
+        else:
+            daily_events_total = pd.DataFrame({"day": [], "eventos": []})
+
+        left2, right2 = st.columns([2.15, 1.25], gap="large")
+
+        with left2:
+            st.markdown("##### Tendencia diaria de visitas / eventos")
+            if daily_events_total.empty:
+                st.info("No hay datos en los últimos 28 días.")
+            else:
+                _render_line(daily_events_total, x="day", y="eventos", height=340, key="stats_events_line")
+
+        with right2:
+            tabs2 = st.tabs(["Canales", "Ubicaciones", "Dispositivos"])
+            with tabs2[0]:
+                ch2 = _prepare_pie(df_cur, "channel", "Direct")
+                _render_pie(ch2, names="channel", values="count", height=340, key="stats_events_channel")
+            with tabs2[1]:
+                loc2 = _prepare_pie(df_cur, "location", "Unknown")
+                _render_pie(loc2, names="location", values="count", height=340, key="stats_events_location")
+            with tabs2[2]:
+                dev2 = _prepare_pie(df_cur, "device", "Desktop")
+                _render_pie(dev2, names="device", values="count", height=340, key="stats_events_device")
+
+        st.write("")
+        st.markdown("##### Comparativo por tipo de evento")
+
+        if not df_cur.empty:
+            by_type = (
+                df_cur.groupby("etype")
+                .size()
+                .reset_index(name="cantidad")
+                .sort_values("cantidad", ascending=False)
+            )
+            _render_bar(by_type, x="etype", y="cantidad", height=280, key="stats_events_by_type")
+        else:
+            st.info("No hay eventos para comparar.")
+
+        st.write("")
+        st.markdown("##### Detalle por día (eventos)")
+
+        if not df_cur.empty:
+            daily_events = (
+                df_cur.groupby(["day", "etype"])
+                .size()
+                .reset_index(name="count")
+                .sort_values(["day", "etype"])
+            )
+
+            pivot = (
+                daily_events
+                .pivot_table(index="day", columns="etype", values="count", fill_value=0)
+                .reset_index()
+            )
+
+            st.dataframe(pivot, width="stretch", hide_index=True)
+        else:
+            st.info("No hay detalle diario para mostrar.")

@@ -53,7 +53,7 @@ def render(db):
         )
         st.session_state["global_q_draft"] = q_draft
 
-        b1, b2 = st.columns([1, 1])
+        b1, b2, b3 = st.columns([1, 1, 1])
         with b1:
             if st.button("Buscar", width='stretch'):
                 st.session_state["global_q"] = (st.session_state["global_q_draft"] or "").strip()
@@ -64,6 +64,11 @@ def render(db):
                 st.session_state["global_q"] = ""
                 st.session_state["global_q_draft"] = ""
                 st.session_state["home_limit"] = PAGE_STEP  # ✅ reset
+                st.rerun()
+        with b3:
+            if st.button("📇 Directorio", width="stretch"):
+                st.session_state["global_q"] = ""
+                st.session_state["route"] = "directory"
                 st.rerun()
 
     st.write("")
@@ -249,7 +254,7 @@ def render(db):
 
                 #with b1:
                 st.markdown('<div class="btn-view">', unsafe_allow_html=True)
-                if st.button("👁️ Ver", key=f"view_{p['id']}", width='stretch'):
+                if st.button("👀 Ver", key=f"view_{p['id']}", width='stretch'):
                     goto("product_detail", selected_product_id=p["id"])
                 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -357,7 +362,7 @@ def render(db):
 
                         with b1:
                             st.markdown('<div class="btn-view">', unsafe_allow_html=True)
-                            if st.button("👁️ Ver", key=f"feat_view_{p['id']}", width='stretch'):
+                            if st.button("👀 Ver", key=f"feat_view_{p['id']}", width='stretch'):
                                 goto("product_detail", selected_product_id=p["id"])
                             st.markdown('</div>', unsafe_allow_html=True)
 

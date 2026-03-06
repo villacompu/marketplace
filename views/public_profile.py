@@ -33,7 +33,7 @@ def _wa_from_phone(phone: str) -> str:
 def _icon_for_label(label: str) -> str:
     low = (label or "").lower()
     if "whats" in low:
-        return "🟢"
+        return "📲"
     if "insta" in low:
         return "📸"
     if "face" in low:
