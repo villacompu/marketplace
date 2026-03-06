@@ -345,7 +345,6 @@ def render(db: dict):
             rows.append({
                 "Producto": pr.get("name", "—"),
                 "Categoría": pr.get("category", "—"),
-                "Estado": (pr.get("status") or "—"),
                 "Vistas": int(r["vistas"]),
             })
 
