@@ -18,6 +18,89 @@ EVENT_ALIASES = {
 }
 
 
+# =======================================================================
+# Nombres de las etiquetas para mostrar (con mapeo de valores conocidos)
+# =======================================================================
+
+def _label_channel(v: str) -> str:
+    m = {
+        "Direct": "Acceso directo",
+        "Organic Search": "Búsqueda orgánica",
+        "Organic Social": "Redes sociales",
+        "Referral": "Referencia",
+        "Unknown": "No identificado",
+        "": "No identificado",
+    }
+    v = str(v or "").strip()
+    return m.get(v, v)
+
+
+def _label_device(v: str) -> str:
+    m = {
+        "Desktop": "Computador",
+        "Mobile": "Móvil",
+        "Tablet": "Tablet",
+        "Unknown": "No identificado",
+        "": "No identificado",
+    }
+    v = str(v or "").strip()
+    return m.get(v, v)
+
+
+def _label_location(v: str) -> str:
+    v = str(v or "").strip()
+    if not v or v.lower() == "unknown":
+        return "No identificado"
+    return v
+
+
+def _label_entry_source(v: str) -> str:
+    m = {
+        "home_top": "Inicio",
+        "home_search": "Búsqueda en inicio",
+        "home_filters": "Filtros del inicio",
+        "directory": "Directorio",
+        "directory_search": "Búsqueda en directorio",
+        "directory_filters": "Filtros del directorio",
+        "product_detail": "Detalle del producto",
+        "public_profile": "Perfil público",
+        "my_profile": "Mi perfil",
+        "my_products": "Mis productos",
+        "Unknown": "No identificado",
+        "": "No identificado",
+    }
+    v = str(v or "").strip()
+    return m.get(v, v.replace("_", " ").capitalize() if v else "No identificado")
+
+
+def _label_page_context(v: str) -> str:
+    m = {
+        "home": "Inicio",
+        "directory": "Directorio",
+        "product_detail": "Detalle del producto",
+        "public_profile": "Perfil público",
+        "my_profile": "Mi perfil",
+        "my_products": "Mis productos",
+        "Unknown": "No identificado",
+        "": "No identificado",
+    }
+    v = str(v or "").strip()
+    return m.get(v, v.replace("_", " ").capitalize() if v else "No identificado")
+
+
+def _label_event_type(v: str) -> str:
+    m = {
+        "view_product": "Vista de producto",
+        "view_profile": "Vista de perfil",
+        "view_home": "Vista de inicio",
+        "search": "Búsqueda",
+        "click_whatsapp": "Clic en WhatsApp",
+        "click_instagram": "Clic en Instagram",
+        "click_call": "Clic en llamada",
+    }
+    v = str(v or "").strip()
+    return m.get(v, v.replace("_", " ").capitalize() if v else "Evento")
+
 # =========================================================
 # Helpers base
 # =========================================================
@@ -269,12 +352,8 @@ def render(db: dict):
     # -----------------------------------------
     df_me_all["channel"] = _get_meta_field(df_me_all, "channel").replace({"": "Direct"})
     df_me_all["device"] = _get_meta_field(df_me_all, "device").replace({"": "Desktop"})
-    df_me_all["location"] = (
-        _get_meta_field(df_me_all, "country")
-        .replace({"": ""})
-    )
+    df_me_all["location"] = _get_meta_field(df_me_all, "country").replace({"": ""})
 
-    # fallback más útil para ubicación
     loc_city = _get_meta_field(df_me_all, "city_hint")
     loc_country = _get_meta_field(df_me_all, "country_hint")
     loc_generic = _get_meta_field(df_me_all, "location_hint")
@@ -287,6 +366,13 @@ def render(db: dict):
     df_me_all["entry_source"] = _get_meta_field(df_me_all, "entry_source").replace({"": "Unknown"})
     df_me_all["page_context"] = _get_meta_field(df_me_all, "page_context").replace({"": "Unknown"})
     df_me_all["visitor"] = df_me_all.apply(_visitor_id, axis=1)
+
+    # ✅ Etiquetas amigables para UI
+    df_me_all["channel_label"] = df_me_all["channel"].apply(_label_channel)
+    df_me_all["device_label"] = df_me_all["device"].apply(_label_device)
+    df_me_all["location_label"] = df_me_all["location"].apply(_label_location)
+    df_me_all["entry_source_label"] = df_me_all["entry_source"].apply(_label_entry_source)
+    df_me_all["page_context_label"] = df_me_all["page_context"].apply(_label_page_context)
 
     # -----------------------------------------
     # Ventanas de tiempo
@@ -303,6 +389,7 @@ def render(db: dict):
         if not part.empty:
             part["day"] = part["ts_dt"].dt.date.astype(str)
             part["etype"] = _event_type(part)
+            part["etype_label"] = part["etype"].apply(_label_event_type)
 
     # =========================================================
     # TABS GRANDES
@@ -367,14 +454,14 @@ def render(db: dict):
         with right:
             tabs = st.tabs(["Canales", "Ubicaciones", "Dispositivos"])
             with tabs[0]:
-                ch = _prepare_pie(df_cur, "channel", "Direct")
-                _render_pie(ch, names="channel", values="count", height=340, key="stats_unique_channel")
+                ch = _prepare_pie(df_cur, "channel_label", "No identificado")
+                _render_pie(ch, names="channel_label", values="count", height=340, key="stats_unique_channel")
             with tabs[1]:
-                loc = _prepare_pie(df_cur, "location", "Unknown")
-                _render_pie(loc, names="location", values="count", height=340, key="stats_unique_location")
+                loc = _prepare_pie(df_cur, "location_label", "No identificado")
+                _render_pie(loc, names="location_label", values="count", height=340, key="stats_unique_location")
             with tabs[2]:
-                dev = _prepare_pie(df_cur, "device", "Desktop")
-                _render_pie(dev, names="device", values="count", height=340, key="stats_unique_device")
+                dev = _prepare_pie(df_cur, "device_label", "No identificado")
+                _render_pie(dev, names="device_label", values="count", height=340, key="stats_unique_device")
 
         st.write("")
         st.markdown("##### Nuevos vs recurrentes")
@@ -446,26 +533,26 @@ def render(db: dict):
         with right2:
             tabs2 = st.tabs(["Canales", "Ubicaciones", "Dispositivos"])
             with tabs2[0]:
-                ch2 = _prepare_pie(df_cur, "channel", "Direct")
-                _render_pie(ch2, names="channel", values="count", height=340, key="stats_events_channel")
+                ch2 = _prepare_pie(df_cur, "channel_label", "No identificado")
+                _render_pie(ch2, names="channel_label", values="count", height=340, key="stats_events_channel")
             with tabs2[1]:
-                loc2 = _prepare_pie(df_cur, "location", "Unknown")
-                _render_pie(loc2, names="location", values="count", height=340, key="stats_events_location")
+                loc2 = _prepare_pie(df_cur, "location_label", "No identificado")
+                _render_pie(loc2, names="location_label", values="count", height=340, key="stats_events_location")
             with tabs2[2]:
-                dev2 = _prepare_pie(df_cur, "device", "Desktop")
-                _render_pie(dev2, names="device", values="count", height=340, key="stats_events_device")
+                dev2 = _prepare_pie(df_cur, "device_label", "No identificado")
+                _render_pie(dev2, names="device_label", values="count", height=340, key="stats_events_device")
 
         st.write("")
         st.markdown("##### Comparativo por tipo de evento")
 
         if not df_cur.empty:
             by_type = (
-                df_cur.groupby("etype")
+                df_cur.groupby("etype_label")
                 .size()
                 .reset_index(name="cantidad")
                 .sort_values("cantidad", ascending=False)
             )
-            _render_bar(by_type, x="etype", y="cantidad", height=280, key="stats_events_by_type")
+            _render_bar(by_type, x="etype_label", y="cantidad", height=280, key="stats_events_by_type")
         else:
             st.info("No hay eventos para comparar.")
 
@@ -474,15 +561,15 @@ def render(db: dict):
 
         if not df_cur.empty:
             daily_events = (
-                df_cur.groupby(["day", "etype"])
+                df_cur.groupby(["day", "etype_label"])
                 .size()
                 .reset_index(name="count")
-                .sort_values(["day", "etype"])
+                .sort_values(["day", "etype_label"])
             )
 
             pivot = (
                 daily_events
-                .pivot_table(index="day", columns="etype", values="count", fill_value=0)
+                .pivot_table(index="day", columns="etype_label", values="count", fill_value=0)
                 .reset_index()
             )
 
@@ -503,23 +590,23 @@ def render(db: dict):
             # KPIs rápidos
             # -----------------------------
             src_top = (
-                df_cur.groupby("entry_source")
+                df_cur.groupby("entry_source_label")
                 .size()
                 .reset_index(name="visitas")
                 .sort_values("visitas", ascending=False)
             )
 
             ctx_top = (
-                df_cur.groupby("page_context")
+                df_cur.groupby("page_context_label")
                 .size()
                 .reset_index(name="visitas")
                 .sort_values("visitas", ascending=False)
             )
 
-            top_source = src_top.iloc[0]["entry_source"] if not src_top.empty else "—"
+            top_source = src_top.iloc[0]["entry_source_label"] if not src_top.empty else "—"
             top_source_n = int(src_top.iloc[0]["visitas"]) if not src_top.empty else 0
 
-            top_context = ctx_top.iloc[0]["page_context"] if not ctx_top.empty else "—"
+            top_context = ctx_top.iloc[0]["page_context_label"] if not ctx_top.empty else "—"
             top_context_n = int(ctx_top.iloc[0]["visitas"]) if not ctx_top.empty else 0
 
             s1, s2, s3, s4 = st.columns(4)
@@ -543,7 +630,7 @@ def render(db: dict):
                 else:
                     _render_bar(
                         src_chart,
-                        x="entry_source",
+                        x="entry_source_label",
                         y="visitas",
                         height=320,
                         key="stats_sources_entry_source_bar",
@@ -557,7 +644,7 @@ def render(db: dict):
                 else:
                     _render_bar(
                         ctx_chart,
-                        x="page_context",
+                        x="page_context_label",
                         y="visitas",
                         height=320,
                         key="stats_sources_page_context_bar",
@@ -571,10 +658,10 @@ def render(db: dict):
             st.markdown("##### Cruce: fuente vs tipo de evento")
 
             source_event = (
-                df_cur.groupby(["entry_source", "etype"])
+                df_cur.groupby(["entry_source_label", "etype_label"])
                 .size()
                 .reset_index(name="count")
-                .sort_values(["count", "entry_source"], ascending=[False, True])
+                .sort_values(["count", "entry_source_label"], ascending=[False, True])
             )
 
             if source_event.empty:
@@ -582,8 +669,8 @@ def render(db: dict):
             else:
                 pivot_source_event = (
                     source_event.pivot_table(
-                        index="entry_source",
-                        columns="etype",
+                        index="entry_source_label",
+                        columns="etype_label",
                         values="count",
                         fill_value=0
                     )
@@ -599,14 +686,16 @@ def render(db: dict):
             st.markdown("##### Detalle de fuentes")
 
             source_detail = (
-                df_cur.groupby("entry_source")
+                df_cur.groupby("entry_source_label")
                 .agg(
-                    visitas=("entry_source", "size"),
+                    visitas=("entry_source_label", "size"),
                     visitantes_unicos=("visitor", "nunique"),
                 )
                 .reset_index()
                 .sort_values("visitas", ascending=False)
             )
+
+            source_detail = source_detail.rename(columns={"entry_source_label": "fuente"})
 
             if not source_detail.empty:
                 source_detail["promedio_por_visitante"] = (
@@ -623,14 +712,16 @@ def render(db: dict):
             st.markdown("##### Detalle de contextos de página")
 
             context_detail = (
-                df_cur.groupby("page_context")
+                df_cur.groupby("page_context_label")
                 .agg(
-                    visitas=("page_context", "size"),
+                    visitas=("page_context_label", "size"),
                     visitantes_unicos=("visitor", "nunique"),
                 )
                 .reset_index()
                 .sort_values("visitas", ascending=False)
             )
+
+            context_detail = context_detail.rename(columns={"page_context_label": "contexto"})
 
             if not context_detail.empty:
                 context_detail["promedio_por_visitante"] = (
