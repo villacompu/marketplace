@@ -213,6 +213,21 @@ def _render_bar(df: pd.DataFrame, x: str, y: str, height: int = 320, key: str = 
     )
     st.plotly_chart(fig, width="stretch", key=key)
 
+def _has_real_locations(df: pd.DataFrame) -> bool:
+    if df.empty or "location_label" not in df.columns:
+        return False
+
+    vals = (
+        df["location_label"]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.lower()
+    )
+
+    vals = vals[~vals.isin(["", "no identificado", "unknown"])]
+    return len(vals) > 0
+
 
 # =========================================================
 # Main
@@ -358,8 +373,8 @@ def render(db: dict):
     loc_country = _get_meta_field(df_me_all, "country_hint")
     loc_generic = _get_meta_field(df_me_all, "location_hint")
 
-    df_me_all["location"] = df_me_all["location"].where(df_me_all["location"] != "", loc_country)
     df_me_all["location"] = df_me_all["location"].where(df_me_all["location"] != "", loc_city)
+    df_me_all["location"] = df_me_all["location"].where(df_me_all["location"] != "", loc_country)
     df_me_all["location"] = df_me_all["location"].where(df_me_all["location"] != "", loc_generic)
     df_me_all["location"] = df_me_all["location"].replace({"": "Unknown"})
 
@@ -457,8 +472,17 @@ def render(db: dict):
                 ch = _prepare_pie(df_cur, "channel_label", "No identificado")
                 _render_pie(ch, names="channel_label", values="count", height=340, key="stats_unique_channel")
             with tabs[1]:
-                loc = _prepare_pie(df_cur, "location_label", "No identificado")
-                _render_pie(loc, names="location_label", values="count", height=340, key="stats_unique_location")
+                if _has_real_locations(df_cur):
+                    loc = _prepare_pie(df_cur, "location_label", "No identificado")
+                    _render_pie(
+                        loc,
+                        names="location_label",
+                        values="count",
+                        height=340,
+                        key="stats_unique_location",
+                    )
+                else:
+                    st.info("Próximamente podrás ver ubicación aproximada de tus visitantes.")
             with tabs[2]:
                 dev = _prepare_pie(df_cur, "device_label", "No identificado")
                 _render_pie(dev, names="device_label", values="count", height=340, key="stats_unique_device")
@@ -536,8 +560,17 @@ def render(db: dict):
                 ch2 = _prepare_pie(df_cur, "channel_label", "No identificado")
                 _render_pie(ch2, names="channel_label", values="count", height=340, key="stats_events_channel")
             with tabs2[1]:
-                loc2 = _prepare_pie(df_cur, "location_label", "No identificado")
-                _render_pie(loc2, names="location_label", values="count", height=340, key="stats_events_location")
+                if _has_real_locations(df_cur):
+                    loc2 = _prepare_pie(df_cur, "location_label", "No identificado")
+                    _render_pie(
+                        loc2,
+                        names="location_label",
+                        values="count",
+                        height=340,
+                        key="stats_events_location",
+                    )
+                else:
+                    st.info("Próximamente podrás ver ubicación aproximada de tus visitantes.")
             with tabs2[2]:
                 dev2 = _prepare_pie(df_cur, "device_label", "No identificado")
                 _render_pie(dev2, names="device_label", values="count", height=340, key="stats_events_device")
@@ -610,8 +643,8 @@ def render(db: dict):
             top_context_n = int(ctx_top.iloc[0]["visitas"]) if not ctx_top.empty else 0
 
             s1, s2, s3, s4 = st.columns(4)
-            s1.metric("Fuentes detectadas", int(df_cur["entry_source"].nunique()))
-            s2.metric("Contextos detectados", int(df_cur["page_context"].nunique()))
+            s1.metric("Fuentes detectadas", int(df_cur["entry_source_label"].nunique()))
+            s2.metric("Contextos detectados", int(df_cur["page_context_label"].nunique()))
             s3.metric("Fuente principal", top_source)
             s4.metric("Visitas fuente principal", top_source_n)
 
