@@ -135,10 +135,10 @@ def get_event_context() -> dict:
         or _safe_first_query_param(qp, "from")
         or _safe_first_query_param(qp, "entry_source")
     )
-    meta["entry_source"] = entry_source[:80]
+    meta["entry_source"] = (entry_source[:80] if entry_source else "direct")
 
     page_context = _path_from_query_params(qp)
-    meta["page_context"] = page_context[:80]
+    meta["page_context"] = (page_context[:80] if page_context else "")
 
     # Hints de ubicación opcionales si algún día los mandas por URL
     meta["country_hint"] = _safe_first_query_param(qp, "country")[:80]

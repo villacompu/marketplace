@@ -15,6 +15,7 @@ EVENT_ALIASES = {
     "product_view": "view_product",
     "profile_view": "view_profile",
     "home_view": "view_home",
+    "directory_view": "view_directory",
 }
 
 
@@ -56,19 +57,40 @@ def _label_location(v: str) -> str:
 
 def _label_entry_source(v: str) -> str:
     m = {
+        "home": "Inicio",
         "home_top": "Inicio",
         "home_search": "Búsqueda en inicio",
         "home_filters": "Filtros del inicio",
+        "home_featured": "Destacados del inicio",
+        "home_results": "Resultados del inicio",
+        "home_featured_profile": "Perfil desde destacados",
+        "home_directory_button": "Botón directorio desde inicio",
+
         "directory": "Directorio",
         "directory_search": "Búsqueda en directorio",
         "directory_filters": "Filtros del directorio",
+        "directory_product_card": "Producto desde directorio",
+        "directory_profile_card": "Perfil abierto desde directorio",
+
         "product_detail": "Detalle del producto",
+        "product_detail_profile_button": "Perfil abierto desde producto",
+        "product_card": "Tarjeta de producto",
+        "featured_product": "Producto destacado",
+
         "public_profile": "Perfil público",
+        "profile_card": "Tarjeta de emprendimiento",
+
         "my_profile": "Mi perfil",
         "my_products": "Mis productos",
+
+        "search": "Búsqueda",
+        "favorites": "Favoritos",
+
         "Unknown": "No identificado",
+        "unknown": "No identificado",
         "": "No identificado",
     }
+
     v = str(v or "").strip()
     return m.get(v, v.replace("_", " ").capitalize() if v else "No identificado")
 
@@ -81,9 +103,13 @@ def _label_page_context(v: str) -> str:
         "public_profile": "Perfil público",
         "my_profile": "Mi perfil",
         "my_products": "Mis productos",
+        "favorites": "Favoritos",
+        "search": "Búsqueda",
         "Unknown": "No identificado",
+        "unknown": "No identificado",
         "": "No identificado",
     }
+
     v = str(v or "").strip()
     return m.get(v, v.replace("_", " ").capitalize() if v else "No identificado")
 
@@ -97,6 +123,7 @@ def _label_event_type(v: str) -> str:
         "click_whatsapp": "Clic en WhatsApp",
         "click_instagram": "Clic en Instagram",
         "click_call": "Clic en llamada",
+        "view_directory": "Vista de directorio",
     }
     v = str(v or "").strip()
     return m.get(v, v.replace("_", " ").capitalize() if v else "Evento")
@@ -708,7 +735,9 @@ def render(db: dict):
                         fill_value=0
                     )
                     .reset_index()
+                    .rename(columns={"entry_source_label": "fuente"})
                 )
+
                 st.dataframe(pivot_source_event, width="stretch", hide_index=True)
 
             st.write("")

@@ -6,8 +6,9 @@ import streamlit as st
 
 from services.validators import safe_text
 from views.router import goto
-from services.analytics import log_view_directory
+from services.analytics import log_view_directory, log_contact_click
 from db.repo_json import save_db
+from auth.session import get_user
 
 
 def _norm_text(s: str) -> str:
@@ -146,7 +147,7 @@ def render(db: dict):
     )
     st.write("")
 
-    u = st.session_state.get("user") or {}
+    u = get_user() or {}
     did = log_view_directory(
         db,
         user_id=u.get("id"),

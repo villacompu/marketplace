@@ -73,6 +73,7 @@ def render(db):
         with b3:
             if st.button("📇 Directorio", width="stretch"):
                 st.session_state["global_q"] = ""
+                st.session_state["entry_source"] = "home_directory_button"
                 goto("directory")
 
     st.write("")
