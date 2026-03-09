@@ -49,10 +49,11 @@
       "status": "ACTIVE",
       "max_published_products": 5,
       "created_at": "2026-01-19T02:11:43Z",
-      "updated_at": "2026-01-26T23:26:21Z",
+      "updated_at": "2026-03-09T22:56:53Z",
       "reset_token": null,
       "reset_token_expires_at": null,
-      "must_change_password": false
+      "must_change_password": false,
+      "can_view_stats": true
     },
     {
       "id": "72cf887f-0d0b-48ab-b9ef-619a76a44b3e",
@@ -61,9 +62,9 @@
       "role": "EMPRENDEDOR",
       "status": "ACTIVE",
       "max_published_products": 5,
-      "can_view_stats": false,
+      "can_view_stats": true,
       "created_at": "2026-01-19T02:20:47Z",
-      "updated_at": "2026-01-19T02:45:00Z",
+      "updated_at": "2026-03-09T22:56:58Z",
       "reset_token": null,
       "reset_token_expires_at": null
     },
@@ -113,9 +114,9 @@
       "role": "EMPRENDEDOR",
       "status": "ACTIVE",
       "max_published_products": 5,
-      "can_view_stats": false,
+      "can_view_stats": true,
       "created_at": "2026-01-26T23:38:08Z",
-      "updated_at": "2026-01-26T23:44:46Z",
+      "updated_at": "2026-03-09T22:57:13Z",
       "reset_token": null,
       "reset_token_expires_at": null
     },
@@ -152,9 +153,9 @@
       "role": "EMPRENDEDOR",
       "status": "ACTIVE",
       "max_published_products": 5,
-      "can_view_stats": false,
+      "can_view_stats": true,
       "created_at": "2026-01-27T00:38:17Z",
-      "updated_at": "2026-01-27T00:52:58Z",
+      "updated_at": "2026-03-09T22:57:20Z",
       "reset_token": null,
       "reset_token_expires_at": null,
       "must_change_password": false
@@ -166,9 +167,9 @@
       "role": "EMPRENDEDOR",
       "status": "ACTIVE",
       "max_published_products": 5,
-      "can_view_stats": false,
+      "can_view_stats": true,
       "created_at": "2026-01-27T00:46:55Z",
-      "updated_at": "2026-01-27T00:53:02Z",
+      "updated_at": "2026-03-09T22:57:31Z",
       "reset_token": null,
       "reset_token_expires_at": null,
       "must_change_password": false
