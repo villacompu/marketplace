@@ -4,27 +4,26 @@ import re
 import streamlit as st
 import streamlit.components.v1 as components
 
-from services.validators import safe_text
+from services.validators import safe_text, safe_html
 from auth.session import get_user
 from services.analytics import log_view_profile
 from services.catalog import format_price
+from views.router import goto
 
 
 # =========================
 # Helpers (tel/wa/chips)
 # =========================
 def _clean_phone(raw: str) -> str:
-    """Deja + y dígitos. Ej: '+57 300-123 4567' -> '+573001234567'."""
     raw = (raw or "").strip()
     if not raw:
         return ""
     raw = raw.replace(" ", "")
-    raw = re.sub(r"(?!^\+)[^\d]", "", raw)  # quita no-dígitos excepto + inicial
+    raw = re.sub(r"(?!^\+)[^\d]", "", raw)
     return "" if raw == "+" else raw
 
 
 def _wa_from_phone(phone: str) -> str:
-    """Ej: +573001234567 -> https://wa.me/573001234567"""
     digits = re.sub(r"\D", "", phone or "")
     return f"https://wa.me/{digits}" if digits else ""
 
@@ -49,48 +48,42 @@ def _icon_for_label(label: str) -> str:
 
 
 def _link_chip(label: str, url: str, kind: str = "url") -> str:
-    """
-    kind:
-      - "url": link normal (target blank)
-      - "tel": link tel: (sin target blank)
-    """
     url = (url or "").strip()
     if not url:
         return ""
 
     icon = _icon_for_label(label)
+    label_safe = safe_html(label, 40)
+    url_safe = safe_html(url, 500)
 
     if kind == "tel":
-        return f"""
-        <a class="chip-link" href="{url}">
-          <span class="chip-ico">{icon}</span>
-          <span>{safe_text(label, 40)}</span>
-        </a>
-        """
+        return (
+            f'<a class="chip-link" href="{url_safe}">'
+            f'<span class="chip-ico">{icon}</span>'
+            f"<span>{label_safe}</span>"
+            f"</a>"
+        )
 
-    return f"""
-    <a class="chip-link" href="{url}" target="_blank" rel="noopener noreferrer">
-      <span class="chip-ico">{icon}</span>
-      <span>{safe_text(label, 40)}</span>
-    </a>
-    """
+    return (
+        f'<a class="chip-link" href="{url_safe}" target="_blank" rel="noopener noreferrer">'
+        f'<span class="chip-ico">{icon}</span>'
+        f"<span>{label_safe}</span>"
+        f"</a>"
+    )
 
 
 # =========================
 # Helpers (products)
 # =========================
 def _product_cover_url(pr: dict) -> str:
-    """Saca una imagen representativa del producto."""
     if not pr:
         return ""
 
-    # campos comunes (string)
     for k in ("image_url", "cover_url", "thumbnail_url", "photo_url"):
         v = (pr.get(k) or "").strip()
         if v:
             return v
 
-    # listas comunes (list)
     for k in ("photo_urls", "image_urls", "photos", "gallery_urls"):
         arr = pr.get(k) or []
         if isinstance(arr, list) and arr:
@@ -101,8 +94,50 @@ def _product_cover_url(pr: dict) -> str:
     return ""
 
 
-def _render_products_grid(products: list[dict]):
-    """Grilla simple 3 columnas."""
+def _product_price(pr: dict) -> str:
+    try:
+        return format_price(pr)
+    except Exception:
+        return "Precio no disponible"
+
+
+def _render_product_card(pr: dict, key_prefix: str = "pp") -> None:
+    title = safe_html(pr.get("name", "Producto"), 80)
+    price_txt = safe_html(_product_price(pr), 60)
+    cover_url = safe_html(_product_cover_url(pr), 500)
+    category = safe_html(pr.get("category", "—"), 30)
+
+    thumb_style = ""
+    if cover_url:
+        thumb_style = f"background-image:url('{cover_url}');"
+
+    card_html = (
+        '<div class="card-wrap">'
+        '<div class="card">'
+        f'<div class="thumb" style="{thumb_style}">'
+        f"<span>{title}</span>"
+        "</div>"
+        f'<div class="title">{title}</div>'
+        '<div class="row">'
+        f'<span class="badge">{category}</span>'
+        f'<span class="price">{price_txt}</span>'
+        "</div>"
+        "</div>"
+        "</div>"
+    )
+
+    st.markdown(card_html, unsafe_allow_html=True)
+
+    if st.button(
+        "👀 Ver producto",
+        key=f"{key_prefix}_prod_view_{pr.get('id')}",
+        width="stretch",
+    ):
+        st.session_state["entry_source"] = "public_profile_products"
+        goto("product_detail", selected_product_id=pr.get("id"))
+
+
+def _render_products_grid(products: list[dict], key_prefix: str = "pp") -> None:
     if not products:
         st.info("Este emprendimiento aún no tiene productos publicados.")
         return
@@ -110,22 +145,7 @@ def _render_products_grid(products: list[dict]):
     cols = st.columns(3, gap="large")
     for i, pr in enumerate(products):
         with cols[i % 3]:
-            title = safe_text(pr.get("name", "Producto"), 80)
-
-            try:
-                price_txt = format_price(pr)
-            except Exception:
-                price_txt = "Precio no disponible"
-
-            cover_url = _product_cover_url(pr)
-
-            if cover_url:
-                st.image(cover_url, width="stretch")
-            else:
-                st.markdown("<div class='pp-hero-placeholder'>🛍️</div>", unsafe_allow_html=True)
-
-            st.markdown(f"**{title}**")
-            st.markdown(f"💲 {price_txt}")
+            _render_product_card(pr, key_prefix=f"{key_prefix}_{i}")
 
 
 # =========================
@@ -136,25 +156,19 @@ _IG_POST_RE = re.compile(r"^https?://(www\.)?instagram\.com/(p|reel|tv)/", re.IG
 
 
 def _normalize_instagram_url(url: str) -> str:
-    """Normaliza y limpia el URL de Instagram."""
     url = (url or "").strip()
     if not url:
         return ""
-    # quitar tracking params
     url = url.split("?")[0].strip()
-    # asegurar slash final para perfil
     if _IG_DOMAIN_RE.match(url) and not _IG_POST_RE.match(url):
         if not url.endswith("/"):
             url += "/"
     return url
 
 
-def _render_instagram_section(insta_url: str):
-    """
-    Si es post/reel: lo embebe con blockquote.
-    Si es perfil: intenta embebido del perfil (muro).
-    """
+def _render_instagram_section(insta_url: str) -> None:
     insta_url = _normalize_instagram_url(insta_url)
+
     if not insta_url:
         st.info("Este emprendimiento no tiene Instagram configurado.")
         return
@@ -165,7 +179,7 @@ def _render_instagram_section(insta_url: str):
 
     st.markdown(
         '<div class="muted">*Si el perfil o la publicación es privada, Instagram puede no mostrar el contenido aquí.*</div>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     st.write("")
 
@@ -200,7 +214,7 @@ def render(db):
     if not prof:
         st.error("Perfil no encontrado.")
         return
-    
+
     st.session_state.setdefault("entry_source", "public_profile")
 
     # ---- analytics view ----
@@ -214,18 +228,6 @@ def render(db):
         },
     )
 
-    # ---- Header ----
-    st.markdown(
-        f"<div class='pp-title'>{safe_text(prof.get('business_name','Emprendimiento'), 120)}</div>",
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        f"<div class='pp-sub'>{safe_text(prof.get('short_desc',''), 140)}</div>",
-        unsafe_allow_html=True
-    )
-    st.write("")
-
-    # ---- Links / Chips ----
     links = prof.get("links") or {}
 
     phone_clean = _clean_phone(links.get("phone", ""))
@@ -235,14 +237,69 @@ def render(db):
     if not wa_url and phone_clean:
         wa_url = _wa_from_phone(phone_clean)
 
+    city = prof.get("city") or "—"
+    schedule = prof.get("availability") or "—"
+    cats = prof.get("categories") or []
+    cats_txt = ", ".join([safe_text(x, 30) for x in cats]) if cats else "—"
+    phone_show = phone_clean if phone_clean else "—"
+
+    business_name = safe_html(prof.get("business_name", "Emprendimiento"), 120)
+    short_desc = safe_html(prof.get("short_desc", ""), 180)
+    long_desc = safe_html(prof.get("long_desc", "") or "—", 3000)
+    hero = (prof.get("logo_url") or "").strip()
+
+    # ---- Header hero ----
+    head_left, head_right = st.columns([1.2, 1.8], gap="large")
+
+    with head_left:
+        if hero:
+            st.markdown("<div class='pd-hero-wrap'>", unsafe_allow_html=True)
+            st.image(hero, width="stretch")
+            st.markdown("</div>", unsafe_allow_html=True)
+        else:
+            st.markdown("<div class='pp-hero-placeholder'>🛍️</div>", unsafe_allow_html=True)
+
+    with head_right:
+        st.markdown(f"<div class='pp-title'>{business_name}</div>", unsafe_allow_html=True)
+        if short_desc:
+            st.markdown(f"<div class='pp-sub'>{short_desc}</div>", unsafe_allow_html=True)
+
+        st.write("")
+
+        info_html = (
+            '<div class="pp-card">'
+            '<div class="pp-card-title">Información clave</div>'
+            '<div class="pp-kv">'
+            '<div class="pp-k">📍 Ciudad</div>'
+            f'<div class="pp-v">{safe_html(city, 60)}</div>'
+            "</div>"
+            '<div class="pp-kv">'
+            '<div class="pp-k">🏷️ Categorías</div>'
+            f'<div class="pp-v">{safe_html(cats_txt, 120)}</div>'
+            "</div>"
+            '<div class="pp-kv">'
+            '<div class="pp-k">🕒 Horario</div>'
+            f'<div class="pp-v">{safe_html(schedule, 80)}</div>'
+            "</div>"
+            '<div class="pp-kv">'
+            '<div class="pp-k">📞 Celular</div>'
+            f'<div class="pp-v">{safe_html(phone_show, 20)}</div>'
+            "</div>"
+            "</div>"
+        )
+        st.markdown(info_html, unsafe_allow_html=True)
+
+    st.write("")
+
+    # ---- Chips / contactos ----
     order = [
         ("WhatsApp", wa_url),
         ("Instagram", links.get("instagram")),
+        ("Teléfono", tel_url),
         ("Facebook", links.get("facebook")),
         ("TikTok", links.get("tiktok")),
         ("Página web", links.get("website")),
         ("Catálogo", links.get("external_catalog") or links.get("catalog")),
-        ("Teléfono", tel_url),
     ]
 
     chips = []
@@ -310,81 +367,36 @@ def render(db):
         }
         </style>
         """
+
         components.html(
             chips_css + "<div class='pp-chips'>" + "".join(chips) + "</div>",
             height=140 if len(chips) > 4 else 100,
-            scrolling=False
+            scrolling=False,
         )
+
+    st.write("")
 
     # ---- Tabs ----
     insta_url = (links.get("instagram") or "").strip()
-    tabs = ["📌 Resumen", "🛍️ Productos", "🖼️ Galería"]
+    tabs = ["📌 Resumen", "🖼️ Galería"]
     if insta_url:
         tabs.append("📸 Instagram")
 
     tab_objs = st.tabs(tabs)
 
     t_resume = tab_objs[0]
-    t_products = tab_objs[1]
-    t_gallery = tab_objs[2]
-    t_insta = tab_objs[3] if insta_url else None
+    t_gallery = tab_objs[1]
+    t_insta = tab_objs[2] if insta_url else None
 
     # =========================================================
     # TAB: Resumen
     # =========================================================
     with t_resume:
-        hero_left, hero_right = st.columns([1.5, 2.5], gap="large")
-
-        with hero_left:
-            hero = (prof.get("logo_url") or "").strip()
-            if hero:
-                st.markdown("<div class='pd-hero-wrap'>", unsafe_allow_html=True)
-                st.image(hero, width="stretch")
-                st.markdown("</div>", unsafe_allow_html=True)
-            else:
-                st.markdown("<div class='pd-hero-placeholder'>🛍️</div>", unsafe_allow_html=True)
-
-        with hero_right:
-            city = prof.get("city") or "—"
-            schedule = prof.get("availability") or "—"
-            cats = prof.get("categories") or []
-            cats_txt = ", ".join([safe_text(x, 30) for x in cats]) if cats else "—"
-            phone_show = phone_clean if phone_clean else "—"
-
-            st.markdown("<div class='pp-card-title'>Información</div>", unsafe_allow_html=True)
-
-            st.markdown(
-                f"""
-                <div class="card">
-                  <div class="title">📍 Ciudad</div>
-                  <div class="row" style="margin-top:6px;">
-                    <span class="price">{safe_text(city, 60)}</span>
-                  </div>
-                  <div class="small">{cats_txt}</div>
-
-                  <div class="divider"></div>
-
-                  <div class="title">🕒 Horario</div>
-                  <div class="small" style="margin-top:6px;"><b>{safe_text(schedule, 80)}</b></div>
-
-                  <div class="divider"></div>
-
-                  <div class="title">📞 Celular</div>
-                  <div class="small" style="margin-top:6px;">{safe_text(phone_show, 20)}</div>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+        st.markdown("<div class='pp-section-title'>Sobre el emprendimiento</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='pp-long'>{long_desc}</div>", unsafe_allow_html=True)
 
         st.write("")
-        st.markdown("<div class='pp-section-title'>Sobre el emprendimiento</div>", unsafe_allow_html=True)
-        long_desc = prof.get("long_desc") or "—"
-        st.markdown(f"<div class='pp-long'>{safe_text(long_desc, 2000)}</div>", unsafe_allow_html=True)
 
-    # =========================================================
-    # TAB: Productos
-    # =========================================================
-    with t_products:
         products_all = db.get("products", []) or []
         profile_id = prof.get("id")
         owner_uid = prof.get("owner_user_id") or prof.get("user_id") or ""
@@ -407,8 +419,10 @@ def render(db):
 
         my_products = sorted(my_products, key=_upd, reverse=True)
 
-        st.markdown("### 🛍️ Productos publicados")
-        _render_products_grid(my_products)
+        if my_products:
+            st.markdown("<div class='pp-section-title'>Productos destacados</div>", unsafe_allow_html=True)
+            preview = my_products[:3]
+            _render_products_grid(preview, key_prefix="pp_resume")
 
     # =========================================================
     # TAB: Galería
@@ -427,7 +441,7 @@ def render(db):
                     st.image(url, width="stretch")
 
     # =========================================================
-    # TAB: Instagram (solo si existe link)
+    # TAB: Instagram
     # =========================================================
     if t_insta:
         with t_insta:
