@@ -8,7 +8,7 @@ from db.repo_json import new_id, now_iso, save_db
 def render(db):
     st.markdown("## Crear cuenta (Emprendedor)")
     st.markdown(
-        '<div class="muted">Registro simple para emprendedores.</div>',
+        '<div class="muted">Registro simple para emprendedores exitosos.</div>',
         unsafe_allow_html=True
     )
     st.write("")
