@@ -73,13 +73,16 @@ def _label_entry_source(v: str) -> str:
         "directory_filters": "Filtros del directorio",
         "directory_product_card": "Producto desde directorio",
         "directory_profile_card": "Perfil abierto desde directorio",
+        "directory_contact": "Contacto desde directorio",
 
         "product_detail": "Detalle del producto",
         "product_detail_profile_button": "Perfil abierto desde producto",
+        "product_detail_contact": "Contacto desde detalle del producto",
         "product_card": "Tarjeta de producto",
         "featured_product": "Producto destacado",
 
         "public_profile": "Perfil público",
+        "public_profile_contact": "Contacto desde perfil público",
         "profile_card": "Tarjeta de emprendimiento",
 
         "my_profile": "Mi perfil",
@@ -125,6 +128,8 @@ def _label_event_type(v: str) -> str:
         "click_whatsapp": "Clic en WhatsApp",
         "click_instagram": "Clic en Instagram",
         "click_call": "Clic en llamada",
+        "click_website": "Clic en página web",
+        "click_catalog": "Clic en catálogo",
         "view_directory": "Vista de directorio",
     }
     v = str(v or "").strip()
@@ -313,16 +318,37 @@ def render(db: dict):
     # =========================================================
     # RESUMEN BÁSICO
     # =========================================================
-    my_prod_views = df[(et == "view_product") & (df["product_id"].astype(str).isin(list(my_product_ids)))]
+    my_prod_views = df[
+        (et == "view_product")
+        & (df["product_id"].astype(str).isin(list(my_product_ids)))
+    ]
+
     my_prof_views = (
         df[(et == "view_profile") & (df["profile_id"].astype(str) == my_profile_id)]
         if my_profile_id else df.iloc[0:0]
     )
 
-    k1, k2, k3 = st.columns(3)
+    contact_event_types = [
+        "click_whatsapp",
+        "click_instagram",
+        "click_call",
+        "click_website",
+        "click_catalog",
+    ]
+
+    my_contact_clicks = df[
+        (
+            df["product_id"].astype(str).isin(list(my_product_ids))
+            | (df["profile_id"].astype(str) == my_profile_id)
+        )
+        & (et.isin(contact_event_types))
+    ]
+
+    k1, k2, k3, k4 = st.columns(4)
     k1.metric("Vistas a mis productos", int(len(my_prod_views)))
     k2.metric("Vistas a mi perfil", int(len(my_prof_views)))
-    k3.metric(
+    k3.metric("Clics de contacto", int(len(my_contact_clicks)))
+    k4.metric(
         "Productos publicados",
         int(sum(1 for p in my_products if (p.get("status") or "").upper() == "PUBLISHED"))
     )
@@ -382,9 +408,30 @@ def render(db: dict):
     et2 = _event_type(df2)
 
     # Solo eventos del emprendedor
+    contact_event_types = [
+        "click_whatsapp",
+        "click_instagram",
+        "click_call",
+        "click_website",
+        "click_catalog",
+    ]
+
     df_me_all = df2[
-        ((et2 == "view_product") & (df2["product_id"].astype(str).isin(list(my_product_ids))))
-        | ((et2 == "view_profile") & (df2["profile_id"].astype(str) == my_profile_id))
+        (
+            (et2 == "view_product")
+            & (df2["product_id"].astype(str).isin(list(my_product_ids)))
+        )
+        | (
+            (et2 == "view_profile")
+            & (df2["profile_id"].astype(str) == my_profile_id)
+        )
+        | (
+            et2.isin(contact_event_types)
+            & (
+                df2["product_id"].astype(str).isin(list(my_product_ids))
+                | (df2["profile_id"].astype(str) == my_profile_id)
+            )
+        )
     ].copy()
 
     if df_me_all.empty:
@@ -430,15 +477,23 @@ def render(db: dict):
 
     # Normalizaciones
     for part in [df_cur, df_prev]:
+        part["etype"] = _event_type(part)
+        part["etype_label"] = part["etype"].apply(_label_event_type)
+
         if not part.empty:
             part["day"] = part["ts_dt"].dt.date.astype(str)
-            part["etype"] = _event_type(part)
-            part["etype_label"] = part["etype"].apply(_label_event_type)
+        else:
+            part["day"] = ""
 
     # =========================================================
     # TABS GRANDES
     # =========================================================
-    t_unique, t_visits, t_sources = st.tabs(["👥 Visitantes únicos", "🔁 Visitas / eventos", "🧭 Origen del tráfico"])
+    t_unique, t_visits, t_sources, t_contacts = st.tabs([
+            "👥 Visitantes únicos",
+            "🔁 Visitas / eventos",
+            "🧭 Origen del tráfico",
+            "📲 Clics de contacto",
+        ])
 
     # =========================================================
     # TAB 1: VISITANTES ÚNICOS
@@ -793,3 +848,122 @@ def render(db: dict):
                 ).round(2)
 
             st.dataframe(context_detail, width="stretch", hide_index=True)
+
+    # =========================================================
+    # TAB 4: CLICS DE CONTACTO
+    # =========================================================
+    with t_contacts:
+        st.markdown("#### Interacciones de contacto de los últimos 28 días")
+
+        contact_df_cur = df_cur[df_cur["etype"].isin(contact_event_types)].copy()
+        contact_df_prev = df_prev[df_prev["etype"].isin(contact_event_types)].copy()
+
+        total_contact_cur = int(len(contact_df_cur))
+        total_contact_prev = int(len(contact_df_prev))
+
+        click_whatsapp_cur = int((contact_df_cur["etype"] == "click_whatsapp").sum()) if not contact_df_cur.empty else 0
+        click_instagram_cur = int((contact_df_cur["etype"] == "click_instagram").sum()) if not contact_df_cur.empty else 0
+        click_call_cur = int((contact_df_cur["etype"] == "click_call").sum()) if not contact_df_cur.empty else 0
+        click_website_cur = int((contact_df_cur["etype"] == "click_website").sum()) if not contact_df_cur.empty else 0
+        click_catalog_cur = int((contact_df_cur["etype"] == "click_catalog").sum()) if not contact_df_cur.empty else 0
+
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Clics de contacto", total_contact_cur, _metric_delta_text(total_contact_cur, total_contact_prev))
+        c2.metric("Visitantes que hicieron clic", int(contact_df_cur["visitor"].nunique()) if not contact_df_cur.empty else 0)
+        c3.metric(
+            "Promedio por visitante",
+            round(_safe_div(total_contact_cur, max(1, int(contact_df_cur["visitor"].nunique()) if not contact_df_cur.empty else 0)), 2)
+        )
+
+        st.write("")
+
+        c4, c5, c6, c7, c8 = st.columns(5)
+        c4.metric("WhatsApp", click_whatsapp_cur)
+        c5.metric("Instagram", click_instagram_cur)
+        c6.metric("Llamadas", click_call_cur)
+        c7.metric("Web", click_website_cur)
+        c8.metric("Catálogo", click_catalog_cur)
+
+        st.write("")
+
+        if contact_df_cur.empty:
+            st.info("Aún no hay clics de contacto registrados para tu emprendimiento.")
+        else:
+            left4, right4 = st.columns([1.5, 1.5], gap="large")
+
+            with left4:
+                st.markdown("##### Distribución por tipo de contacto")
+                by_contact_type = (
+                    contact_df_cur.groupby("etype_label")
+                    .size()
+                    .reset_index(name="cantidad")
+                    .sort_values("cantidad", ascending=False)
+                )
+                _render_bar(
+                    by_contact_type,
+                    x="etype_label",
+                    y="cantidad",
+                    height=320,
+                    key="stats_contact_type_bar",
+                )
+
+            with right4:
+                st.markdown("##### Fuente de esos clics")
+                by_contact_source = (
+                    contact_df_cur.groupby("entry_source_label")
+                    .size()
+                    .reset_index(name="cantidad")
+                    .sort_values("cantidad", ascending=False)
+                    .head(12)
+                )
+                _render_bar(
+                    by_contact_source,
+                    x="entry_source_label",
+                    y="cantidad",
+                    height=320,
+                    key="stats_contact_source_bar",
+                )
+
+            st.write("")
+            st.markdown("##### Detalle de clics por tipo y fuente")
+
+            detail_contact = (
+                contact_df_cur.groupby(["etype_label", "entry_source_label"])
+                .size()
+                .reset_index(name="cantidad")
+                .sort_values("cantidad", ascending=False)
+                .rename(columns={
+                    "etype_label": "tipo_contacto",
+                    "entry_source_label": "fuente",
+                })
+            )
+
+            st.dataframe(detail_contact, width="stretch", hide_index=True)
+
+            st.write("")
+            st.markdown("##### Productos con más clics de contacto")
+
+            contact_products = contact_df_cur[contact_df_cur["product_id"].astype(str).ne("")].copy()
+
+            if contact_products.empty:
+                st.info("Todavía no hay clics de contacto asociados directamente a productos.")
+            else:
+                top_contact_products = (
+                    contact_products.groupby(contact_products["product_id"].astype(str))
+                    .size()
+                    .reset_index(name="clics")
+                    .sort_values("clics", ascending=False)
+                    .head(10)
+                )
+
+                rows_contact_products = []
+                for _, r in top_contact_products.iterrows():
+                    pid = str(r.iloc[0] or "")
+                    pr = prod_map.get(pid) or {}
+                    rows_contact_products.append({
+                        "Producto": pr.get("name", "—"),
+                        "Categoría": pr.get("category", "—"),
+                        "Clics": int(r["clics"]),
+                    })
+
+                st.dataframe(pd.DataFrame(rows_contact_products), width="stretch", hide_index=True)

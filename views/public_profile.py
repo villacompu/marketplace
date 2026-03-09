@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+import json
 import re
+
 import streamlit as st
 import streamlit.components.v1 as components
 
+from services.analytics import log_view_profile, log_contact_click
 from services.validators import safe_text, safe_html
 from auth.session import get_user
-from services.analytics import log_view_profile
 from services.catalog import format_price
 from views.router import goto
 
@@ -69,6 +71,21 @@ def _link_chip(label: str, url: str, kind: str = "url") -> str:
         f'<span class="chip-ico">{icon}</span>'
         f"<span>{label_safe}</span>"
         f"</a>"
+    )
+
+
+def _open_url(url: str, same_tab: bool = False) -> None:
+    if not url:
+        return
+
+    target = "_self" if same_tab else "_blank"
+    components.html(
+        f"""
+        <script>
+            window.open({json.dumps(url)}, {json.dumps(target)});
+        </script>
+        """,
+        height=0,
     )
 
 
@@ -237,6 +254,10 @@ def render(db):
     if not wa_url and phone_clean:
         wa_url = _wa_from_phone(phone_clean)
 
+    instagram_url = (links.get("instagram") or "").strip()
+    website_url = (links.get("website") or "").strip()
+    catalog_url = (links.get("external_catalog") or links.get("catalog") or "").strip()
+
     city = prof.get("city") or "—"
     schedule = prof.get("availability") or "—"
     cats = prof.get("categories") or []
@@ -291,93 +312,54 @@ def render(db):
 
     st.write("")
 
-    # ---- Chips / contactos ----
-    order = [
-        ("WhatsApp", wa_url),
-        ("Instagram", links.get("instagram")),
-        ("Teléfono", tel_url),
-        ("Facebook", links.get("facebook")),
-        ("TikTok", links.get("tiktok")),
-        ("Página web", links.get("website")),
-        ("Catálogo", links.get("external_catalog") or links.get("catalog")),
-    ]
+    # ---- Contactos medibles (única sección) ----
+    instagram_url = (links.get("instagram") or "").strip()
+    website_url = (links.get("website") or "").strip()
+    catalog_url = (links.get("external_catalog") or links.get("catalog") or "").strip()
 
-    chips = []
-    for label, url in order:
-        url = (url or "").strip()
-        if not url:
-            continue
-        if label.lower().startswith("tel"):
-            chips.append(_link_chip(label, url, kind="tel"))
-        else:
-            chips.append(_link_chip(label, url, kind="url"))
+    action_buttons = []
 
-    if chips:
-        chips_css = """
-        <style>
-        .pp-chips, .pp-chips *{
-          font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
-        }
-        .pp-chips{
-          display:flex;
-          flex-wrap:wrap;
-          justify-content:center;
-          align-items:center;
-          gap:10px;
-          padding: 2px 0 10px 0;
-          max-width: 980px;
-          margin: 0 auto;
-        }
-        .chip-link{
-          display:inline-flex;
-          align-items:center;
-          gap:8px;
-          padding:8px 12px;
-          border-radius:999px;
-          border:1px solid rgba(109,40,217,0.22);
-          background: rgba(109,40,217,0.10);
-          box-shadow: 0 10px 24px rgba(2,6,23,0.08);
-          text-decoration:none !important;
-          font-weight:800;
-          font-size:13px;
-          color: #1d4ed8 !important;
-          line-height:1;
-          white-space: nowrap;
-        }
-        .chip-link:hover{
-          background: rgba(109,40,217,0.14);
-          border-color: rgba(109,40,217,0.30);
-          transform: translateY(-1px);
-        }
-        .chip-ico{
-          width:22px;
-          height:22px;
-          border-radius:999px;
-          display:inline-flex;
-          align-items:center;
-          justify-content:center;
-          background: rgba(255,255,255,0.92);
-          border: 1px solid rgba(15,23,42,0.10);
-          font-size:13px;
-        }
-        @media (max-width: 520px){
-          .pp-chips{gap:8px; max-width: 100%;}
-          .chip-link{padding:7px 10px; font-size:12.5px;}
-          .chip-ico{width:20px;height:20px;font-size:12.5px;}
-        }
-        </style>
-        """
+    if wa_url:
+        action_buttons.append(("📲 WhatsApp", "whatsapp", wa_url, False))
 
-        components.html(
-            chips_css + "<div class='pp-chips'>" + "".join(chips) + "</div>",
-            height=140 if len(chips) > 4 else 100,
-            scrolling=False,
-        )
+    if instagram_url:
+        action_buttons.append(("📸 Instagram", "instagram", instagram_url, False))
 
-    st.write("")
+    if tel_url:
+        action_buttons.append(("📞 Llamar", "call", tel_url, True))
+
+    if website_url:
+        action_buttons.append(("🌐 Web", "website", website_url, False))
+
+    if catalog_url:
+        action_buttons.append(("🛍️ Catálogo", "catalog", catalog_url, False))
+
+    if action_buttons:
+        st.write("")
+
+        # hasta 3 por fila
+        for i in range(0, len(action_buttons), 3):
+            row = action_buttons[i:i+3]
+            cols = st.columns(len(row), gap="small")
+
+            for col, (label, kind, url, same_tab) in zip(cols, row):
+                with col:
+                    if st.button(label, key=f"pp_contact_{kind}_{prof.get('id')}_{i}", use_container_width=True):
+                        log_contact_click(
+                            kind=kind,
+                            profile_id=prof.get("id"),
+                            user_id=(u or {}).get("id"),
+                            meta={
+                                "entry_source": "public_profile_contact",
+                                "page_context": "public_profile",
+                            },
+                        )
+                        _open_url(url, same_tab=same_tab)
+
+        st.write("")
 
     # ---- Tabs ----
-    insta_url = (links.get("instagram") or "").strip()
+    insta_url = instagram_url
     tabs = ["📌 Resumen", "🖼️ Galería"]
     if insta_url:
         tabs.append("📸 Instagram")

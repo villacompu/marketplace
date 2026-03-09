@@ -66,13 +66,16 @@ def _label_entry_source(v: str) -> str:
         "directory_filters": "Filtros del directorio",
         "directory_product_card": "Producto desde directorio",
         "directory_profile_card": "Perfil abierto desde directorio",
+        "directory_contact": "Contacto desde directorio",
 
         "product_detail": "Detalle del producto",
         "product_detail_profile_button": "Perfil abierto desde producto",
+        "product_detail_contact": "Contacto desde detalle del producto",
         "product_card": "Tarjeta de producto",
         "featured_product": "Producto destacado",
 
         "public_profile": "Perfil público",
+        "public_profile_contact": "Contacto desde perfil público",
         "profile_card": "Tarjeta de emprendimiento",
 
         "my_profile": "Mi perfil",
@@ -87,6 +90,7 @@ def _label_entry_source(v: str) -> str:
         "direct": "Acceso directo",
         "": "Histórico sin trazabilidad",
     }
+
     v = str(v or "").strip()
     return m.get(v, v.replace("_", " ").capitalize() if v else "Histórico sin trazabilidad")
 

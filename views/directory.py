@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import json
 import re
 import html
+
 import streamlit as st
+import streamlit.components.v1 as components
 
 from services.validators import safe_text
 from views.router import goto
@@ -52,6 +55,21 @@ def _tel_href(v: str) -> str:
     return f"tel:{v}" if v else ""
 
 
+def _open_url(url: str, same_tab: bool = False) -> None:
+    if not url:
+        return
+
+    target = "_self" if same_tab else "_blank"
+    components.html(
+        f"""
+        <script>
+            window.open({json.dumps(url)}, {json.dumps(target)});
+        </script>
+        """,
+        height=0,
+    )
+
+
 def _is_profile_public_allowed(db: dict, prof: dict) -> bool:
     if not prof:
         return False
@@ -91,24 +109,14 @@ def _profile_categories_text(prof: dict) -> str:
 
 
 def _strip_html(raw: str) -> str:
-    """
-    Limpia HTML guardado por error dentro de short_desc/long_desc.
-    """
     raw = (raw or "").strip()
     if not raw:
         return ""
 
-    # convierte entidades html
     raw = html.unescape(raw)
-
-    # quita script/style si aparecieran
     raw = re.sub(r"<script.*?>.*?</script>", " ", raw, flags=re.I | re.S)
     raw = re.sub(r"<style.*?>.*?</style>", " ", raw, flags=re.I | re.S)
-
-    # quita tags
     raw = re.sub(r"<[^>]+>", " ", raw)
-
-    # colapsa espacios
     raw = re.sub(r"\s+", " ", raw).strip()
     return raw
 
@@ -147,6 +155,7 @@ def render(db: dict):
     st.write("")
 
     u = get_user() or {}
+
     log_view_directory(
         user_id=u.get("id"),
         meta={
@@ -262,29 +271,40 @@ def render(db: dict):
 
                 actions = []
                 if wa_href:
-                    actions.append(("wa", wa_href, "📲"))
+                    actions.append(("whatsapp", wa_href, "📲", False))
                 if ig_href:
-                    actions.append(("ig", ig_href, "📸"))
+                    actions.append(("instagram", ig_href, "📸", False))
                 if tel_href:
-                    actions.append(("tel", tel_href, "📞"))
+                    actions.append(("call", tel_href, "📞", True))
 
-                # perfil siempre va
-                actions.append(("profile", "", "👀"))
+                actions.append(("profile", "", "👀", False))
 
                 btn_cols = st.columns(len(actions), gap="small")
 
-                for btn_col, action in zip(btn_cols, actions):
-                    kind, href, label = action
+                for j, (btn_col, action) in enumerate(zip(btn_cols, actions)):
+                    kind, href, label, same_tab = action
+
                     with btn_col:
                         if kind == "profile":
                             if st.button(label, key=f"dir_profile_{prof['id']}", use_container_width=True):
                                 st.session_state["entry_source"] = "directory_profile_card"
                                 goto("public_profile", selected_profile_id=prof["id"])
                         else:
-                            st.markdown(
-                                f'<a class="btn-contact" href="{href}" target="_blank" rel="noopener noreferrer">{label}</a>',
-                                unsafe_allow_html=True,
-                            )
+                            if st.button(
+                                label,
+                                key=f"dir_contact_{kind}_{prof['id']}_{i}_{j}",
+                                use_container_width=True,
+                            ):
+                                log_contact_click(
+                                    kind=kind,
+                                    profile_id=prof.get("id"),
+                                    user_id=u.get("id"),
+                                    meta={
+                                        "entry_source": "directory_contact",
+                                        "page_context": "directory",
+                                    },
+                                )
+                                _open_url(href, same_tab=same_tab)
 
                 st.markdown("</div>", unsafe_allow_html=True)
                 st.markdown("</div>", unsafe_allow_html=True)

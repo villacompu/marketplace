@@ -1,18 +1,17 @@
 from __future__ import annotations
 
-import streamlit as st
-import textwrap
+import json
 import re
+import textwrap
+
+import streamlit as st
+import streamlit.components.v1 as components
 
 from services.validators import safe_text
 from views.router import goto
 from auth.session import get_user
-from services.analytics import log_view_product
+from services.analytics import log_view_product, log_contact_click
 from services.catalog import format_price
-
-
-
-
 
 
 def _norm_tel(t: str) -> str:
@@ -52,6 +51,21 @@ def _tel_href(v: str) -> str:
     return f"tel:{v}" if v else ""
 
 
+def _open_url(url: str, same_tab: bool = False) -> None:
+    if not url:
+        return
+
+    target = "_self" if same_tab else "_blank"
+    components.html(
+        f"""
+        <script>
+            window.open({json.dumps(url)}, {json.dumps(target)});
+        </script>
+        """,
+        height=0,
+    )
+
+
 # ✅ Regla de visibilidad pública real
 def _is_public_allowed(db: dict, product: dict) -> bool:
     if (product.get("status") or "").upper() != "PUBLISHED":
@@ -59,6 +73,7 @@ def _is_public_allowed(db: dict, product: dict) -> bool:
 
     profile_id = product.get("profile_id")
     prof = next((x for x in db.get("profiles", []) if x.get("id") == profile_id), None)
+
     if not prof or not prof.get("is_approved"):
         return False
 
@@ -95,8 +110,7 @@ def render(db):
             st.rerun()
         return
 
-    # ✅ Tracking deduplicado (evita duplicados por rerun)
-    # (lo hacemos DESPUÉS del bloqueo, para contar solo vistas reales)
+    # ✅ Tracking de vista
     log_view_product(
         product_id=p.get("id"),
         profile_id=p.get("profile_id"),
@@ -107,19 +121,18 @@ def render(db):
         },
     )
 
-
     # -------- Header --------
     st.markdown(
-        f"<div class='pd-title'>{safe_text(p.get('name','Producto'), 120)}</div>",
+        f"<div class='pd-title'>{safe_text(p.get('name', 'Producto'), 120)}</div>",
         unsafe_allow_html=True
     )
     st.markdown(
-        f"<div class='pd-sub'>{safe_text(p.get('category',''), 40)}</div>",
+        f"<div class='pd-sub'>{safe_text(p.get('category', ''), 40)}</div>",
         unsafe_allow_html=True
     )
     st.write("")
 
-    # -------- Imágenes (siempre hero = primera) --------
+    # -------- Imágenes --------
     imgs = p.get("photo_urls") or []
     imgs = [u.strip() for u in imgs if (u or "").strip()]
     hero = imgs[0] if imgs else ""
@@ -139,7 +152,6 @@ def render(db):
         else:
             st.markdown("<div class='pd-hero-placeholder'>🖼️</div>", unsafe_allow_html=True)
 
-        # Miniaturas SOLO si hay más de 1 (NO clickeables)
         if len(imgs) > 1:
             thumbs_html = []
             for i, url in enumerate(imgs[:8]):
@@ -171,7 +183,7 @@ def render(db):
         city = safe_text((prof or {}).get("city", "—"), 60)
 
         if prof:
-            if st.button("👤 Ver emprendimiento", width='stretch', key="pd_view_profile"):
+            if st.button("👤 Ver emprendimiento", width="stretch", key="pd_view_profile"):
                 st.session_state["entry_source"] = "product_detail_profile_button"
                 goto("public_profile", selected_profile_id=prof["id"])
 
@@ -182,6 +194,8 @@ def render(db):
         wa_href = _wa_href(links.get("whatsapp") or "")
         ig_href = _ig_href(links.get("instagram") or "")
         tel_href = _tel_href(links.get("phone") or "")
+        web_href = (links.get("website") or "").strip()
+        catalog_href = (links.get("external_catalog") or links.get("catalog") or "").strip()
 
         st.markdown(
             f"""
@@ -206,34 +220,48 @@ def render(db):
             unsafe_allow_html=True
         )
 
-        st.markdown('<div class="card-actions"><div class="actions-3">', unsafe_allow_html=True)
-        a1, a2, a3 = st.columns([1, 1, 1], gap="small")
+        # -------- Contactos medibles --------
+        action_buttons = []
 
-        with a1:
-            if wa_href:
-                st.markdown(
-                    f'<a class="btn-contact" href="{wa_href}" target="_blank" rel="noopener noreferrer">📲 WhatsApp</a>',
-                    unsafe_allow_html=True
-                )
-            else:
-                st.markdown('<div class="btn-contact disabled">📲 WhatsApp</div>', unsafe_allow_html=True)
+        if wa_href:
+            action_buttons.append(("📲 WhatsApp", "whatsapp", wa_href, False))
 
-        with a2:
-            if ig_href:
-                st.markdown(
-                    f'<a class="btn-contact" href="{ig_href}" target="_blank" rel="noopener noreferrer">📸 Instagram</a>',
-                    unsafe_allow_html=True
-                )
-            else:
-                st.markdown('<div class="btn-contact disabled">📸 Instagram</div>', unsafe_allow_html=True)
+        if ig_href:
+            action_buttons.append(("📸 Instagram", "instagram", ig_href, False))
 
-        with a3:
-            if tel_href:
-                st.markdown(f'<a class="btn-contact" href="{tel_href}">📞 Llamar</a>', unsafe_allow_html=True)
-            else:
-                st.markdown('<div class="btn-contact disabled">📞 Llamar</div>', unsafe_allow_html=True)
+        if tel_href:
+            action_buttons.append(("📞 Llamar", "call", tel_href, True))
 
-        st.markdown("</div></div>", unsafe_allow_html=True)
+        if web_href:
+            action_buttons.append(("🌐 Web", "website", web_href, False))
+
+        if catalog_href:
+            action_buttons.append(("🛍️ Catálogo", "catalog", catalog_href, False))
+
+        if action_buttons:
+            st.write("")
+            for i in range(0, len(action_buttons), 3):
+                row = action_buttons[i:i + 3]
+                cols = st.columns(len(row), gap="small")
+
+                for col, (label, kind, url, same_tab) in zip(cols, row):
+                    with col:
+                        if st.button(
+                            label,
+                            key=f"pd_contact_{kind}_{p.get('id')}_{i}",
+                            use_container_width=True,
+                        ):
+                            log_contact_click(
+                                kind=kind,
+                                product_id=p.get("id"),
+                                profile_id=p.get("profile_id"),
+                                user_id=(u or {}).get("id"),
+                                meta={
+                                    "entry_source": "product_detail_contact",
+                                    "page_context": "product_detail",
+                                },
+                            )
+                            _open_url(url, same_tab=same_tab)
 
     # -------- Descripción --------
     st.write("")
