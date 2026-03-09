@@ -664,8 +664,13 @@ def render(db):
     with t_backup:
         st.markdown("### 🗄️ Backup de datos")
 
+        flash_msg = st.session_state.pop("admin_backup_flash", "")
+        if flash_msg:
+            st.success(flash_msg)
+
         analytics = load_analytics()
 
+        st.divider()
         # ---------------------------------
         # DESCARGAS
         # ---------------------------------
@@ -723,14 +728,21 @@ def render(db):
             key="admin_restore_db_uploader",
         )
 
+        if up_db is not None:
+            st.success(f"Archivo cargado: {up_db.name}")
+
         confirm_db = st.checkbox(
             "Confirmo que quiero reemplazar la base principal (db.json)",
             key="admin_restore_db_confirm",
         )
 
+        if up_db is not None and not confirm_db:
+            st.info("Marca la confirmación para habilitar la restauración.")
+
         if up_db is not None and confirm_db:
             if st.button("♻️ Restaurar db.json", width='stretch', key="admin_restore_db_btn"):
                 try:
+                    up_db.seek(0)
                     new_db = json.load(up_db)
 
                     if not isinstance(new_db, dict):
@@ -743,14 +755,13 @@ def render(db):
                         st.error(f"El archivo db.json no es válido. Faltan claves: {', '.join(missing)}")
                         st.stop()
 
-                    # conservar estructura mínima
                     new_db.setdefault("events", [])
 
                     db.clear()
                     db.update(new_db)
                     save_db(db)
 
-                    st.success("✅ db.json restaurado correctamente.")
+                    st.session_state["admin_backup_flash"] = "✅ db.json restaurado correctamente."
                     st.rerun()
 
                 except Exception as e:
@@ -770,14 +781,21 @@ def render(db):
             key="admin_restore_analytics_uploader",
         )
 
+        if up_an is not None:
+            st.success(f"Archivo cargado: {up_an.name}")
+
         confirm_an = st.checkbox(
             "Confirmo que quiero reemplazar la analítica (analytics.json)",
             key="admin_restore_analytics_confirm",
         )
 
+        if up_an is not None and not confirm_an:
+            st.info("Marca la confirmación para habilitar la restauración.")
+
         if up_an is not None and confirm_an:
             if st.button("♻️ Restaurar analytics.json", width='stretch', key="admin_restore_analytics_btn"):
                 try:
+                    up_an.seek(0)
                     new_analytics = json.load(up_an)
 
                     if not isinstance(new_analytics, dict):
@@ -796,7 +814,7 @@ def render(db):
 
                     save_analytics(new_analytics)
 
-                    st.success("✅ analytics.json restaurado correctamente.")
+                    st.session_state["admin_backup_flash"] = "✅ analytics.json restaurado correctamente."
                     st.rerun()
 
                 except Exception as e:
@@ -816,14 +834,21 @@ def render(db):
             key="admin_restore_zip_uploader",
         )
 
+        if up_zip is not None:
+            st.success(f"Archivo cargado: {up_zip.name}")
+
         confirm_zip = st.checkbox(
             "Confirmo que quiero reemplazar db.json y analytics.json",
             key="admin_restore_zip_confirm",
         )
 
+        if up_zip is not None and not confirm_zip:
+            st.info("Marca la confirmación para habilitar la restauración.")
+
         if up_zip is not None and confirm_zip:
             if st.button("♻️ Restaurar backup completo", width='stretch', key="admin_restore_zip_btn"):
                 try:
+                    up_zip.seek(0)
                     with zipfile.ZipFile(up_zip) as zf:
                         names = zf.namelist()
 
@@ -834,7 +859,6 @@ def render(db):
                         new_db = json.loads(zf.read("db.json").decode("utf-8"))
                         new_analytics = json.loads(zf.read("analytics.json").decode("utf-8"))
 
-                    # validar db
                     if not isinstance(new_db, dict):
                         st.error("db.json dentro del ZIP no es válido.")
                         st.stop()
@@ -847,7 +871,6 @@ def render(db):
 
                     new_db.setdefault("events", [])
 
-                    # validar analytics
                     if not isinstance(new_analytics, dict):
                         st.error("analytics.json dentro del ZIP no es válido.")
                         st.stop()
@@ -867,7 +890,7 @@ def render(db):
                     save_db(db)
                     save_analytics(new_analytics)
 
-                    st.success("✅ Backup completo restaurado correctamente.")
+                    st.session_state["admin_backup_flash"] = "✅ Backup completo restaurado correctamente."
                     st.rerun()
 
                 except Exception as e:
