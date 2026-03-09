@@ -7,7 +7,6 @@ import streamlit.components.v1 as components
 from services.validators import safe_text
 from auth.session import get_user
 from services.analytics import log_view_profile
-from db.repo_json import save_db
 from services.catalog import format_price
 
 
@@ -206,8 +205,7 @@ def render(db):
 
     # ---- analytics view ----
     u = get_user()
-    did = log_view_profile(
-        db,
+    log_view_profile(
         profile_id=prof.get("id"),
         user_id=(u or {}).get("id"),
         meta={
@@ -215,8 +213,6 @@ def render(db):
             "page_context": "public_profile",
         },
     )
-    if did:
-        save_db(db)
 
     # ---- Header ----
     st.markdown(

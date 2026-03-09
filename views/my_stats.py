@@ -1,9 +1,11 @@
 from __future__ import annotations
-
+    
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+
+from db.repo_json import load_analytics
 from auth.session import get_user
 from auth.guards import require_role
 
@@ -277,7 +279,8 @@ def render(db: dict):
     )
     st.write("")
 
-    events = db.get("events", []) or []
+    analytics = load_analytics()
+    events = analytics.get("events", []) or []
     if not events:
         st.info("Aún no hay eventos registrados. Navega productos/perfil para generar estadísticas.")
         return

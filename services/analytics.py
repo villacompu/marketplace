@@ -6,6 +6,7 @@ import uuid
 import streamlit as st
 
 from services.analytics_context import get_event_context
+from db.repo_json import load_analytics, save_analytics
 
 
 MAX_EVENTS = 5000
@@ -45,15 +46,19 @@ def _safe_meta(meta: dict | None) -> dict:
         return {}
 
     cleaned = {}
+
     for k, v in meta.items():
         key = str(k)[:80]
+
         if isinstance(v, (str, int, float, bool)) or v is None:
             if isinstance(v, str):
                 cleaned[key] = v[:500]
             else:
                 cleaned[key] = v
+
         elif isinstance(v, list):
             cleaned[key] = [str(x)[:120] for x in v[:20]]
+
         elif isinstance(v, dict):
             inner = {}
             for ik, iv in v.items():
@@ -65,6 +70,7 @@ def _safe_meta(meta: dict | None) -> dict:
                 else:
                     inner[ik2] = str(iv)[:300]
             cleaned[key] = inner
+
         else:
             cleaned[key] = str(v)[:300]
 
@@ -72,7 +78,6 @@ def _safe_meta(meta: dict | None) -> dict:
 
 
 def track_event(
-    db: dict,
     *,
     event_type: str,
     user_id: str | None = None,
@@ -82,7 +87,8 @@ def track_event(
     meta: dict | None = None,
 ) -> None:
     """
-    Guarda eventos básicos.
+    Guarda eventos en analytics.json.
+
     - NO guardamos IP
     - NO guardamos PII sensible
     - Mantiene un máximo para que el JSON no crezca infinito
@@ -90,7 +96,8 @@ def track_event(
     Compat:
     - Guardamos `type` y también `event` con el mismo valor.
     """
-    db.setdefault("events", [])
+    analytics = load_analytics()
+    analytics.setdefault("events", [])
 
     ctx = _safe_meta(get_event_context())
     base_meta = _safe_meta(meta)
@@ -98,7 +105,7 @@ def track_event(
     # prioridad: meta explícita sobrescribe contexto si trae la misma llave
     merged_meta = {**ctx, **base_meta}
 
-    db["events"].append(
+    analytics["events"].append(
         {
             "ts": _now_iso(),
             "type": event_type,
@@ -111,12 +118,13 @@ def track_event(
         }
     )
 
-    if len(db["events"]) > MAX_EVENTS:
-        db["events"] = db["events"][-MAX_EVENTS:]
+    if len(analytics["events"]) > MAX_EVENTS:
+        analytics["events"] = analytics["events"][-MAX_EVENTS:]
+
+    save_analytics(analytics)
 
 
 def track_event_once(
-    db: dict,
     *,
     dedupe_key: str,
     event_type: str,
@@ -139,7 +147,6 @@ def track_event_once(
     st.session_state["_analytics_dedupe"].add(k)
 
     track_event(
-        db,
         event_type=event_type,
         user_id=user_id,
         anon_id=anon_id,
@@ -155,7 +162,6 @@ def track_event_once(
 # -------------------------------------------------------------------
 
 def log_view_home(
-    db: dict,
     *,
     user_id: str | None = None,
     meta: dict | None = None,
@@ -163,7 +169,6 @@ def log_view_home(
     anon = get_anon_id(st.session_state)
     merged = {"page_context": "home", **(meta or {})}
     return track_event_once(
-        db,
         dedupe_key="home",
         event_type="view_home",
         user_id=user_id,
@@ -173,7 +178,6 @@ def log_view_home(
 
 
 def log_view_product(
-    db: dict,
     *,
     product_id: str,
     profile_id: str | None = None,
@@ -183,7 +187,6 @@ def log_view_product(
     anon = get_anon_id(st.session_state)
     merged = {"page_context": "product_detail", **(meta or {})}
     return track_event_once(
-        db,
         dedupe_key=f"product:{product_id}",
         event_type="view_product",
         user_id=user_id,
@@ -195,7 +198,6 @@ def log_view_product(
 
 
 def log_view_profile(
-    db: dict,
     *,
     profile_id: str,
     user_id: str | None = None,
@@ -204,7 +206,6 @@ def log_view_profile(
     anon = get_anon_id(st.session_state)
     merged = {"page_context": "public_profile", **(meta or {})}
     return track_event_once(
-        db,
         dedupe_key=f"profile:{profile_id}",
         event_type="view_profile",
         user_id=user_id,
@@ -215,7 +216,6 @@ def log_view_profile(
 
 
 def log_view_directory(
-    db: dict,
     *,
     user_id: str | None = None,
     meta: dict | None = None,
@@ -223,7 +223,6 @@ def log_view_directory(
     anon = get_anon_id(st.session_state)
     merged = {"page_context": "directory", **(meta or {})}
     return track_event_once(
-        db,
         dedupe_key="directory",
         event_type="view_directory",
         user_id=user_id,
@@ -233,7 +232,6 @@ def log_view_directory(
 
 
 def log_search(
-    db: dict,
     *,
     q: str,
     filters: dict | None = None,
@@ -252,7 +250,6 @@ def log_search(
 
     sig = f"{search_meta['q']}|{search_meta.get('filters')}"
     return track_event_once(
-        db,
         dedupe_key=f"search:{sig}",
         event_type="search",
         user_id=user_id,
@@ -262,7 +259,6 @@ def log_search(
 
 
 def log_contact_click(
-    db: dict,
     *,
     kind: str,
     product_id: str | None = None,
@@ -283,7 +279,6 @@ def log_contact_click(
     }
 
     return track_event_once(
-        db,
         dedupe_key=dedupe,
         event_type=event_type,
         user_id=user_id,

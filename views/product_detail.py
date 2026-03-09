@@ -10,7 +10,6 @@ from auth.session import get_user
 from services.analytics import log_view_product
 from services.catalog import format_price
 
-from db.repo_json import save_db
 
 
 
@@ -98,8 +97,7 @@ def render(db):
 
     # ✅ Tracking deduplicado (evita duplicados por rerun)
     # (lo hacemos DESPUÉS del bloqueo, para contar solo vistas reales)
-    did = log_view_product(
-        db,
+    log_view_product(
         product_id=p.get("id"),
         profile_id=p.get("profile_id"),
         user_id=(u or {}).get("id"),
@@ -108,8 +106,6 @@ def render(db):
             "page_context": "product_detail",
         },
     )
-    if did:
-        save_db(db)
 
 
     # -------- Header --------

@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+
+import io
+import zipfile
 import streamlit as st
 import pandas as pd
 import unicodedata
@@ -9,6 +12,7 @@ import secrets
 from auth.guards import require_role
 from auth.hashing import hash_password
 from db.repo_json import user_profile, save_db, now_iso
+from db.repo_json import load_analytics, save_analytics
 from services.featured import get_featured_products, set_featured_products
 from services.catalog import format_price
 
@@ -659,10 +663,212 @@ def render(db):
     # =========================================================
     with t_backup:
         st.markdown("### 🗄️ Backup de datos")
-        st.download_button(
-            "⬇️ Descargar base de datos (db.json)",
-            data=json.dumps(db, ensure_ascii=False, indent=2),
-            file_name="db_export.json",
-            mime="application/json",
-            width='stretch'
+
+        analytics = load_analytics()
+
+        # ---------------------------------
+        # DESCARGAS
+        # ---------------------------------
+        st.markdown("#### ⬇️ Descargar backups")
+
+        d1, d2, d3 = st.columns(3, gap="small")
+
+        with d1:
+            st.download_button(
+                "⬇️ Descargar db.json",
+                data=json.dumps(db, ensure_ascii=False, indent=2),
+                file_name="db.json",
+                mime="application/json",
+                width='stretch',
+                key="admin_backup_download_db",
+            )
+
+        with d2:
+            st.download_button(
+                "⬇️ Descargar analytics.json",
+                data=json.dumps(analytics, ensure_ascii=False, indent=2),
+                file_name="analytics.json",
+                mime="application/json",
+                width='stretch',
+                key="admin_backup_download_analytics",
+            )
+
+        with d3:
+            zip_buffer = io.BytesIO()
+            with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zf:
+                zf.writestr("db.json", json.dumps(db, ensure_ascii=False, indent=2))
+                zf.writestr("analytics.json", json.dumps(analytics, ensure_ascii=False, indent=2))
+            zip_buffer.seek(0)
+
+            st.download_button(
+                "📦 Descargar backup completo",
+                data=zip_buffer.getvalue(),
+                file_name="backup_marketplace.zip",
+                mime="application/zip",
+                width='stretch',
+                key="admin_backup_download_zip",
+            )
+
+        st.divider()
+
+        # ---------------------------------
+        # RESTAURAR db.json
+        # ---------------------------------
+        st.markdown("#### ♻️ Restaurar db.json")
+        st.caption("Esto reemplaza usuarios, perfiles, productos, favoritos y configuración actual.")
+
+        up_db = st.file_uploader(
+            "Selecciona un archivo db.json",
+            type=["json"],
+            key="admin_restore_db_uploader",
         )
+
+        confirm_db = st.checkbox(
+            "Confirmo que quiero reemplazar la base principal (db.json)",
+            key="admin_restore_db_confirm",
+        )
+
+        if up_db is not None and confirm_db:
+            if st.button("♻️ Restaurar db.json", width='stretch', key="admin_restore_db_btn"):
+                try:
+                    new_db = json.load(up_db)
+
+                    if not isinstance(new_db, dict):
+                        st.error("El archivo no contiene un objeto JSON válido.")
+                        st.stop()
+
+                    required_keys = ["meta", "users", "profiles", "products", "favorites"]
+                    missing = [k for k in required_keys if k not in new_db]
+                    if missing:
+                        st.error(f"El archivo db.json no es válido. Faltan claves: {', '.join(missing)}")
+                        st.stop()
+
+                    # conservar estructura mínima
+                    new_db.setdefault("events", [])
+
+                    db.clear()
+                    db.update(new_db)
+                    save_db(db)
+
+                    st.success("✅ db.json restaurado correctamente.")
+                    st.rerun()
+
+                except Exception as e:
+                    st.error(f"No se pudo restaurar db.json: {e}")
+
+        st.divider()
+
+        # ---------------------------------
+        # RESTAURAR analytics.json
+        # ---------------------------------
+        st.markdown("#### ♻️ Restaurar analytics.json")
+        st.caption("Esto reemplaza todos los eventos y métricas históricas.")
+
+        up_an = st.file_uploader(
+            "Selecciona un archivo analytics.json",
+            type=["json"],
+            key="admin_restore_analytics_uploader",
+        )
+
+        confirm_an = st.checkbox(
+            "Confirmo que quiero reemplazar la analítica (analytics.json)",
+            key="admin_restore_analytics_confirm",
+        )
+
+        if up_an is not None and confirm_an:
+            if st.button("♻️ Restaurar analytics.json", width='stretch', key="admin_restore_analytics_btn"):
+                try:
+                    new_analytics = json.load(up_an)
+
+                    if not isinstance(new_analytics, dict):
+                        st.error("El archivo no contiene un objeto JSON válido.")
+                        st.stop()
+
+                    required_keys = ["meta", "events"]
+                    missing = [k for k in required_keys if k not in new_analytics]
+                    if missing:
+                        st.error(f"El archivo analytics.json no es válido. Faltan claves: {', '.join(missing)}")
+                        st.stop()
+
+                    if not isinstance(new_analytics.get("events"), list):
+                        st.error("analytics.json no es válido: 'events' debe ser una lista.")
+                        st.stop()
+
+                    save_analytics(new_analytics)
+
+                    st.success("✅ analytics.json restaurado correctamente.")
+                    st.rerun()
+
+                except Exception as e:
+                    st.error(f"No se pudo restaurar analytics.json: {e}")
+
+        st.divider()
+
+        # ---------------------------------
+        # RESTAURAR BACKUP COMPLETO ZIP
+        # ---------------------------------
+        st.markdown("#### ♻️ Restaurar backup completo (.zip)")
+        st.caption("El .zip debe contener db.json y analytics.json.")
+
+        up_zip = st.file_uploader(
+            "Selecciona un archivo backup_marketplace.zip",
+            type=["zip"],
+            key="admin_restore_zip_uploader",
+        )
+
+        confirm_zip = st.checkbox(
+            "Confirmo que quiero reemplazar db.json y analytics.json",
+            key="admin_restore_zip_confirm",
+        )
+
+        if up_zip is not None and confirm_zip:
+            if st.button("♻️ Restaurar backup completo", width='stretch', key="admin_restore_zip_btn"):
+                try:
+                    with zipfile.ZipFile(up_zip) as zf:
+                        names = zf.namelist()
+
+                        if "db.json" not in names or "analytics.json" not in names:
+                            st.error("El ZIP debe contener exactamente db.json y analytics.json.")
+                            st.stop()
+
+                        new_db = json.loads(zf.read("db.json").decode("utf-8"))
+                        new_analytics = json.loads(zf.read("analytics.json").decode("utf-8"))
+
+                    # validar db
+                    if not isinstance(new_db, dict):
+                        st.error("db.json dentro del ZIP no es válido.")
+                        st.stop()
+
+                    required_db = ["meta", "users", "profiles", "products", "favorites"]
+                    missing_db = [k for k in required_db if k not in new_db]
+                    if missing_db:
+                        st.error(f"db.json inválido. Faltan claves: {', '.join(missing_db)}")
+                        st.stop()
+
+                    new_db.setdefault("events", [])
+
+                    # validar analytics
+                    if not isinstance(new_analytics, dict):
+                        st.error("analytics.json dentro del ZIP no es válido.")
+                        st.stop()
+
+                    required_an = ["meta", "events"]
+                    missing_an = [k for k in required_an if k not in new_analytics]
+                    if missing_an:
+                        st.error(f"analytics.json inválido. Faltan claves: {', '.join(missing_an)}")
+                        st.stop()
+
+                    if not isinstance(new_analytics.get("events"), list):
+                        st.error("analytics.json inválido: 'events' debe ser una lista.")
+                        st.stop()
+
+                    db.clear()
+                    db.update(new_db)
+                    save_db(db)
+                    save_analytics(new_analytics)
+
+                    st.success("✅ Backup completo restaurado correctamente.")
+                    st.rerun()
+
+                except Exception as e:
+                    st.error(f"No se pudo restaurar el backup ZIP: {e}")

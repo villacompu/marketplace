@@ -7,7 +7,6 @@ import streamlit as st
 from services.validators import safe_text
 from views.router import goto
 from services.analytics import log_view_directory, log_contact_click
-from db.repo_json import save_db
 from auth.session import get_user
 
 
@@ -148,16 +147,13 @@ def render(db: dict):
     st.write("")
 
     u = get_user() or {}
-    did = log_view_directory(
-        db,
+    log_view_directory(
         user_id=u.get("id"),
         meta={
             "entry_source": st.session_state.get("entry_source") or st.session_state.get("last_route", "directory"),
             "page_context": "directory",
         },
     )
-    if did:
-        save_db(db)
 
     st.session_state.setdefault("entry_source", "directory")
 

@@ -10,7 +10,6 @@ from services.validators import safe_text, safe_html, safe_html_multiline
 
 
 from services.analytics import log_view_home, log_search
-from db.repo_json import save_db
 from auth.session import get_user
 
 
@@ -37,13 +36,10 @@ def render(db):
 
     # ✅ 1) Track view_home (dedupe por sesión)
     u = get_user()
-    did = log_view_home(
-        db,
+    log_view_home(
         user_id=(u or {}).get("id"),
         meta={"entry_source": "home_top"},
     )
-    if did:
-        save_db(db)
 
 
     # Buscador superior centrado + botones
@@ -175,15 +171,13 @@ def render(db):
             "price_range": [int(price_range[0]), int(price_range[1])],
             "sort_by": sort_by,
         }
-        if log_search(
-            db,
+        log_search(
             q=q,
             filters=filters,
             results_n=len(results_all),
             user_id=(u.get("id") if u else None),
             meta={"entry_source": "home_search"},
-        ):
-            save_db(db)
+        )
 
     st.markdown("### Resultados")
     info_txt = f"{len(results_all)} publicación(es) encontrada(s)"
