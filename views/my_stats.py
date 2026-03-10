@@ -67,6 +67,13 @@ def _label_entry_source(v: str) -> str:
         "home_results": "Resultados del inicio",
         "home_featured_profile": "Perfil desde destacados",
         "home_directory_button": "Botón directorio desde inicio",
+        "home_feed_button": "Botón explorar productos desde inicio",
+
+        "feed": "Feed",
+        "feed_card": "Tarjeta del feed",
+        "feed_product": "Producto del feed",
+        "feed_profile": "Perfil desde feed",
+        "feed_contact": "Contacto desde feed",
 
         "directory": "Directorio",
         "directory_search": "Búsqueda en directorio",
@@ -110,27 +117,41 @@ def _label_page_context(v: str) -> str:
         "my_products": "Mis productos",
         "favorites": "Favoritos",
         "search": "Búsqueda",
-        "Unknown": "No identificado",
-        "unknown": "No identificado",
-        "": "No identificado",
-    }
+        "feed": "Feed",
 
+        # histórico
+        "Unknown": "Histórico sin trazabilidad",
+        "unknown": "Histórico sin trazabilidad",
+        "": "Histórico sin trazabilidad",
+    }
     v = str(v or "").strip()
-    return m.get(v, v.replace("_", " ").capitalize() if v else "No identificado")
+    return m.get(v, v.replace("_", " ").capitalize() if v else "Histórico sin trazabilidad")
 
 
 def _label_event_type(v: str) -> str:
     m = {
+        "view_home": "Vista de inicio",
+        "view_directory": "Vista de directorio",
         "view_product": "Vista de producto",
         "view_profile": "Vista de perfil",
-        "view_home": "Vista de inicio",
         "search": "Búsqueda",
+
         "click_whatsapp": "Clic en WhatsApp",
         "click_instagram": "Clic en Instagram",
+        "click_call": "Clic en llamada",
         "click_website": "Clic en página web",
         "click_catalog": "Clic en catálogo",
-        "view_directory": "Vista de directorio",
+
+        # feed
+        "view_feed": "Vista del feed",
+        "view_feed_product": "Vista de producto en feed",
+        "feed_next": "Siguiente en feed",
+        "feed_prev": "Anterior en feed",
+        "feed_shuffle": "Aleatorio en feed",
+        "feed_open_product": "Abrir producto desde feed",
+        "feed_open_profile": "Abrir emprendimiento desde feed",
     }
+
     v = str(v or "").strip()
     return m.get(v, v.replace("_", " ").capitalize() if v else "Evento")
 

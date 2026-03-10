@@ -6,12 +6,14 @@ import streamlit as st
 from auth.session import get_user, logout
 from db.repo_json import load_db, seed_if_empty
 from views.router import current_route
-from views import home, login, register, admin
+from views import feed, home, login, register, admin
 from views import public_profile, favorites_page, my_profile, directory
 from views import product_detail, my_products
 from views import admin_stats, my_stats
 from views import force_change_password
+from views import feed
 from services.presence import heartbeat, online_count
+
 
 
 
@@ -199,6 +201,8 @@ def main():
         force_change_password.render(db)    
     elif route == "directory":
         directory.render(db)  
+    elif route == "feed":
+        feed.render(db)
     else:
         st.session_state["route"] = "home"
         st.rerun()

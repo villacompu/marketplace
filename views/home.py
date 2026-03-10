@@ -54,7 +54,7 @@ def render(db):
         )
         st.session_state["global_q_draft"] = q_draft
 
-        b1, b2, b3 = st.columns([1, 1, 1])
+        b1, b2, b3, b4 = st.columns([1, 1, 1, 1])
         with b1:
             if st.button("Buscar", width='stretch'):
                 st.session_state["global_q"] = (st.session_state["global_q_draft"] or "").strip()
@@ -71,6 +71,12 @@ def render(db):
                 st.session_state["global_q"] = ""
                 st.session_state["entry_source"] = "home_directory_button"
                 goto("directory")
+        with b4:
+            if st.button("🎬 Explorar productos", width="stretch"):
+                st.session_state["global_q"] = ""
+                st.session_state["entry_source"] = "home_feed_button"
+                goto("feed")
+
 
     st.write("")
     q = st.session_state.get("global_q", "")

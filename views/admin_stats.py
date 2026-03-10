@@ -60,6 +60,13 @@ def _label_entry_source(v: str) -> str:
         "home_results": "Resultados del inicio",
         "home_featured_profile": "Perfil desde destacados",
         "home_directory_button": "Botón directorio desde inicio",
+        "home_feed_button": "Botón explorar productos desde inicio",
+
+        "feed": "Feed",
+        "feed_card": "Tarjeta del feed",
+        "feed_product": "Producto del feed",
+        "feed_profile": "Perfil desde feed",
+        "feed_contact": "Contacto desde feed",
 
         "directory": "Directorio",
         "directory_search": "Búsqueda en directorio",
@@ -105,6 +112,7 @@ def _label_page_context(v: str) -> str:
         "my_products": "Mis productos",
         "favorites": "Favoritos",
         "search": "Búsqueda",
+        "feed": "Feed",
 
         # histórico
         "Unknown": "Histórico sin trazabilidad",
@@ -122,11 +130,23 @@ def _label_event_type(v: str) -> str:
         "view_product": "Vista de producto",
         "view_profile": "Vista de perfil",
         "search": "Búsqueda",
+
         "click_whatsapp": "Clic en WhatsApp",
         "click_instagram": "Clic en Instagram",
+        "click_call": "Clic en llamada",
         "click_website": "Clic en página web",
         "click_catalog": "Clic en catálogo",
+
+        # feed
+        "view_feed": "Vista del feed",
+        "view_feed_product": "Vista de producto en feed",
+        "feed_next": "Siguiente en feed",
+        "feed_prev": "Anterior en feed",
+        "feed_shuffle": "Aleatorio en feed",
+        "feed_open_product": "Abrir producto desde feed",
+        "feed_open_profile": "Abrir emprendimiento desde feed",
     }
+
     v = str(v or "").strip()
     return m.get(v, v.replace("_", " ").capitalize() if v else "Evento")
 
