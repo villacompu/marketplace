@@ -31,15 +31,6 @@ def _inject_css():
 def _topbar(db: dict):
     u = get_user()
 
-    qp = st.query_params
-    if "page" in qp:
-        st.session_state["route"] = qp.get("page")
-        # ejemplo: si viene pid
-        if "selected_product_id" in qp:
-            st.session_state["selected_product_id"] = qp.get("selected_product_id")
-        if "selected_profile_id" in qp:
-            st.session_state["selected_profile_id"] = qp.get("selected_profile_id")
-
     # ✅ Refrescar usuario desde DB para que permisos/limites se reflejen en el menú
     if u:
         u_db = next((x for x in (db.get("users", []) or []) if x.get("id") == u.get("id")), None)
@@ -80,12 +71,14 @@ def _topbar(db: dict):
             with a1:
                 if route != "home":
                     if st.button("🏠", key="btn_top_home", help="Ir al catálogo", width='stretch'):
+                        st.query_params.clear()
                         st.session_state["route"] = "home"
                         st.rerun()
                 
             with a2:
                 if not u:
                     if st.button("👤 Ingreso", key="btn_top_login", help="Ingresar", width='stretch'):
+                        st.query_params.clear()
                         st.session_state["route"] = "login"
                         st.rerun()
                 else:
@@ -95,14 +88,17 @@ def _topbar(db: dict):
                         # -------------------------
                         if u.get("role") == "EMPRENDEDOR":
                             if st.button("🏪 Mi perfil", width='stretch', key="btn_my_profile"):
+                                st.query_params.clear()
                                 st.session_state["route"] = "my_profile"
                                 st.rerun()
 
                             if st.button("📦 Mis productos", width='stretch', key="btn_my_products"):
+                                st.query_params.clear()
                                 st.session_state["route"] = "my_products"
                                 st.rerun()
 
                             if st.button("📊 Mis estadísticas", width='stretch', key="btn_my_stats"):
+                                st.query_params.clear()
                                 st.session_state["route"] = "my_stats"
                                 st.rerun()
 
@@ -113,10 +109,12 @@ def _topbar(db: dict):
                         # -------------------------
                         if u.get("role") == "ADMIN":
                             if st.button("🛠️ Admin", width='stretch', key="btn_admin"):
+                                st.query_params.clear()
                                 st.session_state["route"] = "admin"
                                 st.rerun()
 
                             if st.button("📊 Analíticas", width='stretch', key="btn_admin_stats"):
+                                st.query_params.clear()
                                 st.session_state["route"] = "admin_stats"
                                 st.rerun()
 
@@ -132,27 +130,41 @@ def _topbar(db: dict):
                         st.divider()
                         if st.button("🚪 Cerrar sesión", width='stretch', key="btn_logout"):
                             logout()
-                            # ✅ extra: limpia lo que pudo quedar en session_state
+                            st.query_params.clear()
                             st.session_state.pop("user", None)
+                            st.session_state.pop("_last_qp_sig", None)
                             st.session_state["route"] = "home"
                             st.rerun()
 
 
 def _sync_route_from_query_params():
-    
-    qp = st.query_params  # Streamlit >= 1.30
+    qp = st.query_params
 
-    page = qp.get("page")
+    page = qp.get("page", "")
+    spid = qp.get("selected_product_id", "")
+    spr = qp.get("selected_profile_id", "")
+
+    current_qp_sig = f"{page}|{spid}|{spr}"
+    last_qp_sig = st.session_state.get("_last_qp_sig", "")
+
+    # Si no hay query params útiles, no hacemos nada
+    if not page and not spid and not spr:
+        return
+
+    # Si ya procesamos exactamente esta misma URL, no volver a forzar ruta
+    if current_qp_sig == last_qp_sig:
+        return
+
     if page:
         st.session_state["route"] = page
 
-    spid = qp.get("selected_product_id")
     if spid:
         st.session_state["selected_product_id"] = spid
 
-    spr = qp.get("selected_profile_id")
     if spr:
         st.session_state["selected_profile_id"] = spr
+
+    st.session_state["_last_qp_sig"] = current_qp_sig
 
 
 
