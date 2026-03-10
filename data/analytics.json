@@ -5,26 +5,6 @@
   },
   "events": [
     {
-      "ts": "2026-01-30T02:39:53Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "d81a7b0c-f0f5-4511-8198-b743df1cf240",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
-      "ts": "2026-01-30T02:44:53Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "1737c1cf-eaee-4a1b-954d-d238d8dfa5db",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
       "ts": "2026-01-30T02:49:53Z",
       "type": "view_home",
       "event": "view_home",
@@ -98200,6 +98180,69 @@
         "channel": "Direct",
         "is_logged_in": false,
         "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T19:39:43Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "cbe70dd0-49a9-4220-9bdb-04da9a19cf91",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "product_detail_profile_button",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T19:39:47Z",
+      "type": "click_whatsapp",
+      "event": "click_whatsapp",
+      "user_id": "",
+      "anon_id": "cbe70dd0-49a9-4220-9bdb-04da9a19cf91",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "public_profile_contact",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": "",
+        "click_kind": "whatsapp"
       }
     }
   ]
