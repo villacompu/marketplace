@@ -5,171 +5,6 @@
   },
   "events": [
     {
-      "ts": "2026-01-28T18:34:19Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "ecd87eff-53b0-425e-939f-0a6e5cfda9f3",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
-      "ts": "2026-01-28T18:36:58Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "f7deab04-00f2-467c-8c7d-68e688571020",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
-      "ts": "2026-01-28T18:40:04Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
-      "ts": "2026-01-28T18:41:58Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "6f3dcf44-14b4-4ee2-99e8-baf4a668ccbe",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
-      "ts": "2026-01-28T18:42:41Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "d91a586d-ed88-4a8b-8dfc-d40ce569bc55",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
-      "ts": "2026-01-28T18:45:18Z",
-      "type": "search",
-      "event": "search",
-      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
-      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {
-        "q": "mascotas",
-        "filters": {
-          "category": "Todas",
-          "city": "Todas",
-          "tag": "Todos",
-          "price_range": [
-            0,
-            100000
-          ],
-          "sort_by": "Relevancia"
-        },
-        "results_n": 0
-      }
-    },
-    {
-      "ts": "2026-01-28T18:45:26Z",
-      "type": "search",
-      "event": "search",
-      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
-      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {
-        "q": "mascotas",
-        "filters": {
-          "category": "Todas",
-          "city": "Todas",
-          "tag": "origen",
-          "price_range": [
-            0,
-            100000
-          ],
-          "sort_by": "Relevancia"
-        },
-        "results_n": 0
-      }
-    },
-    {
-      "ts": "2026-01-28T18:45:34Z",
-      "type": "search",
-      "event": "search",
-      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
-      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {
-        "q": "",
-        "filters": {
-          "category": "Todas",
-          "city": "Todas",
-          "tag": "origen",
-          "price_range": [
-            0,
-            100000
-          ],
-          "sort_by": "Relevancia"
-        },
-        "results_n": 0
-      }
-    },
-    {
-      "ts": "2026-01-28T18:45:40Z",
-      "type": "search",
-      "event": "search",
-      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
-      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {
-        "q": "",
-        "filters": {
-          "category": "Todas",
-          "city": "Todas",
-          "tag": "regalo",
-          "price_range": [
-            0,
-            100000
-          ],
-          "sort_by": "Relevancia"
-        },
-        "results_n": 0
-      }
-    },
-    {
-      "ts": "2026-01-28T18:45:43Z",
-      "type": "search",
-      "event": "search",
-      "user_id": "d7e73fd8-62b7-42a4-9511-8c10180689ab",
-      "anon_id": "52698e01-2052-444b-a8d9-ceba9b5a03eb",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {
-        "q": "",
-        "filters": {
-          "category": "Todas",
-          "city": "Todas",
-          "tag": "tostado",
-          "price_range": [
-            0,
-            100000
-          ],
-          "sort_by": "Relevancia"
-        },
-        "results_n": 0
-      }
-    },
-    {
       "ts": "2026-01-28T18:45:47Z",
       "type": "search",
       "event": "search",
@@ -96814,6 +96649,319 @@
         "channel": "Direct",
         "is_logged_in": false,
         "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T15:54:59Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "home_top",
+        "page_context": "home",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T15:55:05Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "f455c331-3c4e-473c-8f12-ec236897c0e2",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "home_results",
+        "page_context": "product_detail",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T15:55:07Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "product_detail_profile_button",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T15:55:55Z",
+      "type": "view_directory",
+      "event": "view_directory",
+      "user_id": "",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "home_directory_button",
+        "page_context": "directory",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T15:56:04Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "384a2af5-ceaf-48c4-a428-2e360fd1af7b",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "directory_profile_card",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T15:56:12Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "2520e0ce-eaa9-4ce2-8ba4-cb66d9d280b2",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "home_featured",
+        "page_context": "product_detail",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T15:56:13Z",
+      "type": "view_profile",
+      "event": "view_profile",
+      "user_id": "",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "product_detail_profile_button",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T16:04:59Z",
+      "type": "click_whatsapp",
+      "event": "click_whatsapp",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "public_profile_contact",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": "",
+        "click_kind": "whatsapp"
+      }
+    },
+    {
+      "ts": "2026-03-10T16:05:03Z",
+      "type": "click_instagram",
+      "event": "click_instagram",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "public_profile_contact",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": "",
+        "click_kind": "instagram"
+      }
+    },
+    {
+      "ts": "2026-03-10T16:05:07Z",
+      "type": "click_website",
+      "event": "click_website",
+      "user_id": "d1147dd7-1ba0-46d4-bdb0-511bd3f6e9fd",
+      "anon_id": "d5b3da33-f24c-404a-9f96-40dd0848471e",
+      "product_id": "",
+      "profile_id": "98514919-8833-4de4-ae04-67acfccbf02e",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "public_profile_contact",
+        "page_context": "public_profile",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": "",
+        "click_kind": "website"
       }
     }
   ]

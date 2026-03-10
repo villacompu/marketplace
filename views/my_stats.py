@@ -127,7 +127,6 @@ def _label_event_type(v: str) -> str:
         "search": "Búsqueda",
         "click_whatsapp": "Clic en WhatsApp",
         "click_instagram": "Clic en Instagram",
-        "click_call": "Clic en llamada",
         "click_website": "Clic en página web",
         "click_catalog": "Clic en catálogo",
         "view_directory": "Vista de directorio",
@@ -331,7 +330,6 @@ def render(db: dict):
     contact_event_types = [
         "click_whatsapp",
         "click_instagram",
-        "click_call",
         "click_website",
         "click_catalog",
     ]
@@ -411,7 +409,6 @@ def render(db: dict):
     contact_event_types = [
         "click_whatsapp",
         "click_instagram",
-        "click_call",
         "click_website",
         "click_catalog",
     ]
@@ -723,9 +720,6 @@ def render(db: dict):
             top_source = src_top.iloc[0]["entry_source_label"] if not src_top.empty else "—"
             top_source_n = int(src_top.iloc[0]["visitas"]) if not src_top.empty else 0
 
-            top_context = ctx_top.iloc[0]["page_context_label"] if not ctx_top.empty else "—"
-            top_context_n = int(ctx_top.iloc[0]["visitas"]) if not ctx_top.empty else 0
-
             s1, s2, s3, s4 = st.columns(4)
             s1.metric("Fuentes detectadas", int(df_cur["entry_source_label"].nunique()))
             s2.metric("Contextos detectados", int(df_cur["page_context_label"].nunique()))
@@ -863,7 +857,6 @@ def render(db: dict):
 
         click_whatsapp_cur = int((contact_df_cur["etype"] == "click_whatsapp").sum()) if not contact_df_cur.empty else 0
         click_instagram_cur = int((contact_df_cur["etype"] == "click_instagram").sum()) if not contact_df_cur.empty else 0
-        click_call_cur = int((contact_df_cur["etype"] == "click_call").sum()) if not contact_df_cur.empty else 0
         click_website_cur = int((contact_df_cur["etype"] == "click_website").sum()) if not contact_df_cur.empty else 0
         click_catalog_cur = int((contact_df_cur["etype"] == "click_catalog").sum()) if not contact_df_cur.empty else 0
 
@@ -877,12 +870,11 @@ def render(db: dict):
 
         st.write("")
 
-        c4, c5, c6, c7, c8 = st.columns(5)
+        c4, c5, c6, c7 = st.columns(4)
         c4.metric("WhatsApp", click_whatsapp_cur)
         c5.metric("Instagram", click_instagram_cur)
-        c6.metric("Llamadas", click_call_cur)
-        c7.metric("Web", click_website_cur)
-        c8.metric("Catálogo", click_catalog_cur)
+        c6.metric("Web", click_website_cur)
+        c7.metric("Catálogo", click_catalog_cur)
 
         st.write("")
 

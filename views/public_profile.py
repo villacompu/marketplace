@@ -312,11 +312,7 @@ def render(db):
 
     st.write("")
 
-    # ---- Contactos medibles (única sección) ----
-    instagram_url = (links.get("instagram") or "").strip()
-    website_url = (links.get("website") or "").strip()
-    catalog_url = (links.get("external_catalog") or links.get("catalog") or "").strip()
-
+    # ---- Contactos medibles + llamada funcional ----
     action_buttons = []
 
     if wa_url:
@@ -324,9 +320,6 @@ def render(db):
 
     if instagram_url:
         action_buttons.append(("📸 Instagram", "instagram", instagram_url, False))
-
-    if tel_url:
-        action_buttons.append(("📞 Llamar", "call", tel_url, True))
 
     if website_url:
         action_buttons.append(("🌐 Web", "website", website_url, False))
@@ -337,14 +330,17 @@ def render(db):
     if action_buttons:
         st.write("")
 
-        # hasta 3 por fila
         for i in range(0, len(action_buttons), 3):
             row = action_buttons[i:i+3]
             cols = st.columns(len(row), gap="small")
 
-            for col, (label, kind, url, same_tab) in zip(cols, row):
-                with col:
-                    if st.button(label, key=f"pp_contact_{kind}_{prof.get('id')}_{i}", use_container_width=True):
+            for j, (label, kind, url, same_tab) in enumerate(row):
+                with cols[j]:
+                    if st.button(
+                        label,
+                        key=f"pp_contact_{kind}_{prof.get('id')}_{i}_{j}",
+                        use_container_width=True,
+                    ):
                         log_contact_click(
                             kind=kind,
                             profile_id=prof.get("id"),
@@ -356,7 +352,14 @@ def render(db):
                         )
                         _open_url(url, same_tab=same_tab)
 
+    if tel_url:
         st.write("")
+        st.markdown(
+            f'<a class="btn-contact" href="{safe_html(tel_url, 120)}">📞 Llamar</a>',
+            unsafe_allow_html=True,
+        )
+
+    st.write("")
 
     # ---- Tabs ----
     insta_url = instagram_url

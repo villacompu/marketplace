@@ -124,7 +124,6 @@ def _label_event_type(v: str) -> str:
         "search": "Búsqueda",
         "click_whatsapp": "Clic en WhatsApp",
         "click_instagram": "Clic en Instagram",
-        "click_call": "Clic en llamada",
         "click_website": "Clic en página web",
         "click_catalog": "Clic en catálogo",
     }
@@ -277,7 +276,6 @@ def render(db):
 
     click_whatsapp = int((df["etype"] == "click_whatsapp").sum())
     click_instagram = int((df["etype"] == "click_instagram").sum())
-    click_call = int((df["etype"] == "click_call").sum())
     click_website = int((df["etype"] == "click_website").sum())
     click_catalog = int((df["etype"] == "click_catalog").sum())
 
@@ -285,7 +283,7 @@ def render(db):
     k1.metric("Eventos", total_events)
     k2.metric("Visitantes únicos", unique_visitors)
     k3.metric("Búsquedas", searches)
-    k4.metric("Clics de contacto", click_whatsapp + click_instagram + click_call + click_website + click_catalog)
+    k4.metric("Clics de contacto", click_whatsapp + click_instagram + click_website + click_catalog)
 
     k5, k6, k7, k8 = st.columns(4)
     k5.metric("Vistas Inicio", home_views)
@@ -295,12 +293,11 @@ def render(db):
 
     st.write("")
 
-    c1, c2, c3, c4, c5 = st.columns(5)
+    c1, c2, c3, c4 = st.columns(4)
     c1.metric("WhatsApp", click_whatsapp)
     c2.metric("Instagram", click_instagram)
-    c3.metric("Llamadas", click_call)
-    c4.metric("Web", click_website)
-    c5.metric("Catálogo", click_catalog)
+    c3.metric("Web", click_website)
+    c4.metric("Catálogo", click_catalog)
 
     st.divider()
 
@@ -400,8 +397,8 @@ def render(db):
         st.markdown("### 📲 Top productos por clics de contacto")
 
         prod_contact = df[
-            df["etype"].isin(["click_whatsapp", "click_instagram", "click_call", "click_website", "click_catalog"])
-            & df["product_id"].astype(str).ne("")
+            (df["etype"].isin(["click_whatsapp", "click_instagram", "click_website", "click_catalog"]))
+            & (df["product_id"].astype(str).ne(""))
         ]
 
         if prod_contact.empty:
@@ -470,7 +467,6 @@ def render(db):
                 "view_product",
                 "click_whatsapp",
                 "click_instagram",
-                "click_call",
                 "click_website",
                 "click_catalog",
             ])
@@ -589,7 +585,6 @@ def render(db):
         contact_df = df[df["etype"].isin([
             "click_whatsapp",
             "click_instagram",
-            "click_call",
             "click_website",
             "click_catalog",
         ])].copy()

@@ -270,12 +270,12 @@ def render(db: dict):
                 tel_href = _tel_href(links.get("phone") or "")
 
                 actions = []
+
                 if wa_href:
                     actions.append(("whatsapp", wa_href, "📲", False))
+
                 if ig_href:
                     actions.append(("instagram", ig_href, "📸", False))
-                if tel_href:
-                    actions.append(("call", tel_href, "📞", True))
 
                 actions.append(("profile", "", "👀", False))
 
@@ -286,7 +286,11 @@ def render(db: dict):
 
                     with btn_col:
                         if kind == "profile":
-                            if st.button(label, key=f"dir_profile_{prof['id']}", use_container_width=True):
+                            if st.button(
+                                label,
+                                key=f"dir_profile_{prof['id']}",
+                                use_container_width=True
+                            ):
                                 st.session_state["entry_source"] = "directory_profile_card"
                                 goto("public_profile", selected_profile_id=prof["id"])
                         else:
@@ -305,6 +309,12 @@ def render(db: dict):
                                     },
                                 )
                                 _open_url(href, same_tab=same_tab)
+
+                if tel_href:
+                    st.markdown(
+                        f'<a class="btn-contact" href="{tel_href}">📞</a>',
+                        unsafe_allow_html=True,
+                    )
 
                 st.markdown("</div>", unsafe_allow_html=True)
                 st.markdown("</div>", unsafe_allow_html=True)

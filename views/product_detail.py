@@ -220,7 +220,7 @@ def render(db):
             unsafe_allow_html=True
         )
 
-        # -------- Contactos medibles --------
+# -------- Contactos medibles + llamada funcional --------
         action_buttons = []
 
         if wa_href:
@@ -228,9 +228,6 @@ def render(db):
 
         if ig_href:
             action_buttons.append(("📸 Instagram", "instagram", ig_href, False))
-
-        if tel_href:
-            action_buttons.append(("📞 Llamar", "call", tel_href, True))
 
         if web_href:
             action_buttons.append(("🌐 Web", "website", web_href, False))
@@ -244,11 +241,11 @@ def render(db):
                 row = action_buttons[i:i + 3]
                 cols = st.columns(len(row), gap="small")
 
-                for col, (label, kind, url, same_tab) in zip(cols, row):
-                    with col:
+                for j, (label, kind, url, same_tab) in enumerate(row):
+                    with cols[j]:
                         if st.button(
                             label,
-                            key=f"pd_contact_{kind}_{p.get('id')}_{i}",
+                            key=f"pd_contact_{kind}_{p.get('id')}_{i}_{j}",
                             use_container_width=True,
                         ):
                             log_contact_click(
@@ -262,6 +259,13 @@ def render(db):
                                 },
                             )
                             _open_url(url, same_tab=same_tab)
+
+        if tel_href:
+            st.write("")
+            st.markdown(
+                f'<a class="btn-contact" href="{tel_href}">📞 Llamar</a>',
+                unsafe_allow_html=True,
+            )
 
     # -------- Descripción --------
     st.write("")
