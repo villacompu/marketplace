@@ -143,7 +143,7 @@ def _track_feed_view_once(product_id: str, profile_id: str, user_id: str | None)
 def render(db: dict):
     st.markdown("## 🎬 Explorar productos")
     st.markdown(
-        '<div class="muted">Descubre productos de forma rápida, como un feed vertical.</div>',
+        '<div class="muted">Descubre productos de forma rápida.</div>',
         unsafe_allow_html=True,
     )
     st.write("")
