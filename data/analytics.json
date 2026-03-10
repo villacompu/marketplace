@@ -5,26 +5,6 @@
   },
   "events": [
     {
-      "ts": "2026-01-30T02:49:53Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "8489d502-6184-4e16-a646-f44ad7404e7e",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
-      "ts": "2026-01-30T02:54:53Z",
-      "type": "view_home",
-      "event": "view_home",
-      "user_id": "",
-      "anon_id": "f2aae80c-f5ea-49f9-a8e8-1762aaefa943",
-      "product_id": "",
-      "profile_id": "",
-      "meta": {}
-    },
-    {
       "ts": "2026-01-30T02:59:53Z",
       "type": "view_home",
       "event": "view_home",
@@ -98243,6 +98223,68 @@
         "is_logged_in": false,
         "role_hint": "",
         "click_kind": "whatsapp"
+      }
+    },
+    {
+      "ts": "2026-03-10T19:43:55Z",
+      "type": "view_home",
+      "event": "view_home",
+      "user_id": "",
+      "anon_id": "628383d8-96ab-4625-9ac4-2f31d35717f5",
+      "product_id": "",
+      "profile_id": "",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "home_top",
+        "page_context": "home",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
+      }
+    },
+    {
+      "ts": "2026-03-10T19:43:58Z",
+      "type": "view_product",
+      "event": "view_product",
+      "user_id": "",
+      "anon_id": "628383d8-96ab-4625-9ac4-2f31d35717f5",
+      "product_id": "f455c331-3c4e-473c-8f12-ec236897c0e2",
+      "profile_id": "c3c91a3a-bcfd-4bfb-ab8b-0be6811b5f06",
+      "meta": {
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "utm_content": "",
+        "utm_term": "",
+        "entry_source": "home_results",
+        "page_context": "product_detail",
+        "country_hint": "",
+        "city_hint": "",
+        "timezone_hint": "",
+        "locale_hint": "",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+        "device": "Desktop",
+        "referrer": "",
+        "host": "localhost:8501",
+        "accept_language": "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+        "lang": "es",
+        "channel": "Direct",
+        "is_logged_in": false,
+        "role_hint": ""
       }
     }
   ]

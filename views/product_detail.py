@@ -66,9 +66,7 @@ def _open_url(url: str, same_tab: bool = False) -> None:
         height=0,
     )
 
-def _share_block(title: str, text: str, url: str) -> None:
-    import urllib.parse
-
+def _share_block_inline(title: str, text: str, url: str) -> None:
     wa = f"https://wa.me/?text={urllib.parse.quote(text + ' ' + url)}"
     fb = f"https://www.facebook.com/sharer/sharer.php?u={urllib.parse.quote(url)}"
     tg = f"https://t.me/share/url?url={urllib.parse.quote(url)}&text={urllib.parse.quote(text)}"
@@ -76,69 +74,67 @@ def _share_block(title: str, text: str, url: str) -> None:
 
     html = f"""
     <style>
-    .share-clean {{
+    .share-inline-wrap {{
         display:flex;
         align-items:center;
-        gap:12px;
-        margin-top:10px;
+        gap:10px;
         flex-wrap:wrap;
+        margin: 8px 0 6px 0;
     }}
 
-    .share-label {{
-        font-weight:600;
-        color:#334155;
-        font-size:14px;
-        margin-right:4px;
+    .share-inline-label {{
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: #475569;
+        margin-right: 2px;
     }}
 
-    .share-icon {{
-        width:36px;
-        height:36px;
-        border-radius:50%;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:#f1f5f9;
-        text-decoration:none;
-        font-size:16px;
-        transition:all .15s ease;
+    .share-inline-icon,
+    .share-inline-icon:visited {{
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(109,40,217,0.08);
+        border: 1px solid rgba(109,40,217,0.14);
+        text-decoration: none;
+        font-size: 15px;
+        line-height: 1;
+        transition: all .15s ease;
+        cursor: pointer;
     }}
 
-    .share-icon:hover {{
-        background:#e2e8f0;
-        transform:scale(1.08);
-    }}
-
-    .share-copy {{
-        cursor:pointer;
+    .share-inline-icon:hover {{
+        background: rgba(109,40,217,0.14);
+        border-color: rgba(109,40,217,0.24);
+        transform: translateY(-1px);
     }}
     </style>
 
     <script>
-    function copyLink() {{
-        navigator.clipboard.writeText("{url}");
-        alert("Enlace copiado");
+    async function copyShareLink() {{
+        try {{
+            await navigator.clipboard.writeText({json.dumps(url)});
+            alert("Enlace copiado");
+        }} catch (e) {{
+            alert("No se pudo copiar el enlace");
+        }}
     }}
     </script>
 
-    <div class="share-clean">
-
-        <span class="share-label">Compartir:</span>
-
-        <a class="share-icon" href="{wa}" target="_blank">📲</a>
-
-        <a class="share-icon" href="{fb}" target="_blank">🔵</a>
-
-        <a class="share-icon" href="{tg}" target="_blank">✈️</a>
-
-        <a class="share-icon" href="{tw}" target="_blank">𝕏</a>
-
-        <div class="share-icon share-copy" onclick="copyLink()">🔗</div>
-
+    <div class="share-inline-wrap">
+        <span class="share-inline-label">Compartir</span>
+        <a class="share-inline-icon" href="{wa}" target="_blank" title="WhatsApp">📲</a>
+        <a class="share-inline-icon" href="{fb}" target="_blank" title="Facebook">🔵</a>
+        <a class="share-inline-icon" href="{tg}" target="_blank" title="Telegram">✈️</a>
+        <a class="share-inline-icon" href="{tw}" target="_blank" title="X">𝕏</a>
+        <div class="share-inline-icon" onclick="copyShareLink()" title="Copiar enlace">🔗</div>
     </div>
     """
-
-    components.html(html, height=50)
+    components.html(html, height=52, scrolling=False)
 
 # ✅ Regla de visibilidad pública real
 def _is_public_allowed(db: dict, product: dict) -> bool:
@@ -261,6 +257,16 @@ def render(db):
                 st.session_state["entry_source"] = "product_detail_profile_button"
                 goto("public_profile", selected_profile_id=prof["id"])
 
+        public_url = f"https://emprendimiento.streamlit.app/?page=product_detail&selected_product_id={p.get('id')}"
+        share_title = safe_text(p.get("name", "Producto"), 120)
+        share_text = f"Mira este producto en Marketplace de Emprendedores: {share_title}"
+
+        _share_block_inline(
+            title=share_title,
+            text=share_text,
+            url=public_url,
+        )
+
         tags = p.get("tags") or []
         tags_txt = ", ".join([safe_text(t, 40) for t in tags]) if tags else "—"
 
@@ -348,14 +354,4 @@ def render(db):
     st.markdown(f"<div class='pd-desc'>{safe_text(desc, 2000)}</div>", unsafe_allow_html=True)
 
 
-    # -------- Compartir producto --------
-    public_url = f"https://emprendimiento.streamlit.app/?page=product_detail&selected_product_id={p.get('id')}"
-    share_title = safe_text(p.get("name", "Producto"), 120)
-    share_text = f"Mira este producto en Marketplace de Emprendedores: {share_title}"
-
-    st.write("")
-    _share_block(
-        title=share_title,
-        text=share_text,
-        url=public_url,
-    )
+   
