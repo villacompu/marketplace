@@ -129,7 +129,7 @@ def _topbar(db: dict):
                          #    st.rerun()
 
                         st.divider()
-                        if st.button("⎋ Cerrar sesión", width='stretch', key="btn_logout"):
+                        if st.button("🚪 Cerrar sesión", width='stretch', key="btn_logout"):
                             logout()
                             # ✅ extra: limpia lo que pudo quedar en session_state
                             st.session_state.pop("user", None)
