@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 import textwrap
+import urllib.parse
 
 import streamlit as st
 import streamlit.components.v1 as components
@@ -65,6 +66,79 @@ def _open_url(url: str, same_tab: bool = False) -> None:
         height=0,
     )
 
+def _share_block(title: str, text: str, url: str) -> None:
+    import urllib.parse
+
+    wa = f"https://wa.me/?text={urllib.parse.quote(text + ' ' + url)}"
+    fb = f"https://www.facebook.com/sharer/sharer.php?u={urllib.parse.quote(url)}"
+    tg = f"https://t.me/share/url?url={urllib.parse.quote(url)}&text={urllib.parse.quote(text)}"
+    tw = f"https://twitter.com/intent/tweet?text={urllib.parse.quote(text)}&url={urllib.parse.quote(url)}"
+
+    html = f"""
+    <style>
+    .share-clean {{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        margin-top:10px;
+        flex-wrap:wrap;
+    }}
+
+    .share-label {{
+        font-weight:600;
+        color:#334155;
+        font-size:14px;
+        margin-right:4px;
+    }}
+
+    .share-icon {{
+        width:36px;
+        height:36px;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#f1f5f9;
+        text-decoration:none;
+        font-size:16px;
+        transition:all .15s ease;
+    }}
+
+    .share-icon:hover {{
+        background:#e2e8f0;
+        transform:scale(1.08);
+    }}
+
+    .share-copy {{
+        cursor:pointer;
+    }}
+    </style>
+
+    <script>
+    function copyLink() {{
+        navigator.clipboard.writeText("{url}");
+        alert("Enlace copiado");
+    }}
+    </script>
+
+    <div class="share-clean">
+
+        <span class="share-label">Compartir:</span>
+
+        <a class="share-icon" href="{wa}" target="_blank">📲</a>
+
+        <a class="share-icon" href="{fb}" target="_blank">🔵</a>
+
+        <a class="share-icon" href="{tg}" target="_blank">✈️</a>
+
+        <a class="share-icon" href="{tw}" target="_blank">𝕏</a>
+
+        <div class="share-icon share-copy" onclick="copyLink()">🔗</div>
+
+    </div>
+    """
+
+    components.html(html, height=50)
 
 # ✅ Regla de visibilidad pública real
 def _is_public_allowed(db: dict, product: dict) -> bool:
@@ -272,3 +346,16 @@ def render(db):
     st.markdown("<div class='pd-section-title'>Descripción</div>", unsafe_allow_html=True)
     desc = (p.get("description") or "").strip() or "—"
     st.markdown(f"<div class='pd-desc'>{safe_text(desc, 2000)}</div>", unsafe_allow_html=True)
+
+
+    # -------- Compartir producto --------
+    public_url = f"https://emprendimiento.streamlit.app/?page=product_detail&selected_product_id={p.get('id')}"
+    share_title = safe_text(p.get("name", "Producto"), 120)
+    share_text = f"Mira este producto en Marketplace de Emprendedores: {share_title}"
+
+    st.write("")
+    _share_block(
+        title=share_title,
+        text=share_text,
+        url=public_url,
+    )

@@ -11,7 +11,6 @@ from views import public_profile, favorites_page, my_profile, directory
 from views import product_detail, my_products
 from views import admin_stats, my_stats
 from views import force_change_password
-from views import feed
 from services.presence import heartbeat, online_count
 
 
