@@ -308,10 +308,8 @@ def render(db: dict):
 
     st.write("")
 
-    a1, a2, a3 = st.columns(3, gap="small")
 
-    with a1:
-        if st.button("👀 Ver producto", use_container_width=True, key=f"feed_view_product_{product_id}"):
+    if st.button("👀 Ver producto", use_container_width=True, key=f"feed_view_product_{product_id}"):
             track_event(
                 event_type="feed_open_product",
                 user_id=u.get("id"),
@@ -325,37 +323,7 @@ def render(db: dict):
             st.session_state["entry_source"] = "feed"
             goto("product_detail", selected_product_id=p.get("id"))
 
-    with a2:
-        if st.button("👤 Ver emprendimiento", use_container_width=True, key=f"feed_view_profile_{product_id}"):
-            track_event(
-                event_type="feed_open_profile",
-                user_id=u.get("id"),
-                product_id=str(p.get("id") or ""),
-                profile_id=str(p.get("profile_id") or ""),
-                meta={
-                    "entry_source": "feed",
-                    "page_context": "feed",
-                },
-            )
-            st.session_state["entry_source"] = "feed"
-            goto("public_profile", selected_profile_id=p.get("profile_id"))
-
-    with a3:
-        if wa_href:
-            if st.button("📲 WhatsApp", use_container_width=True, key=f"feed_whatsapp_{product_id}"):
-                log_contact_click(
-                    kind="whatsapp",
-                    product_id=str(p.get("id") or ""),
-                    profile_id=str(p.get("profile_id") or ""),
-                    user_id=u.get("id"),
-                    meta={
-                        "entry_source": "feed_contact",
-                        "page_context": "feed",
-                    },
-                )
-                _open_url(wa_href, same_tab=False)
-        else:
-            st.button("📲 WhatsApp", use_container_width=True, key=f"feed_whatsapp_disabled_{product_id}", disabled=True)
+    
 
     st.write("")
 
