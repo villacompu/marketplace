@@ -9,7 +9,7 @@ from services.analytics_context import get_event_context
 from db.repo_json import load_analytics, save_analytics
 
 
-MAX_EVENTS = 5000
+MAX_EVENTS = 50000
 
 
 def _now_iso() -> str:
