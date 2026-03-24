@@ -89,6 +89,75 @@ def _open_url(url: str, same_tab: bool = False) -> None:
     )
 
 
+def _share_profile_block(profile_name: str, url: str) -> None:
+    import urllib.parse
+
+    share_text = f"Conoce este emprendimiento en Marketplace de Emprendedores: {profile_name}"
+
+    wa = f"https://wa.me/?text={urllib.parse.quote(share_text + ' ' + url)}"
+    fb = f"https://www.facebook.com/sharer/sharer.php?u={urllib.parse.quote(url)}"
+    tg = f"https://t.me/share/url?url={urllib.parse.quote(url)}&text={urllib.parse.quote(share_text)}"
+    tw = f"https://twitter.com/intent/tweet?text={urllib.parse.quote(share_text)}&url={urllib.parse.quote(url)}"
+
+    html = f"""
+    <style>
+    .share-clean {{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        margin-top:10px;
+        flex-wrap:wrap;
+    }}
+
+    .share-label {{
+        font-weight:600;
+        color:#334155;
+        font-size:14px;
+        margin-right:4px;
+    }}
+
+    .share-icon {{
+        width:36px;
+        height:36px;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#f1f5f9;
+        text-decoration:none;
+        font-size:16px;
+        transition:all .15s ease;
+    }}
+
+    .share-icon:hover {{
+        background:#e2e8f0;
+        transform:scale(1.08);
+    }}
+
+    .share-copy {{
+        cursor:pointer;
+    }}
+    </style>
+
+    <script>
+    function copyProfileLink() {{
+        navigator.clipboard.writeText({json.dumps(url)});
+        alert("Enlace copiado");
+    }}
+    </script>
+
+    <div class="share-clean">
+        <span class="share-label">Compartir emprendimiento:</span>
+        <a class="share-icon" href="{wa}" target="_blank">📲</a>
+        <a class="share-icon" href="{fb}" target="_blank">🔵</a>
+        <a class="share-icon" href="{tg}" target="_blank">✈️</a>
+        <a class="share-icon" href="{tw}" target="_blank">𝕏</a>
+        <div class="share-icon share-copy" onclick="copyProfileLink()">🔗</div>
+    </div>
+    """
+
+    components.html(html, height=60)
+
 # =========================
 # Helpers (products)
 # =========================
@@ -361,6 +430,15 @@ def render(db):
 
     st.write("")
 
+    # ---- Compartir emprendimiento ----
+    public_profile_url = f"https://emprendimiento.streamlit.app/?page=public_profile&selected_profile_id={prof.get('id')}"
+    _share_profile_block(
+        profile_name=prof.get("business_name", "Emprendimiento"),
+        url=public_profile_url,
+    )
+
+    st.write("")
+    
     # ---- Tabs ----
     insta_url = instagram_url
     tabs = ["📌 Resumen", "🖼️ Galería"]
