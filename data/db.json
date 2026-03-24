@@ -123,15 +123,16 @@
     {
       "id": "34fc37a9-1fe3-4be7-b28d-54214667e445",
       "email": "stefanyguisaozapata@gmail.com",
-      "password_hash": "$pbkdf2-sha256$290000$NUYoRcg5h3BujdG6d845Jw$FrEE9f4D0q/aLeVkcLngGIfxPfuBAFoyY3lv61RNjeA",
+      "password_hash": "$pbkdf2-sha256$290000$CuHcW4vxXosx5tzb.783Rg$mmWTE60jESnfw4J.0N04jO4tVFdmwnaKbY7ju0IFjpM",
       "role": "EMPRENDEDOR",
       "status": "ACTIVE",
       "max_published_products": 5,
       "can_view_stats": false,
       "created_at": "2026-01-26T23:54:03Z",
-      "updated_at": "2026-01-27T00:02:54Z",
+      "updated_at": "2026-03-21T16:47:59Z",
       "reset_token": null,
-      "reset_token_expires_at": null
+      "reset_token_expires_at": null,
+      "must_change_password": true
     },
     {
       "id": "c673dff6-3659-4f9f-a967-879c9e24ee15",
@@ -282,6 +283,20 @@
       "can_view_stats": false,
       "created_at": "2026-03-05T02:30:37Z",
       "updated_at": "2026-03-05T02:35:16Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "must_change_password": false
+    },
+    {
+      "id": "13f8aa95-0ab0-4b29-b2a9-811c64f280e8",
+      "email": "estherrpos@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$2xtDSGnNuffee885B0CIEQ$PfszzBmOA828U/AjxY8yWRHf3g7um7ARVoHliu1CRq8",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-03-23T15:07:52Z",
+      "updated_at": "2026-03-23T16:26:16Z",
       "reset_token": null,
       "reset_token_expires_at": null,
       "must_change_password": false
@@ -859,6 +874,33 @@
       "is_approved": true,
       "created_at": "2026-03-05T02:30:37Z",
       "updated_at": "2026-03-05T02:35:16Z"
+    },
+    {
+      "id": "acef3e40-f670-4753-8dfb-ea045cabe767",
+      "owner_user_id": "13f8aa95-0ab0-4b29-b2a9-811c64f280e8",
+      "business_name": "laboutique_hathor",
+      "short_desc": "Comercialización de productos marcas Natura y Mary Kay",
+      "long_desc": "Les presento dos marcas prestigiosas de belleza, salud y bienestar, son reconocidas internacionalmente por su calidad, impacto social y su compromiso con el desarrollo de mujeres y emprendedores.  Son marcas para generar ingresos y construir independencia financiera, mientras ayudamos a otras personas a verse y sentirse mejor.",
+      "categories": [
+        "Salud"
+      ],
+      "city": "La estrella",
+      "availability": "7 x 24",
+      "links": {
+        "instagram": "https://www.instagram.com/laboutique_hathor/",
+        "facebook": "https://www.facebook.com/esther.restreposanchez",
+        "tiktok": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573148350002&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
+        "website": "",
+        "external_catalog": "",
+        "phone": "3148350002",
+        "whatsapp_phone": "3148350002"
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-03-23T15:07:52Z",
+      "updated_at": "2026-03-23T17:39:59Z"
     }
   ],
   "products": [
@@ -1649,6 +1691,56 @@
       ],
       "status": "PAUSED",
       "updated_at": "2026-03-07T13:19:14Z"
+    },
+    {
+      "id": "b97f204a-193a-4f6a-b067-8ec41a4c168e",
+      "owner_user_id": "13f8aa95-0ab0-4b29-b2a9-811c64f280e8",
+      "profile_id": "acef3e40-f670-4753-8dfb-ea045cabe767",
+      "created_at": "2026-03-23T15:27:08Z",
+      "name": "MARY KAY",
+      "description": "Linea completa de belleza de cuidado facial, maquillaje, cuidado corporal, fragancias y tratamientos especializados para resaltar la belleza natural.\n\nCATALOGO\nhttps://drive.google.com/file/d/1xtFJwPcKZRhgQJWjvIb0G_6JItP1pEhv/view?usp=sharing",
+      "category": "Belleza",
+      "tags": [
+        "A domicilio"
+      ],
+      "tag_suggestion": "",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://lh3.googleusercontent.com/d/1OPCuJgvEzgOLsQr03b5xah9m8-brACCd",
+        "https://lh3.googleusercontent.com/d/1ZGOu56dbYoz09wTWT2ffrmRp157nFwcO",
+        "https://lh3.googleusercontent.com/d/1d5BmwripdQQC5wJGqU5EpCOmHD1xbOPf",
+        "https://lh3.googleusercontent.com/d/1sTSAMk-vbGzXV_SLImNxIX_QU_4fWjEO",
+        "https://lh3.googleusercontent.com/d/1fGj17hzeCilO_YOuVuOZHi9cOQpIAnRH",
+        "https://lh3.googleusercontent.com/d/1gW42ZlP4Hmd_Vru415KgV-MMGELsgAQS"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-03-23T16:50:57Z"
+    },
+    {
+      "id": "e3b41843-112b-4b72-b4f4-55ec675a3d8b",
+      "owner_user_id": "13f8aa95-0ab0-4b29-b2a9-811c64f280e8",
+      "profile_id": "acef3e40-f670-4753-8dfb-ea045cabe767",
+      "created_at": "2026-03-23T15:45:32Z",
+      "name": "NATURA",
+      "description": "Es una amplia gama de productos de belleza y bienestar que incluye el cuidado facial, cuidado corporal, perfumería, maquillaje y tratamientos capilares con ingredientes inspirados en la biodiversidad natural diseñados para proteger y realzar la belleza de cada persona, con el compromiso de generar sostenibilidad y respeto por el medio ambiente.\n\nCATALOGO\nhttps://drive.google.com/file/d/1Jp1MCKDaiRdop08aRncI2y0jdJBRkxNq/view?usp=sharing",
+      "category": "Salud",
+      "tags": [
+        "Cuidado personal"
+      ],
+      "tag_suggestion": "Domicilio",
+      "price_type": "AGREE",
+      "price_value": null,
+      "photo_urls": [
+        "https://lh3.googleusercontent.com/d/1pW2pxv7IzauMEYcypoJTF816PaU0ZVaq",
+        "https://lh3.googleusercontent.com/d/1hT8MPxb-tTDJG3wEurgjpJPpWxelh2V9",
+        "https://lh3.googleusercontent.com/d/175dB1GniQG0EuJAimekCJLZw1DTlcmgA",
+        "https://lh3.googleusercontent.com/d/1xJPyL3ruYFGWYH60gVBTevZgqCJ3pIBl",
+        "https://lh3.googleusercontent.com/d/1ch5XblD8Uruo9uIKCcDtmcBXkzerO3sc",
+        "https://lh3.googleusercontent.com/d/1kme46ap-BrlYjHkuyetkRRYr5nbPxtbU"
+      ],
+      "status": "PUBLISHED",
+      "updated_at": "2026-03-23T16:50:54Z"
     }
   ],
   "favorites": [
