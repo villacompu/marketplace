@@ -26,7 +26,8 @@ def render(db):
     password = st.text_input("Contraseña", type="password", placeholder="••••••••", key="login_pass")
 
     if st.button("Entrar", width='stretch'):
-        e = (email or "").strip().lower()
+        e = (st.session_state.get("login_email") or "").strip().lower()
+        p = st.session_state.get("login_pass") or ""
         u = next((x for x in db.get("users", []) if x.get("email") == e), None)
 
         if not u:
@@ -37,7 +38,7 @@ def render(db):
             st.error("Tu cuenta está bloqueada.")
             st.stop()
 
-        if not verify_password(password or "", u.get("password_hash", "")):
+        if not verify_password(p, u.get("password_hash", "")):
             st.error("Contraseña incorrecta.")
             st.stop()
 
