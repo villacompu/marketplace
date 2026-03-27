@@ -300,6 +300,34 @@
       "reset_token": null,
       "reset_token_expires_at": null,
       "must_change_password": false
+    },
+    {
+      "id": "ca357ab3-af28-467b-9d16-97112f7f35b8",
+      "email": "sebastian32015@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$q3UuxZhTaq11rpUS4pyTUg$J4l4CTDqO14kCtdeyD3RhQld2UBe/dX1Vr2OiPJ.Z7A",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-03-26T23:46:00Z",
+      "updated_at": "2026-03-27T02:31:21Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "must_change_password": false
+    },
+    {
+      "id": "23ac6ff1-27bf-4130-953f-c553d3a3cd89",
+      "email": "paovalenlg@gmail.com",
+      "password_hash": "$pbkdf2-sha256$290000$lHKOsXaO8d6bk3KudW5NqQ$Yj3BYeHVReNHeFbcZJqRO.6kuNn3d/bwKRZxlKvalWg",
+      "role": "EMPRENDEDOR",
+      "status": "ACTIVE",
+      "max_published_products": 5,
+      "can_view_stats": false,
+      "created_at": "2026-03-26T23:50:21Z",
+      "updated_at": "2026-03-27T02:31:30Z",
+      "reset_token": null,
+      "reset_token_expires_at": null,
+      "must_change_password": false
     }
   ],
   "profiles": [
@@ -901,6 +929,62 @@
       "is_approved": true,
       "created_at": "2026-03-23T15:07:52Z",
       "updated_at": "2026-03-23T17:39:59Z"
+    },
+    {
+      "id": "b40b2195-8b38-4f3d-a827-946cea2700d3",
+      "owner_user_id": "ca357ab3-af28-467b-9d16-97112f7f35b8",
+      "business_name": "Orus Entertaiment",
+      "short_desc": "La mejor opción para tu evento inolvidable",
+      "long_desc": "Descri**“Tu evento merece más que música… merece una EXPERIENCIA. 🔥\nEn Orus Entertainment llevamos DJ, hora loca, fiestas infantiles, luces y sonido profesional para crear momentos inolvidables.\nReserva ahora y haz que todos hablen de tu evento.”*pción larga (edítame).",
+      "categories": [
+        "Servicios",
+        "Arte",
+        "Comida",
+        "Hogar"
+      ],
+      "city": "La estrella",
+      "availability": "Lineas a viernes de 8am a 6pm",
+      "links": {
+        "instagram": "https://secure.instagram.com/?deoia=1",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "https://api.whatsapp.com/send?phone=573106624344&text=Hola%2C+vi+tu+emprendimiento+en+el+Marketplace+y+quiero+una+asesor%C3%ADa.",
+        "website": "",
+        "external_catalog": "",
+        "phone": "3106624344",
+        "whatsapp_phone": "3106624344"
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-03-26T23:46:00Z",
+      "updated_at": "2026-03-27T02:31:21Z"
+    },
+    {
+      "id": "a2ccdc76-9963-40bf-9a66-ea5b201ed84d",
+      "owner_user_id": "23ac6ff1-27bf-4130-953f-c553d3a3cd89",
+      "business_name": "DRA. PAOLA LOPEZ ~ DENTAL CARE & AESTHETIC Odontólogía Estética y General",
+      "short_desc": "🦷 Odontóloga apasionada por transformar sonrisas y vidas.\nCreo en la belleza auténtica, el amor propio y el poder de una sonrisa segura.\nAquí encontrarás salud, estética y bienesta",
+      "long_desc": "Soy Paola López, odontóloga, apasionada por ayudarte a cuidar tu salud oral y transformar tu sonrisa. 🦷✨\nCreo que una sonrisa sana y bonita puede cambiar la forma en que te sientes y te presentas al mundo.\nMi enfoque combina salud, estética y bienestar, para que sonrías con tranquilidad, seguridad y naturalidad.\nSerá un gusto acompañarte en el cuidado de tu sonrisa.",
+      "categories": [
+        "Salud"
+      ],
+      "city": "Medellín",
+      "availability": "Lun-Sabado de  9am - 6pm",
+      "links": {
+        "instagram": "",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "",
+        "website": "",
+        "external_catalog": "",
+        "phone": ""
+      },
+      "logo_url": "",
+      "gallery_urls": [],
+      "is_approved": true,
+      "created_at": "2026-03-26T23:50:21Z",
+      "updated_at": "2026-03-27T02:31:30Z"
     }
   ],
   "products": [
